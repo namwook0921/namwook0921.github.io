@@ -6,171 +6,135 @@
 <title>Namwook Lee — CS 180, UC Berkeley</title>
 <meta name="description" content="Project pages for CS 180: Intro to Computer Vision and Computational Photography at UC Berkeley, Fall 2026.">
 <meta name="author" content="Namwook Lee">
-<meta property="og:type" content="website">
+<meta property="og:type" content="profile">
 <meta property="og:title" content="Namwook Lee — CS 180">
 <meta property="og:description" content="Projects for CS 180: Intro to Computer Vision and Computational Photography, UC Berkeley, Fall 2026.">
 <link rel="stylesheet" href="assets/css/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='%233b5998'/><text x='50' y='78' font-family='Lucida Grande,Tahoma,sans-serif' font-size='78' font-weight='bold' fill='%23ffffff' text-anchor='middle'>n</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%231877f2'/><text x='50' y='76' font-family='Georgia,serif' font-size='72' font-weight='bold' fill='%23fff' text-anchor='middle'>n</text></svg>">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
+<svg class="sr" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></symbol>
+  <symbol id="i-like" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></symbol>
+  <symbol id="i-thumb" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 2.2 9.6 12v10h9.1a2 2 0 0 0 2-1.7l1.3-8.4a2 2 0 0 0-2-2.3h-4.3V4.6a2.4 2.4 0 0 0-1.2-2.4zM7.6 12H4.4a1.4 1.4 0 0 0-1.4 1.4v7.2A1.4 1.4 0 0 0 4.4 22h3.2z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-4.9-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 16.1 12 21 12 21z"/></symbol>
+  <symbol id="i-comment" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.8V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.8"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+  <symbol id="i-school" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V17c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.7l1.2-2h6.2l1.2 2h2.7A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.1 0l2.9-2.9a5 5 0 0 0-7.1-7.1L11.5 4.4"/><path d="M14 11a5 5 0 0 0-7.1 0L4 13.9a5 5 0 0 0 7.1 7.1l1.4-1.4"/></symbol>
+</svg>
 
-<div class="topbar">
+<header class="topbar">
   <div class="topbar__inner">
-    <a class="wordmark" href="./">namwook</a>
-    <form class="topsearch" role="search" onsubmit="return false;">
-      <label class="skip" for="q">Search this page</label>
-      <input id="q" type="search" placeholder="Search" autocomplete="off">
+    <a class="logo" href="./" aria-label="Namwook Lee — home">n</a>
+    <form class="searchpill" role="search" onsubmit="return false;">
+      <svg aria-hidden="true"><use href="#i-search"/></svg>
+      <label class="sr" for="q">Search this page</label>
+      <input id="q" type="search" placeholder="Search projects" autocomplete="off">
     </form>
-    <nav class="topnav">
-      <a href="./" aria-current="page">profile</a>
-      <a href="proj0/">projects</a>
-      <a href="proj0/#photos">photos</a>
-      <a href="https://github.com/namwook0921" target="_blank" rel="noopener">github</a>
+    <nav class="topicons" aria-label="Site">
+      <a class="iconbtn" href="proj0/" title="Project 0" aria-label="Project 0"><svg aria-hidden="true"><use href="#i-camera"/></svg></a>
+      <a class="iconbtn is-optional" href="https://cal-cs180.github.io/fa26/" target="_blank" rel="noopener" title="CS 180 course site" aria-label="CS 180 course site"><svg aria-hidden="true"><use href="#i-school"/></svg></a>
+      <a class="iconbtn is-optional" href="https://github.com/namwook0921" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+      <a class="iconbtn" href="./" title="Namwook Lee" aria-label="Namwook Lee"><img src="proj0/images/avatar.jpg" alt=""></a>
     </nav>
   </div>
-</div>
+</header>
 
-<main class="shell" id="main">
+<main class="feed" id="main">
 
-  <div class="pagehead">
-    <h1>Namwook Lee</h1>
-    <div class="sub">UC Berkeley &middot; CS 180, Fall 2026</div>
+  <div class="card">
+    <div class="cover">
+      <img src="proj0/images/cover.jpg" alt="Arcade of Galvez Hall receding toward a vanishing point">
+    </div>
+    <div class="profile">
+      <img class="profile__pic" src="proj0/images/avatar.jpg" alt="Namwook Lee">
+      <div class="profile__id">
+        <h1>Namwook Lee</h1>
+        <p>CS 180 · Computer Vision &amp; Computational Photography · UC Berkeley</p>
+      </div>
+    </div>
+    <nav class="profile__nav" aria-label="Sections">
+      <a class="is-active" href="./">Posts</a>
+      <a href="#intro">About</a>
+      <a href="proj0/#part1">Photos</a>
+      <a href="https://cal-cs180.github.io/fa26/" target="_blank" rel="noopener">Course</a>
+    </nav>
   </div>
 
-  <nav class="tabs" aria-label="Sections">
-    <a class="is-active" href="./">Profile</a>
-    <a href="proj0/">Project 0</a>
-    <a href="#about">Info</a>
-    <a href="https://cal-cs180.github.io/fa26/" target="_blank" rel="noopener">Course Site</a>
-  </nav>
+  <div class="card" id="intro">
+    <div class="cardhd">Intro</div>
+    <div class="infolist">
+      <div class="inforow"><svg aria-hidden="true"><use href="#i-school"/></svg>
+        <div>Studies <b>CS 180</b> at UC Berkeley — Fall 2026</div></div>
+      <div class="inforow"><svg aria-hidden="true"><use href="#i-camera"/></svg>
+        <div>Shoots on an <b>iPhone 17 Pro</b> — 24 mm main, 151 mm telephoto</div></div>
+      <div class="inforow"><svg aria-hidden="true"><use href="#i-mail"/></svg>
+        <div><a href="mailto:namwook0921@gmail.com">namwook0921@gmail.com</a></div></div>
+      <div class="inforow"><svg aria-hidden="true"><use href="#i-github"/></svg>
+        <div><a href="https://github.com/namwook0921" target="_blank" rel="noopener">github.com/namwook0921</a></div></div>
+    </div>
+  </div>
 
-  <div class="cols">
+  <div class="card">
+    <div class="cardhd">Projects <span class="sub">Each one is posted as its own feed.</span></div>
 
-    <!-- ---------------- Left column ---------------- -->
-    <div class="col-side">
-      <div class="pfp">
-        <img src="proj0/images/cover.jpg" alt="Portrait of Namwook Lee">
+    <a class="projectrow" href="proj0/" data-search="project 0 camera perspective selfie stanford dolly zoom">
+      <img src="proj0/images/part2/galvez-wide.jpg" alt="Project 0 thumbnail">
+      <div>
+        <div class="projectrow__title">Project 0: Becoming Friends with Your Camera</div>
+        <p class="projectrow__desc">
+          Perspective, focal length, and the center of projection — a selfie shot two ways, Stanford
+          architecture flattened, and a dolly zoom.
+        </p>
+        <div class="projectrow__meta">4 posts · September 2, 2026</div>
       </div>
-      <ul class="sidelinks">
-        <li><a href="proj0/#photos">View Photos of Me (3)</a></li>
-        <li><a href="mailto:namwook0921@gmail.com">Send Message</a></li>
-        <li><a href="https://github.com/namwook0921" target="_blank" rel="noopener">View GitHub</a></li>
-      </ul>
+    </a>
 
-      <div class="box" style="margin-top:12px;">
-        <div class="box__hd">Information</div>
-        <div class="box__bd">
-          <dl class="infolist">
-            <dt>Networks:</dt><dd>UC Berkeley</dd>
-            <dt>Course:</dt><dd>CS 180 &mdash; Computer Vision &amp; Computational Photography</dd>
-            <dt>Term:</dt><dd>Fall 2026</dd>
-            <dt>Camera:</dt><dd>iPhone 17 Pro</dd>
-            <dt>Email:</dt><dd><a href="mailto:namwook0921@gmail.com">namwook0921@gmail.com</a></dd>
-            <dt>GitHub:</dt><dd><a href="https://github.com/namwook0921" target="_blank" rel="noopener">namwook0921</a></dd>
-          </dl>
-        </div>
+    <div class="projectrow is-soon" data-search="project 1 coming soon">
+      <div class="thumbph"></div>
+      <div>
+        <div class="projectrow__title">Project 1</div>
+        <p class="projectrow__desc">This row fills in once the next assignment is released.</p>
+        <div class="projectrow__meta">Not yet posted</div>
       </div>
     </div>
 
-    <!-- ---------------- Main column ---------------- -->
-    <div class="col-main">
-
-      <div class="box">
-        <div class="box__bd">
-          <div class="status">
-            <div>
-              <span class="who">Namwook</span>
-              is standing eight feet back and zooming in, like a reasonable person.
-              <div class="meta">Updated September 2, 2026</div>
-            </div>
-          </div>
-        </div>
+    <div class="projectrow is-soon" data-search="project 2 coming soon">
+      <div class="thumbph"></div>
+      <div>
+        <div class="projectrow__title">Project 2</div>
+        <p class="projectrow__desc">This row fills in once the next assignment is released.</p>
+        <div class="projectrow__meta">Not yet posted</div>
       </div>
-
-      <div class="box">
-        <div class="box__hd">Projects <span class="hd-note">1 published</span></div>
-        <div class="box__bd box__bd--flush">
-          <ul class="rows">
-
-            <li class="row" data-search="project 0 camera perspective dolly zoom selfie">
-              <div class="row__thumb"><img src="proj0/images/cover.jpg" alt="Project 0 thumbnail"></div>
-              <div class="row__body">
-                <div class="row__title">
-                  <a href="proj0/">Project 0: Becoming Friends with Your Camera</a>
-                  <span class="tagpill">Published</span>
-                </div>
-                <p class="row__desc">
-                  Perspective, focal length, and the center of projection &mdash; a selfie shot the wrong way and
-                  the right way, architectural compression, and a dolly zoom.
-                </p>
-                <div class="row__meta">Posted September 2, 2026 &middot; <a href="proj0/">View project</a></div>
-              </div>
-            </li>
-
-            <li class="row is-soon" data-search="project 1 coming soon">
-              <div class="row__thumb"></div>
-              <div class="row__body">
-                <div class="row__title">Project 1 <span class="tagpill tagpill--soon">Soon</span></div>
-                <p class="row__desc">This row fills in once the next assignment is released.</p>
-                <div class="row__meta">Not yet posted</div>
-              </div>
-            </li>
-
-            <li class="row is-soon" data-search="project 2 coming soon">
-              <div class="row__thumb"></div>
-              <div class="row__body">
-                <div class="row__title">Project 2 <span class="tagpill tagpill--soon">Soon</span></div>
-                <p class="row__desc">This row fills in once the next assignment is released.</p>
-                <div class="row__meta">Not yet posted</div>
-              </div>
-            </li>
-
-          </ul>
-          <div class="noresults" hidden>Nothing on this page matches your search.</div>
-        </div>
-      </div>
-
-      <div class="box" id="about">
-        <div class="box__hd">About This Site</div>
-        <div class="box__bd">
-          <div class="prose">
-            <p>
-              CS 180 is Berkeley's introduction to computer vision and computational photography: how images are
-              formed, how to manipulate them, and how to get a computer to make sense of them. The course runs on
-              hands-on projects, and this site is where mine live &mdash; one page per project, with the photos,
-              the results, and the reasoning behind them.
-            </p>
-            <p>
-              Everything here is written and photographed by me unless noted otherwise. Photos are shown at
-              reduced resolution to keep pages light; click any of them to open the full-size version.
-            </p>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
+
+  <p class="noresults" hidden>Nothing here matches your search.</p>
+
 </main>
 
 <footer class="foot">
-  <div class="row-links">
-    <a href="./">Profile</a><span>|</span>
-    <a href="proj0/">Project 0</a><span>|</span>
-    <a href="https://cal-cs180.github.io/fa26/" target="_blank" rel="noopener">CS 180</a><span>|</span>
+  <div class="links">
+    <a href="./">Profile</a><span>·</span>
+    <a href="proj0/">Project 0</a><span>·</span>
+    <a href="https://cal-cs180.github.io/fa26/" target="_blank" rel="noopener">CS 180</a><span>·</span>
     <a href="https://github.com/namwook0921" target="_blank" rel="noopener">GitHub</a>
   </div>
-  Namwook Lee &copy; 2026 &middot; A CS 180 course site, wearing a 2008 costume.
+  Namwook Lee © 2026 · CS 180, UC Berkeley
 </footer>
 
-<div class="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
-  <button class="lb__close" type="button">Close</button>
-  <div class="lb__frame">
-    <img alt="">
-    <p class="lb__cap"></p>
-  </div>
-</div>
+<div class="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/js/site.js"></script>
 </body>

@@ -1,41 +1,40 @@
-# Project 0 — where to drop your photos
+# Project 0 — photos
 
-The page (`proj0/index.html`) looks for these exact paths. Until a file exists, the page
-shows a dashed placeholder box naming the file it wants, so nothing breaks while you shoot.
+The page (`proj0/index.html`) looks for these exact paths. Anything missing renders as a dashed
+placeholder naming the file it wants, so the layout never breaks.
 
-| Path                                  | What it is                                 | Status |
-| ------------------------------------- | ------------------------------------------ | ------ |
-| `cover.jpg`                           | Profile picture / project thumbnail        | done (IMG_8089) |
-| `part1/close.jpg`                     | Selfie at arm's length (the wrong way)     | done (IMG_8088, 24 mm eq.) |
-| `part1/far.jpg`                       | Same face from far away + zoom (right way) | done (IMG_8089, 151 mm eq.) |
-| `part2/far-tele.jpg`                  | Building, far away, zoomed in (compressed) | needed |
-| `part2/near-wide.jpg`                 | Building, walked in close, wide angle      | needed |
-| `part3/dollyzoom.gif`                 | The animated dolly zoom                    | needed |
-| `part3/frame-01.jpg` … `frame-06.jpg` | The stills that make up the GIF            | needed |
+| Path                        | Post   | Source        | Lens          |
+| --------------------------- | ------ | ------------- | ------------- |
+| `avatar.jpg`                | all    | IMG_8089      | profile photo, square crop |
+| `cover.jpg`                 | home   | IMG_8094      | banner crop of the Galvez arcade |
+| `part1/close.jpg`           | Part 1 | IMG_8088      | 24 mm eq, f/1.78, ~1.5 ft |
+| `part1/far.jpg`             | Part 1 | IMG_8089      | 151 mm eq, f/2.8, ~9.5 ft |
+| `part2/galvez-wide.jpg`     | Part 2 | IMG_8094      | 24 mm eq, close |
+| `part2/galvez-tele.jpg`     | Part 2 | IMG_8096      | 63 mm eq, stepped back |
+| `part2/hoover-wide.jpg`     | Part 2 | IMG_8092      | 60 mm eq, close |
+| `part2/hoover-tele.jpg`     | Part 2 | IMG_8093      | 77 mm eq, stepped back |
+| `part3/dollyzoom.gif`       | Part 3 | olive_and_fork.gif | 7 frames |
 
-The three finished files were resized to 1600 px on the long edge and had their EXIF
-orientation baked into the pixels, so they display right side up everywhere.
+Post 2's grid reads top-left → bottom-right: Galvez wide, Galvez tele, Hoover wide, Hoover tele.
 
-Using different names or more dolly-zoom frames is fine — just edit the matching
-`<img src="...">` lines in `proj0/index.html`.
+## Preparing new photos
 
-## Keep the files small
-
-Straight-off-the-phone photos are 3–5 MB each and make the page (and the Gradescope PDF) crawl.
-Resize the long edge to ~1600 px before committing:
+Every photo is resized to ~1400 px on the long edge and has its EXIF orientation baked into the
+pixels, so it can't display sideways:
 
 ```bash
-# macOS, built in — works on a copy, so shoot into a separate folder first
-sips -Z 1600 *.jpg
-
-# or with ImageMagick
-mogrify -resize 1600x1600\> -quality 82 *.jpg
+sips -Z 1400 -s format jpeg -s formatOptions 80 --out out.jpg IMG_XXXX.JPG
+sips -r 90 out.jpg          # only if the original was shot in portrait
 ```
 
-## Building the GIF
+All the post photos are 3:4, which is what makes the 2-up and 2×2 grids line up with no cropping.
+If you add one at a different aspect ratio it will be center-cropped to fit the tile; the full
+frame still opens in the photo viewer.
 
-`../../tools/make-gif.sh` wraps ffmpeg for this. From the repo root:
+## Building a GIF
+
+`../../tools/make-gif.sh` wraps ffmpeg, if you'd rather not use imgflip:
 
 ```bash
-tools/make-gif.sh proj0/images/part3 proj0/images/part3/dollyzoom.gif
+tools/make-gif.sh <folder-of-frames> proj0/images/part3/dollyzoom.gif
 ```
