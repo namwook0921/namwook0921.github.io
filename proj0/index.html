@@ -10,45 +10,27 @@
 <meta property="og:title" content="Project 0: Becoming Friends with Your Camera">
 <meta property="og:description" content="Perspective, focal length, and the center of projection — CS 180, UC Berkeley.">
 <meta property="og:image" content="https://namwook0921.github.io/proj0/images/part1/far.jpg">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css?v=5">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%231877f2'/><text x='50' y='76' font-family='Georgia,serif' font-size='72' font-weight='bold' fill='%23fff' text-anchor='middle'>n</text></svg>">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 <svg class="sr" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
   <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></symbol>
-  <symbol id="i-like" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></symbol>
-  <symbol id="i-thumb" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 2.2 9.6 12v10h9.1a2 2 0 0 0 2-1.7l1.3-8.4a2 2 0 0 0-2-2.3h-4.3V4.6a2.4 2.4 0 0 0-1.2-2.4zM7.6 12H4.4a1.4 1.4 0 0 0-1.4 1.4v7.2A1.4 1.4 0 0 0 4.4 22h3.2z"/></symbol>
-  <symbol id="i-heart" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-4.9-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.6C20 16.1 12 21 12 21z"/></symbol>
-  <symbol id="i-comment" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></symbol>
-  <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
   <symbol id="i-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
-  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.8V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.8"/></symbol>
-  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
-  <symbol id="i-school" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2 9l10 5 10-5-10-5z"/><path d="M6 11.5V17c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/></symbol>
-  <symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2.7l1.2-2h6.2l1.2 2h2.7A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.4"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6 8.5-6"/></symbol>
-  <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.1 0l2.9-2.9a5 5 0 0 0-7.1-7.1L11.5 4.4"/><path d="M14 11a5 5 0 0 0-7.1 0L4 13.9a5 5 0 0 0 7.1 7.1l1.4-1.4"/></symbol>
 </svg>
 
 <header class="topbar">
   <div class="topbar__inner">
-    <a class="logo" href="../" aria-label="Namwook Lee — home">n</a>
-    <form class="searchpill" role="search" onsubmit="return false;">
-      <svg aria-hidden="true"><use href="#i-search"/></svg>
-      <label class="sr" for="q">Search this page</label>
-      <input id="q" type="search" placeholder="Search posts" autocomplete="off">
-    </form>
-    <nav class="topicons" aria-label="Site">
-      <a class="iconbtn" href="../" title="Profile" aria-label="Profile"><svg aria-hidden="true"><use href="#i-home"/></svg></a>
-      <a class="iconbtn is-optional" href="https://cal-cs180.github.io/fa26/" target="_blank" rel="noopener" title="CS 180 course site" aria-label="CS 180 course site"><svg aria-hidden="true"><use href="#i-school"/></svg></a>
-      <a class="iconbtn is-optional" href="https://github.com/namwook0921" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
-      <a class="iconbtn" href="../" title="Namwook Lee" aria-label="Namwook Lee"><img src="images/avatar.jpg" alt=""></a>
-    </nav>
+    <a class="logo" href="../" aria-label="Home">n</a>
+    <div class="topbar__title">
+      <div class="t1">Project 0</div>
+      <div class="t2">Becoming Friends with Your Camera</div>
+    </div>
+    <a class="backlink" href="../">All projects</a>
   </div>
 </header>
 
@@ -61,10 +43,10 @@
   </div>
 
   <!-- ==================== POST 1 ==================== -->
-  <article class="card" id="part1" data-search="part 1 selfie wrong right way face distortion nose portrait">
+  <article class="card" id="part1">
     <div class="post__hd">
       <img class="avatar" src="images/avatar.jpg" alt="Namwook Lee">
-      <div>
+      <div class="post__who">
         <div class="post__author">Namwook Lee</div>
         <div class="post__meta">September 2 at 7:19 PM · <svg aria-hidden="true"><use href="#i-globe"/></svg></div>
       </div>
@@ -84,90 +66,20 @@
       </figure>
     </div>
 
-    <ul class="exif">
-      <li><b>Left</b> 24 mm eq · f/1.78 · 19:19:17</li>
-      <li><b>Right</b> 151 mm eq · f/2.8 · 19:19:27</li>
-      <li><b>iPhone 17 Pro</b></li>
-    </ul>
-
-    <div class="counts">
-      <span class="reacts">
-        <span class="react react--like"><svg aria-hidden="true"><use href="#i-thumb"/></svg></span>
-        <span class="react react--love"><svg aria-hidden="true"><use href="#i-heart"/></svg></span>
-      </span>
-      <span data-likecount="part1" data-base="47">47</span>
-      <span class="spacer"></span>
-      <a href="#part1-comments">2 comments</a>
-    </div>
-
-    <div class="actions">
-      <button class="actionbtn" type="button" data-like="part1" aria-pressed="false">
-        <svg aria-hidden="true"><use href="#i-like"/></svg><span>Like</span>
-      </button>
-      <button class="actionbtn" type="button" data-comment="part1">
-        <svg aria-hidden="true"><use href="#i-comment"/></svg><span>Comment</span>
-      </button>
-      <button class="actionbtn" type="button" data-share="part1">
-        <svg aria-hidden="true"><use href="#i-share"/></svg><span>Share</span>
-      </button>
-    </div>
-
-    <div class="comments" id="part1-comments">
-      <div class="comment">
-        <img class="avatar avatar--sm" src="images/avatar.jpg" alt="">
-        <div class="comment__body">
-          <div class="bubble">
-            <div class="bubble__who">Namwook Lee <span class="badge">Author</span></div>
-            <p>
-              Why they look like different people: a camera projects the world through a single point, and an
-              object's size in the image falls off with its distance from that point. What distorts a face is
-              therefore not the absolute distance but the <strong>ratio</strong> of distances between its near
-              and far parts.
-            </p>
-            <p>
-              At 1.5 ft my nose is about 1.3 ft from the lens while my ears are about 1.8 ft away — a ratio of
-              roughly <strong>1.4×</strong>. The nose gets projected some 40% larger than it should be relative
-              to the ears, which is the bulge in the left photo. The lenses pin down the second distance for
-              me: 24 mm → 151 mm is a <strong>6.3×</strong> magnification, so to keep my face the same size in
-              the frame I had to stand about 6.3× farther back — call it 9.5 ft. Now the nose sits at 9.3 ft and
-              the ears at 9.8 ft, a ratio of <strong>1.05×</strong>. The relative magnification nearly vanishes
-              and the face flattens into the proportions we read as accurate.
-            </p>
-          </div>
-          <div class="comment__meta"><b>Like</b><b>Reply</b><span>Part 1</span></div>
-        </div>
-      </div>
-
-      <div class="comment">
-        <img class="avatar avatar--sm" src="images/avatar.jpg" alt="">
-        <div class="comment__body">
-          <div class="bubble">
-            <div class="bubble__who">Namwook Lee <span class="badge">Author</span></div>
-            <p>
-              Worth saying clearly: zooming in fixed nothing by itself. It only bought back the framing I gave up
-              by walking backwards. The lens sets the field of view, my feet set the perspective. That is why
-              portrait photographers reach for 85–135 mm — those focal lengths <em class="term">force</em> them to
-              stand far enough away that the face stops distorting.
-            </p>
-          </div>
-          <div class="comment__meta"><b>Like</b><b>Reply</b><span>Part 1</span></div>
-        </div>
-      </div>
-    </div>
   </article>
 
   <!-- ==================== POST 2 ==================== -->
-  <article class="card" id="part2" data-search="part 2 stanford galvez hoover tower architecture compression telephoto wide">
+  <article class="card" id="part2">
     <div class="post__hd">
       <img class="avatar" src="images/avatar.jpg" alt="Namwook Lee">
-      <div>
+      <div class="post__who">
         <div class="post__author">Namwook Lee</div>
         <div class="post__meta">September 2 at 7:34 PM · Stanford, CA · <svg aria-hidden="true"><use href="#i-globe"/></svg></div>
       </div>
       <span class="post__tag">Part 2 · Compression</span>
     </div>
 
-    <p class="post__text">From the second best University in California <span class="hash">#Stanford</span></p>
+    <p class="post__text">From the second best University in California</p>
 
     <div class="grid grid--4">
       <figure data-caption="Galvez Hall at 24 mm from up close. The arcade dives toward the vanishing point and the near arch dwarfs the far ones.">
@@ -188,94 +100,20 @@
       </figure>
     </div>
 
-    <ul class="exif">
-      <li><b>Galvez Hall</b> 24 mm → 63 mm (2.6× back)</li>
-      <li><b>Hoover Tower</b> 60 mm → 77 mm (1.3× back)</li>
-      <li>19:33–19:34</li>
-    </ul>
-
-    <div class="counts">
-      <span class="reacts">
-        <span class="react react--like"><svg aria-hidden="true"><use href="#i-thumb"/></svg></span>
-        <span class="react react--love"><svg aria-hidden="true"><use href="#i-heart"/></svg></span>
-      </span>
-      <span data-likecount="part2" data-base="112">112</span>
-      <span class="spacer"></span>
-      <a href="#part2-comments">2 comments</a>
-    </div>
-
-    <div class="actions">
-      <button class="actionbtn" type="button" data-like="part2" aria-pressed="false">
-        <svg aria-hidden="true"><use href="#i-like"/></svg><span>Like</span>
-      </button>
-      <button class="actionbtn" type="button" data-comment="part2">
-        <svg aria-hidden="true"><use href="#i-comment"/></svg><span>Comment</span>
-      </button>
-      <button class="actionbtn" type="button" data-share="part2">
-        <svg aria-hidden="true"><use href="#i-share"/></svg><span>Share</span>
-      </button>
-    </div>
-
-    <div class="comments" id="part2-comments">
-      <div class="comment">
-        <img class="avatar avatar--sm" src="images/avatar.jpg" alt="">
-        <div class="comment__body">
-          <div class="bubble">
-            <div class="bubble__who">Namwook Lee <span class="badge">Author</span></div>
-            <p>
-              Same ratio argument as the selfie, scaled up from inches to a whole building. Top row is Galvez
-              Hall. Going from 24 mm to 63 mm is a <strong>2.6×</strong> magnification, so keeping the building
-              the same size in the frame meant standing 2.6× farther away — and stepping back adds the
-              <em class="term">same</em> distance to every part of the arcade, not the same proportion.
-            </p>
-            <p>
-              Estimating: in the close shot the nearest arch is maybe 25 ft away and the far end of the arcade
-              100 ft — a ratio of <strong>4×</strong>, which is why the far arches look tiny and the roofline
-              dives. Walking back 40 ft makes those 65 ft and 140 ft: a ratio of <strong>2.2×</strong>. The far
-              end is now rendered about half the size of the near end instead of a quarter, so the arcade reads
-              almost like an elevation drawing.
-            </p>
-          </div>
-          <div class="comment__meta"><b>Like</b><b>Reply</b><span>Part 2 · top row</span></div>
-        </div>
-      </div>
-
-      <div class="comment">
-        <img class="avatar avatar--sm" src="images/avatar.jpg" alt="">
-        <div class="comment__body">
-          <div class="bubble">
-            <div class="bubble__who">Namwook Lee <span class="badge">Author</span></div>
-            <p>
-              Bottom row is Hoover Tower, and it shows the same effect running vertically. The tower is about
-              285 ft tall, so standing 40 ft from the base puts the dome roughly 290 ft from the lens — a
-              <strong>7×</strong> ratio between base and top, which is the hard taper in the left frame.
-            </p>
-            <p>
-              The step back here was smaller (60 mm → 77 mm, only <strong>1.3×</strong>), so the effect is
-              gentler, but it points the same way: moving to about 50 ft from the base barely changes the
-              distance to the dome, which is dominated by height, so the ratio falls to roughly
-              <strong>5.7×</strong>. The taper eases and the dome grows relative to the shaft. To flatten it
-              properly I'd need to be a few hundred feet out with a much longer lens.
-            </p>
-          </div>
-          <div class="comment__meta"><b>Like</b><b>Reply</b><span>Part 2 · bottom row</span></div>
-        </div>
-      </div>
-    </div>
   </article>
 
   <!-- ==================== POST 3 ==================== -->
-  <article class="card" id="part3" data-search="part 3 dolly zoom vertigo gif olives kitchen">
+  <article class="card" id="part3">
     <div class="post__hd">
       <img class="avatar" src="images/avatar.jpg" alt="Namwook Lee">
-      <div>
+      <div class="post__who">
         <div class="post__author">Namwook Lee</div>
         <div class="post__meta">September 2 at 10:55 PM · <svg aria-hidden="true"><use href="#i-globe"/></svg></div>
       </div>
       <span class="post__tag">Part 3 · Dolly zoom</span>
     </div>
 
-    <p class="post__text">The olives stay exactly where they are. The kitchen panics. 🫒</p>
+    <p class="post__text">What&rsquo;s hidden in the olive jar..?</p>
 
     <div class="grid grid--1">
       <figure data-caption="Dolly zoom: seven frames, walking backwards while zooming in so the jar holds its size while the room behind it stretches.">
@@ -284,96 +122,7 @@
       </figure>
     </div>
 
-    <div class="counts">
-      <span class="reacts">
-        <span class="react react--like"><svg aria-hidden="true"><use href="#i-thumb"/></svg></span>
-        <span class="react react--love"><svg aria-hidden="true"><use href="#i-heart"/></svg></span>
-      </span>
-      <span data-likecount="part3" data-base="83">83</span>
-      <span class="spacer"></span>
-      <a href="#part3-comments">1 comment</a>
-    </div>
-
-    <div class="actions">
-      <button class="actionbtn" type="button" data-like="part3" aria-pressed="false">
-        <svg aria-hidden="true"><use href="#i-like"/></svg><span>Like</span>
-      </button>
-      <button class="actionbtn" type="button" data-comment="part3">
-        <svg aria-hidden="true"><use href="#i-comment"/></svg><span>Comment</span>
-      </button>
-      <button class="actionbtn" type="button" data-share="part3">
-        <svg aria-hidden="true"><use href="#i-share"/></svg><span>Share</span>
-      </button>
-    </div>
-
-    <div class="comments" id="part3-comments">
-      <div class="comment">
-        <img class="avatar avatar--sm" src="images/avatar.jpg" alt="">
-        <div class="comment__body">
-          <div class="bubble">
-            <div class="bubble__who">Namwook Lee <span class="badge">Author</span></div>
-            <p>
-              This one puts the first two posts together. Zooming in scales <strong>everything</strong> in the
-              frame by the same factor, because it only narrows the field of view. Walking backwards scales
-              things by <strong>different</strong> factors, because it adds the same absolute distance to
-              everything — which is a big fractional change for a jar 3 ft away and almost nothing for a wall
-              15 ft behind it.
-            </p>
-            <p>
-              The dolly zoom cancels one against the other, but only for the subject: at each step the zoom is
-              picked to exactly undo the shrinking caused by the step backwards, so the jar is pinned. The
-              background gets that same zoom and almost none of the distance penalty, so it is left with a net
-              magnification and appears to swell. Walk in while zooming out and it collapses instead.
-            </p>
-            <p>
-              What is really changing is the field of view around a fixed subject size — the perspective slides
-              continuously. It feels wrong precisely because our visual system reads a fixed subject as a fixed
-              viewpoint, and here the viewpoint never stops moving.
-            </p>
-          </div>
-          <div class="comment__meta"><b>Like</b><b>Reply</b><span>Part 3</span></div>
-        </div>
-      </div>
-    </div>
   </article>
-
-  <!-- ==================== WRAP-UP ==================== -->
-  <article class="card" id="wrapup" data-search="wrap up takeaway conclusion summary">
-    <div class="post__hd">
-      <img class="avatar" src="images/avatar.jpg" alt="Namwook Lee">
-      <div>
-        <div class="post__author">Namwook Lee</div>
-        <div class="post__meta">September 2 at 11:20 PM · <svg aria-hidden="true"><use href="#i-globe"/></svg></div>
-      </div>
-      <span class="post__tag">Wrap-up</span>
-    </div>
-
-    <p class="post__text">
-      Three posts, one fact: perspective is set by where the camera stands, and focal length is only a crop.
-      "Wide-angle distortion" and "telephoto compression" are both really <em class="term">distance</em> effects
-      that get blamed on lenses, because we habitually pair short lenses with close positions and long ones with
-      far ones. What I'll actually keep: pick where to stand first, based on the depth relationships I want, then
-      pick a focal length to frame it.
-    </p>
-
-    <div class="counts">
-      <span class="reacts">
-        <span class="react react--like"><svg aria-hidden="true"><use href="#i-thumb"/></svg></span>
-      </span>
-      <span data-likecount="wrapup" data-base="19">19</span>
-    </div>
-
-    <div class="actions">
-      <button class="actionbtn" type="button" data-like="wrapup" aria-pressed="false">
-        <svg aria-hidden="true"><use href="#i-like"/></svg><span>Like</span>
-      </button>
-      <button class="actionbtn" type="button" data-share="wrapup">
-        <svg aria-hidden="true"><use href="#i-share"/></svg><span>Share</span>
-      </button>
-    </div>
-  </article>
-
-  <p class="noresults" hidden>No posts match your search.</p>
 
 </main>
 
@@ -395,8 +144,6 @@
   <div class="lb__bar"><p class="cap"></p><p class="idx"></p></div>
 </div>
 
-<div class="toast" role="status" aria-live="polite"></div>
-
-<script src="../assets/js/site.js"></script>
+<script src="../assets/js/site.js?v=5"></script>
 </body>
 </html>
