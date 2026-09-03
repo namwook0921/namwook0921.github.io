@@ -6,303 +6,411 @@
 <title>Project 0: Becoming Friends with Your Camera — Namwook Lee, CS 180</title>
 <meta name="description" content="CS 180 Project 0: perspective and focal length. Selfie the wrong way vs. the right way, architectural perspective compression, and a dolly zoom.">
 <meta name="author" content="Namwook Lee">
-
 <meta property="og:type" content="article">
 <meta property="og:title" content="Project 0: Becoming Friends with Your Camera">
 <meta property="og:description" content="Perspective, focal length, and the center of projection — CS 180, UC Berkeley.">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23003262'/><circle cx='50' cy='50' r='22' fill='none' stroke='%23fdb515' stroke-width='8'/><circle cx='50' cy='50' r='7' fill='%23fdb515'/></svg>">
-<script>(function(){try{var t=localStorage.getItem("cs180-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='10' fill='%233b5998'/><text x='50' y='78' font-family='Lucida Grande,Tahoma,sans-serif' font-size='78' font-weight='bold' fill='%23ffffff' text-anchor='middle'>n</text></svg>">
 </head>
 <body>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<nav class="nav">
-  <div class="wrap nav__inner">
-    <a class="nav__brand" href="../"><span class="dot"></span>Namwook&nbsp;Lee</a>
-    <div class="nav__links">
-      <a href="../#projects">Projects</a>
-      <a href="./" aria-current="page">Project&nbsp;0</a>
-      <a href="https://github.com/namwook0921" target="_blank" rel="noopener">GitHub</a>
-      <button class="themebtn" type="button" aria-label="Switch theme" title="Switch theme">
-        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
-    </div>
-  </div>
-</nav>
-
-<main id="main">
-  <div class="wrap">
-
-    <!-- Shown only when printing to PDF for Gradescope -->
-    <div class="printhead">
-      <div><b>Namwook Lee</b> — CS 180, UC Berkeley, Fall 2026 — Project 0: Becoming Friends with Your Camera</div>
-      <div>URL: <span class="u">https://namwook0921.github.io/proj0/</span></div>
-    </div>
-
-    <header class="projhead">
-      <p class="eyebrow">Project 0</p>
-      <h1>Becoming Friends with Your&nbsp;Camera</h1>
-      <p class="sub">
-        Three small photographic experiments about one idea: what an image looks like is decided less by the lens
-        than by <em class="term">where you stand</em>. Focal length only sets how much of the world you crop.
-      </p>
-
-      <dl class="factbar">
-        <div class="fact"><dt>Course</dt><dd>CS 180, UC Berkeley</dd></div>
-        <div class="fact"><dt>Term</dt><dd>Fall 2026</dd></div>
-        <div class="fact"><dt>Author</dt><dd>Namwook Lee</dd></div>
-        <div class="fact"><dt>Camera</dt><dd>iPhone (add your model)</dd></div>
-      </dl>
-
-      <nav class="toc" aria-label="Contents">
-        <ol>
-          <li><a href="#part1">Selfie: the wrong way and the right way</a></li>
-          <li><a href="#part2">Architectural perspective compression</a></li>
-          <li><a href="#part3">The dolly zoom</a></li>
-          <li><a href="#takeaways">What I took away</a></li>
-        </ol>
-      </nav>
-    </header>
-
-    <!-- ================= PART 1 ================= -->
-    <section class="part" id="part1">
-      <div class="part__head">
-        <span class="part__no">Part 1</span>
-        <h2>Selfie: the wrong way and the right way</h2>
-      </div>
-      <p class="part__tagline">Same face, same framing, two very different noses.</p>
-
-      <div class="prose">
-        <p>
-          The first photo is taken the way most selfies are taken: arm's length, roughly a foot and a half from
-          my face. For the second, I stepped back several feet and zoomed in until the face filled the frame
-          by the same amount. Nothing about the subject changed — only the distance from the camera.
-        </p>
-      </div>
-
-      <div class="pair">
-        <figure>
-          <div class="shot">
-            <span class="shot__tag shot__tag--bad">The wrong way · close</span>
-            <img src="images/part1/close.jpg" alt="Close-up selfie taken at arm's length, showing exaggerated facial features.">
-          </div>
-          <figcaption><b>Close, wide.</b> Shot from about 1.5 ft. The nose and forehead push forward, the ears all but disappear, and the face reads rounder than it is.</figcaption>
-          <ul class="exif">
-            <li><b>Distance</b> ~1.5 ft</li>
-            <li><b>Focal length</b> 24 mm eq.</li>
-          </ul>
-        </figure>
-
-        <figure>
-          <div class="shot">
-            <span class="shot__tag shot__tag--good">The right way · far + zoom</span>
-            <img src="images/part1/far.jpg" alt="Portrait taken from several feet away with the lens zoomed in, with natural facial proportions.">
-          </div>
-          <figcaption><b>Far, telephoto.</b> Shot from about 8 ft, zoomed to match the face size. Proportions settle down and the features sit in a flatter, more natural relationship.</figcaption>
-          <ul class="exif">
-            <li><b>Distance</b> ~8 ft</li>
-            <li><b>Focal length</b> 77 mm eq.</li>
-          </ul>
-        </figure>
-      </div>
-
-      <div class="prose">
-        <h3 style="font-size:1.15rem;margin:2rem 0 .6rem;">Why this happens</h3>
-        <p>
-          A camera projects the world through a single point, and an object's size in the image falls off with
-          its distance from that point. What matters for distortion is therefore not the absolute distance but
-          the <strong>ratio</strong> of distances between the near and far parts of the subject.
-        </p>
-        <p>
-          At 1.5 ft, my nose is roughly 1.3 ft away while my ears are roughly 1.8 ft away — a ratio of about
-          <strong>1.4×</strong>. The nose is projected about 40% larger than it "should" be relative to the ears,
-          which is exactly the bulbous look in the left photo. Step back to 8 ft and those same two features sit
-          at about 7.8 ft and 8.3 ft — a ratio of roughly <strong>1.06×</strong>. The relative magnification
-          nearly vanishes, so the face flattens into the proportions we recognize as accurate.
-        </p>
-        <p>
-          Zooming in did not fix anything by itself; it only restored the framing I gave up by walking backwards.
-          The lens changes the field of view, the feet change the perspective. This is why portrait photographers
-          reach for 85–135 mm lenses: those focal lengths force them to stand far enough away that the face
-          stops distorting.
-        </p>
-      </div>
-    </section>
-
-    <!-- ================= PART 2 ================= -->
-    <section class="part" id="part2">
-      <div class="part__head">
-        <span class="part__no">Part 2</span>
-        <h2>Architectural perspective compression</h2>
-      </div>
-      <p class="part__tagline">A building photographed twice, from far and near, at the same apparent size.</p>
-
-      <div class="prose">
-        <p>
-          I found a facade I could view at an angle across an open space, so that one end of the building was
-          clearly closer to me than the other. I photographed it first from far away, zoomed in; then I walked
-          toward it and shot again at the wide end, stopping when the building filled roughly the same fraction
-          of the frame.
-        </p>
-      </div>
-
-      <div class="pair">
-        <figure>
-          <div class="shot">
-            <span class="shot__tag">Far · zoomed in</span>
-            <img src="images/part2/far-tele.jpg" alt="Building facade photographed from far away with the lens zoomed in, appearing flattened.">
-          </div>
-          <figcaption><b>Far, telephoto.</b> The facade looks pressed flat against the picture plane; the near and far ends of the building are nearly the same size and the receding lines barely converge.</figcaption>
-          <ul class="exif">
-            <li><b>Distance</b> ~200 ft</li>
-            <li><b>Focal length</b> 120 mm eq.</li>
-          </ul>
-        </figure>
-
-        <figure>
-          <div class="shot">
-            <span class="shot__tag">Near · wide angle</span>
-            <img src="images/part2/near-wide.jpg" alt="The same building facade photographed from close range at a wide focal length, with strong perspective.">
-          </div>
-          <figcaption><b>Near, wide.</b> The same building now has depth: the close corner looms, the far end shrinks away, and the roofline drives hard toward a vanishing point.</figcaption>
-          <ul class="exif">
-            <li><b>Distance</b> ~40 ft</li>
-            <li><b>Focal length</b> 24 mm eq.</li>
-          </ul>
-        </figure>
-      </div>
-
-      <div class="prose">
-        <h3 style="font-size:1.15rem;margin:2rem 0 .6rem;">Why this happens</h3>
-        <p>
-          It is the same ratio argument as the selfie, applied to a subject tens of meters deep instead of a few
-          inches. Say the near corner of the facade is 40 ft away and the far corner 90 ft. Standing close, that
-          is a ratio of <strong>2.25×</strong>: the near corner is projected more than twice as large, so the
-          building visibly recedes and the parallel edges converge steeply.
-        </p>
-        <p>
-          From 200 ft, the same two corners sit at 200 ft and 250 ft — a ratio of <strong>1.25×</strong>. The
-          depth of the building is small compared to how far away all of it is, so every part is magnified by
-          nearly the same amount. Depth cues collapse and the scene reads as a flat elevation drawing. This is
-          the <em class="term">perspective compression</em> that long lenses are known for: it is not something
-          the lens does to the light, it is a consequence of shooting from far away, and the zoom merely makes
-          that distant view large enough to fill the frame.
-        </p>
-      </div>
-
-      <div class="note">
-        <h4>Same effect, different name</h4>
-        <p>
-          Telephoto shots of a crowded street where the people look stacked on top of each other, and wide-angle
-          real-estate photos where a small room looks cavernous, are the two ends of this one effect.
-        </p>
-      </div>
-    </section>
-
-    <!-- ================= PART 3 ================= -->
-    <section class="part" id="part3">
-      <div class="part__head">
-        <span class="part__no">Part 3</span>
-        <h2>The dolly zoom</h2>
-      </div>
-      <p class="part__tagline">Hold the subject still; let the world behind it breathe.</p>
-
-      <div class="prose">
-        <p>
-          The last part puts the previous two together. I set up a subject with a background well behind it, then
-          walked backwards while zooming in, taking a still at each step and keeping the subject the same size in
-          every frame. The frames are stitched into the animation below.
-        </p>
-      </div>
-
-      <div class="wide">
-        <figure>
-          <div class="shot">
-            <span class="shot__tag">Animated GIF</span>
-            <img src="images/part3/dollyzoom.gif" alt="Animated dolly zoom: the subject stays the same size while the background expands and contracts.">
-          </div>
-          <figcaption><b>Dolly zoom.</b> The subject holds its size across every frame while the background rushes in and out behind it.</figcaption>
-        </figure>
-      </div>
-
-      <p class="eyebrow" style="margin-top:2.6rem;">Source frames</p>
-      <div class="strip">
-        <figure><div class="shot"><img src="images/part3/frame-01.jpg" alt="Dolly zoom frame 1"></div><figcaption>01 · nearest</figcaption></figure>
-        <figure><div class="shot"><img src="images/part3/frame-02.jpg" alt="Dolly zoom frame 2"></div><figcaption>02</figcaption></figure>
-        <figure><div class="shot"><img src="images/part3/frame-03.jpg" alt="Dolly zoom frame 3"></div><figcaption>03</figcaption></figure>
-        <figure><div class="shot"><img src="images/part3/frame-04.jpg" alt="Dolly zoom frame 4"></div><figcaption>04</figcaption></figure>
-        <figure><div class="shot"><img src="images/part3/frame-05.jpg" alt="Dolly zoom frame 5"></div><figcaption>05</figcaption></figure>
-        <figure><div class="shot"><img src="images/part3/frame-06.jpg" alt="Dolly zoom frame 6"></div><figcaption>06 · farthest</figcaption></figure>
-      </div>
-
-      <div class="prose">
-        <h3 style="font-size:1.15rem;margin:2.4rem 0 .6rem;">Why this happens</h3>
-        <p>
-          Zooming in scales <strong>everything</strong> in the frame by the same factor, because it only narrows
-          the field of view. Walking backwards scales things by <strong>different</strong> factors, because it
-          changes each object's distance by the same absolute amount but by very different proportions — a step
-          back is a large fractional change for a subject 3 ft away and a negligible one for a wall 60 ft away.
-        </p>
-        <p>
-          The dolly zoom cancels one against the other for the subject only. The zoom is chosen at each step to
-          exactly undo the shrinking caused by the step backwards, so the subject is pinned. The background gets
-          the same zoom but almost none of the distance penalty, so it is left with a net magnification and
-          appears to swell. Run it the other way — walk in while zooming out — and the background collapses away
-          instead.
-        </p>
-        <p>
-          What is actually changing is the field of view around a fixed subject size, which is another way of
-          saying the perspective is changing continuously. The shot is unsettling precisely because our visual
-          system reads a fixed subject as a fixed viewpoint, and here the viewpoint is sliding the whole time.
-        </p>
-      </div>
-    </section>
-
-    <!-- ================= TAKEAWAYS ================= -->
-    <section class="part" id="takeaways">
-      <div class="part__head">
-        <span class="part__no">Wrap-up</span>
-        <h2>What I took away</h2>
-      </div>
-      <div class="prose">
-        <p>
-          All three parts are the same fact seen from different angles: perspective is set by the position of the
-          center of projection, and focal length is only a crop. "Wide-angle distortion" and "telephoto
-          compression" are both really <em class="term">distance</em> effects that get blamed on lenses because
-          we habitually pair short lenses with close positions and long lenses with far ones.
-        </p>
-        <p>
-          The practical version I'll keep: decide where to stand first, based on the depth relationships I want,
-          then pick a focal length to frame it.
-        </p>
-      </div>
-    </section>
-
-    <nav class="pagenav" aria-label="Page navigation">
-      <a href="../">← All projects</a>
-      <a href="#main">Back to top ↑</a>
+<div class="topbar">
+  <div class="topbar__inner">
+    <a class="wordmark" href="../">namwook</a>
+    <form class="topsearch" role="search" onsubmit="return false;">
+      <label class="skip" for="q">Search this page</label>
+      <input id="q" type="search" placeholder="Search" autocomplete="off">
+    </form>
+    <nav class="topnav">
+      <a href="../">profile</a>
+      <a href="./" aria-current="page">projects</a>
+      <a href="#photos">photos</a>
+      <a href="https://github.com/namwook0921" target="_blank" rel="noopener">github</a>
     </nav>
+  </div>
+</div>
 
+<main class="shell" id="main">
+
+  <!-- Shown only when printing to PDF for Gradescope -->
+  <div class="printhead">
+    <div><b>Namwook Lee</b> — CS 180, UC Berkeley, Fall 2026 — Project 0: Becoming Friends with Your Camera</div>
+    <div>URL: <span class="u">https://namwook0921.github.io/proj0/</span></div>
+  </div>
+
+  <div class="crumb"><a href="../">Namwook Lee</a> &rsaquo; <a href="../#about">Projects</a> &rsaquo; Project 0</div>
+
+  <div class="pagehead">
+    <h1>Project 0: Becoming Friends with Your Camera</h1>
+    <div class="sub">Posted September 2, 2026</div>
+  </div>
+
+  <nav class="tabs" aria-label="Sections">
+    <a class="is-active" href="#overview">Overview</a>
+    <a href="#part1">Part 1: Selfie</a>
+    <a href="#part2">Part 2: Compression</a>
+    <a href="#part3">Part 3: Dolly Zoom</a>
+    <a href="#wrapup">Wrap-Up</a>
+  </nav>
+
+  <div class="cols">
+
+    <!-- ---------------- Left column ---------------- -->
+    <div class="col-side">
+
+      <div class="box">
+        <div class="box__hd">Project Info</div>
+        <div class="box__bd">
+          <dl class="infolist">
+            <dt>Course:</dt><dd>CS 180, UC Berkeley</dd>
+            <dt>Term:</dt><dd>Fall 2026</dd>
+            <dt>Author:</dt><dd>Namwook Lee</dd>
+            <dt>Camera:</dt><dd>iPhone 17 Pro</dd>
+            <dt>Shot on:</dt><dd>September 2, 2026</dd>
+            <dt>Spec:</dt>
+            <dd><a href="https://cal-cs180.github.io/fa26/hw/proj0/index.html" target="_blank" rel="noopener">Project 0 handout</a></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="box" id="photos" data-print="hide">
+        <div class="box__hd">Photos <span class="hd-note">album</span></div>
+        <div class="box__bd">
+          <div class="minigrid">
+            <a href="#part1"><img src="images/part1/close.jpg" alt="Close selfie thumbnail"></a>
+            <a href="#part1"><img src="images/part1/far.jpg" alt="Telephoto portrait thumbnail"></a>
+            <a href="#part2"><img src="images/part2/far-tele.jpg" alt="Building, telephoto thumbnail"></a>
+            <a href="#part2"><img src="images/part2/near-wide.jpg" alt="Building, wide thumbnail"></a>
+            <a href="#part3"><img src="images/part3/frame-01.jpg" alt="Dolly zoom frame thumbnail"></a>
+            <a href="#part3"><img src="images/part3/dollyzoom.gif" alt="Dolly zoom animation thumbnail"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="box" data-print="hide">
+        <div class="box__hd">The One Idea</div>
+        <div class="box__bd">
+          <div class="prose" style="font-size:11px;">
+            <p style="margin:0;">
+              Perspective is set by <b>where you stand</b>. Focal length only decides how much of the
+              world you keep.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ---------------- Main column ---------------- -->
+    <div class="col-main">
+
+      <!-- ============ OVERVIEW ============ -->
+      <div class="box" id="overview" data-search="overview intro perspective focal length">
+        <div class="box__hd box__hd--blue">Overview</div>
+        <div class="box__bd">
+          <div class="prose">
+            <p>
+              Three small photographic experiments about one idea: what a photo looks like is decided less by the
+              lens than by <em class="term">where the camera is standing</em>. A zoom changes how much of the
+              world lands in the frame; it does not change the geometry of what is already there.
+            </p>
+            <p>
+              All of it was shot on an iPhone 17 Pro, which makes the experiment easy to run &mdash; switching
+              between the 24&nbsp;mm main camera and the 151&nbsp;mm telephoto is the same as swapping lenses,
+              and the EXIF data records exactly which one took each frame.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PART 1 ============ -->
+      <div class="box" id="part1" data-search="part 1 selfie wrong right way face distortion nose">
+        <div class="box__hd box__hd--blue">
+          Part 1: Selfie &mdash; The Wrong Way and The Right Way
+          <span class="hd-note">2 photos</span>
+        </div>
+
+        <div class="box__bd">
+          <div class="prose">
+            <p>
+              The first photo is taken the way most selfies are taken: arm's length, about a foot and a half from
+              my face, on the wide main camera. For the second I stepped back and switched to the telephoto,
+              zooming until my face filled the frame by the same amount. Ten seconds apart, same light, same
+              face &mdash; only the distance changed.
+            </p>
+          </div>
+        </div>
+
+        <div class="photos">
+          <figure>
+            <div class="photo">
+              <span class="photo__tag photo__tag--bad">The wrong way &middot; close</span>
+              <img src="images/part1/close.jpg" alt="Close-up selfie taken at arm's length on the wide camera, showing exaggerated facial features.">
+            </div>
+            <figcaption>
+              <b>Close, wide.</b> Arm's length on the 24&nbsp;mm main camera. The nose and forehead push forward,
+              the ears fall away behind the cheeks, and the whole face reads rounder than it is. Notice how much
+              of the background comes along for the ride.
+            </figcaption>
+            <ul class="exif">
+              <li><b>24 mm</b> eq.</li>
+              <li><b>f/1.78</b></li>
+              <li><b>~1.5 ft</b></li>
+              <li>19:19:17</li>
+            </ul>
+          </figure>
+
+          <figure>
+            <div class="photo">
+              <span class="photo__tag photo__tag--good">The right way &middot; far + zoom</span>
+              <img src="images/part1/far.jpg" alt="Portrait taken from several feet away on the telephoto camera, with natural facial proportions.">
+            </div>
+            <figcaption>
+              <b>Far, telephoto.</b> Same face on the 151&nbsp;mm lens from roughly six times farther back.
+              Proportions settle down, the ears come back into the shape of the head, and the background
+              narrows to a quiet wall.
+            </figcaption>
+            <ul class="exif">
+              <li><b>151 mm</b> eq.</li>
+              <li><b>f/2.8</b></li>
+              <li><b>~9.5 ft</b></li>
+              <li>19:19:27</li>
+            </ul>
+          </figure>
+        </div>
+
+        <div class="post">
+          <div class="post__avatar"><img src="images/cover.jpg" alt=""></div>
+          <div class="post__body">
+            <div class="post__who">Namwook Lee <span>&mdash; why this happens</span></div>
+            <div class="prose">
+              <p>
+                A camera projects the world through a single point, and an object's size in the image falls off
+                with its distance from that point. What causes the distortion is therefore not the absolute
+                distance but the <strong>ratio</strong> of distances between the near and far parts of the
+                subject.
+              </p>
+              <p>
+                At 1.5&nbsp;ft, my nose is about 1.3&nbsp;ft from the lens while my ears are about 1.8&nbsp;ft
+                away &mdash; a ratio of roughly <strong>1.4&times;</strong>. The nose is projected some 40% larger
+                than it should be relative to the ears, which is exactly the bulge in the left photo. The lenses
+                here make the second distance easy to pin down: going from 24&nbsp;mm to 151&nbsp;mm is a
+                <strong>6.3&times;</strong> magnification, so to keep my face the same size in the frame I had to
+                stand about 6.3&times; farther away &mdash; call it 9.5&nbsp;ft. Now the nose sits at 9.3&nbsp;ft
+                and the ears at 9.8&nbsp;ft: a ratio of <strong>1.05&times;</strong>. The relative magnification
+                nearly vanishes and the face flattens into the proportions we read as accurate.
+              </p>
+              <p>
+                Zooming in fixed nothing by itself; it only bought back the framing I gave up by walking
+                backwards. The lens sets the field of view, my feet set the perspective. This is why portrait
+                photographers reach for 85&ndash;135&nbsp;mm lenses &mdash; those focal lengths force them to
+                stand far enough away that the face stops distorting.
+              </p>
+            </div>
+            <div class="post__meta">Part 1 &middot; 2 photos taken 10 seconds apart</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PART 2 ============ -->
+      <div class="box" id="part2" data-search="part 2 architecture perspective compression building facade telephoto">
+        <div class="box__hd box__hd--blue">
+          Part 2: Architectural Perspective Compression
+          <span class="hd-note">2 photos</span>
+        </div>
+
+        <div class="box__bd">
+          <div class="prose">
+            <p>
+              I found a facade I could see at an angle across an open space, so that one end of the building was
+              clearly closer to me than the other. I photographed it first from far away, zoomed in; then I
+              walked toward it and shot again at the wide end, stopping when the building filled roughly the
+              same fraction of the frame.
+            </p>
+          </div>
+        </div>
+
+        <div class="photos">
+          <figure>
+            <div class="photo">
+              <span class="photo__tag">Far &middot; zoomed in</span>
+              <img src="images/part2/far-tele.jpg" alt="Building facade photographed from far away with the lens zoomed in, appearing flattened.">
+            </div>
+            <figcaption>
+              <b>Far, telephoto.</b> The facade looks pressed flat against the picture plane; the near and far
+              ends of the building come out nearly the same size and the receding lines barely converge.
+            </figcaption>
+            <ul class="exif">
+              <li><b>Distance</b> ~200 ft</li>
+              <li><b>Focal length</b> 120 mm eq.</li>
+            </ul>
+          </figure>
+
+          <figure>
+            <div class="photo">
+              <span class="photo__tag">Near &middot; wide angle</span>
+              <img src="images/part2/near-wide.jpg" alt="The same building facade photographed from close range at a wide focal length, with strong perspective.">
+            </div>
+            <figcaption>
+              <b>Near, wide.</b> The same building now has depth: the close corner looms, the far end shrinks
+              away, and the roofline drives hard toward a vanishing point.
+            </figcaption>
+            <ul class="exif">
+              <li><b>Distance</b> ~40 ft</li>
+              <li><b>Focal length</b> 24 mm eq.</li>
+            </ul>
+          </figure>
+        </div>
+
+        <div class="post">
+          <div class="post__avatar"><img src="images/cover.jpg" alt=""></div>
+          <div class="post__body">
+            <div class="post__who">Namwook Lee <span>&mdash; why this happens</span></div>
+            <div class="prose">
+              <p>
+                It is the same ratio argument as the selfie, applied to a subject tens of meters deep instead of
+                a few inches. Say the near corner of the facade is 40&nbsp;ft away and the far corner 90&nbsp;ft.
+                Standing close, that is a ratio of <strong>2.25&times;</strong>: the near corner is projected more
+                than twice as large, so the building visibly recedes and its parallel edges converge steeply.
+              </p>
+              <p>
+                From 200&nbsp;ft, those same two corners sit at 200&nbsp;ft and 250&nbsp;ft &mdash; a ratio of
+                <strong>1.25&times;</strong>. The depth of the building is now small compared to how far away all
+                of it is, so every part is magnified by nearly the same amount, the depth cues collapse, and the
+                scene reads like a flat elevation drawing. That is the <em class="term">perspective
+                compression</em> long lenses are famous for: not something the lens does to the light, but a
+                consequence of shooting from far away, with the zoom only making that distant view big enough to
+                fill the frame.
+              </p>
+            </div>
+            <div class="post__meta">Part 2</div>
+          </div>
+        </div>
+
+        <div class="box__bd" style="padding-top:0;">
+          <div class="note">
+            <b>Same effect, different name:</b> telephoto shots of a crowded street where the people look stacked
+            on top of each other, and wide-angle real-estate photos where a small room looks cavernous, are the
+            two ends of this one effect.
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ PART 3 ============ -->
+      <div class="box" id="part3" data-search="part 3 dolly zoom vertigo gif animation">
+        <div class="box__hd box__hd--blue">
+          Part 3: The Dolly Zoom
+          <span class="hd-note">animated</span>
+        </div>
+
+        <div class="box__bd">
+          <div class="prose">
+            <p>
+              The last part puts the first two together. I set up a subject with a background well behind it,
+              then walked backwards while zooming in, taking a still at each step and keeping the subject the
+              same size in every frame. The stills are stitched into the animation below.
+            </p>
+          </div>
+        </div>
+
+        <div class="photos photos--single">
+          <figure>
+            <div class="photo">
+              <span class="photo__tag">Animated GIF</span>
+              <img src="images/part3/dollyzoom.gif" alt="Animated dolly zoom: the subject stays the same size while the background expands and contracts.">
+            </div>
+            <figcaption>
+              <b>Dolly zoom.</b> The subject holds its size across every frame while the background rushes in and
+              out behind it.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="box__hd" style="border-top:1px solid var(--border);">Source Frames <span class="hd-note">6 stills</span></div>
+        <div class="strip">
+          <figure><div class="photo"><img src="images/part3/frame-01.jpg" alt="Dolly zoom frame 1"></div><figcaption>01 &middot; nearest</figcaption></figure>
+          <figure><div class="photo"><img src="images/part3/frame-02.jpg" alt="Dolly zoom frame 2"></div><figcaption>02</figcaption></figure>
+          <figure><div class="photo"><img src="images/part3/frame-03.jpg" alt="Dolly zoom frame 3"></div><figcaption>03</figcaption></figure>
+          <figure><div class="photo"><img src="images/part3/frame-04.jpg" alt="Dolly zoom frame 4"></div><figcaption>04</figcaption></figure>
+          <figure><div class="photo"><img src="images/part3/frame-05.jpg" alt="Dolly zoom frame 5"></div><figcaption>05</figcaption></figure>
+          <figure><div class="photo"><img src="images/part3/frame-06.jpg" alt="Dolly zoom frame 6"></div><figcaption>06 &middot; farthest</figcaption></figure>
+        </div>
+
+        <div class="post">
+          <div class="post__avatar"><img src="images/cover.jpg" alt=""></div>
+          <div class="post__body">
+            <div class="post__who">Namwook Lee <span>&mdash; why this happens</span></div>
+            <div class="prose">
+              <p>
+                Zooming in scales <strong>everything</strong> in the frame by the same factor, because it only
+                narrows the field of view. Walking backwards scales things by <strong>different</strong> factors,
+                because it changes every object's distance by the same absolute amount but by very different
+                proportions &mdash; one step back is a large fractional change for a subject 3&nbsp;ft away and a
+                negligible one for a wall 60&nbsp;ft away.
+              </p>
+              <p>
+                The dolly zoom cancels one against the other, but only for the subject. At each step the zoom is
+                chosen to exactly undo the shrinking caused by the step backwards, so the subject is pinned in
+                place. The background gets the same zoom and almost none of the distance penalty, so it is left
+                with a net magnification and appears to swell. Run it the other way &mdash; walk in while zooming
+                out &mdash; and the background collapses away instead.
+              </p>
+              <p>
+                What is really changing is the field of view around a fixed subject size, which is another way of
+                saying the perspective is sliding continuously. The shot is unsettling precisely because our
+                visual system reads a fixed subject as a fixed viewpoint, and here the viewpoint never stops
+                moving.
+              </p>
+            </div>
+            <div class="post__meta">Part 3 &middot; 6 stills combined into a GIF</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ WRAP-UP ============ -->
+      <div class="box" id="wrapup" data-search="wrap up takeaways conclusion">
+        <div class="box__hd">What I Took Away</div>
+        <div class="box__bd">
+          <div class="prose">
+            <p>
+              All three parts are the same fact seen from different angles: perspective is set by the position of
+              the center of projection, and focal length is only a crop. "Wide-angle distortion" and "telephoto
+              compression" are both really <em class="term">distance</em> effects that get blamed on lenses,
+              because we habitually pair short lenses with close positions and long ones with far positions.
+            </p>
+            <p>
+              The practical version I'll keep: decide where to stand first, based on the depth relationships I
+              want, then pick a focal length to frame it.
+            </p>
+          </div>
+        </div>
+        <div class="box__ft">
+          <a href="../">&laquo; Back to profile</a> &middot;
+          <a href="#main">Back to top</a>
+        </div>
+      </div>
+
+      <div class="noresults" hidden>Nothing on this page matches your search.</div>
+
+    </div>
   </div>
 </main>
 
 <footer class="foot">
-  <div class="wrap foot__inner">
-    <p>© 2026 Namwook Lee · CS 180, UC Berkeley</p>
-    <p><a href="https://cal-cs180.github.io/fa26/hw/proj0/index.html" target="_blank" rel="noopener">Project 0 spec</a></p>
+  <div class="row-links">
+    <a href="../">Profile</a><span>|</span>
+    <a href="./">Project 0</a><span>|</span>
+    <a href="https://cal-cs180.github.io/fa26/hw/proj0/index.html" target="_blank" rel="noopener">Project 0 spec</a><span>|</span>
+    <a href="https://github.com/namwook0921" target="_blank" rel="noopener">GitHub</a>
   </div>
+  Namwook Lee &copy; 2026 &middot; CS 180, UC Berkeley
 </footer>
 
-<div class="lb" role="dialog" aria-modal="true" aria-label="Enlarged image">
-  <button class="lb__close" type="button" aria-label="Close">✕</button>
-  <div>
+<div class="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb__close" type="button">Close</button>
+  <div class="lb__frame">
     <img alt="">
     <p class="lb__cap"></p>
   </div>

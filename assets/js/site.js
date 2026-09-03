@@ -1,64 +1,35 @@
-/* CS 180 site — theme toggle, image placeholders, lightbox, print header. */
+/* CS 180 site — placeholders, photo viewer, search filter, print header. */
 (function () {
   "use strict";
 
-  /* ---------- Theme ---------- */
-  var KEY = "cs180-theme";
-  var root = document.documentElement;
-
-  function apply(theme) {
-    if (theme === "dark" || theme === "light") root.setAttribute("data-theme", theme);
-    else root.removeAttribute("data-theme");
-  }
-  function current() {
-    var set = root.getAttribute("data-theme");
-    if (set) return set;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
-  document.addEventListener("click", function (e) {
-    var btn = e.target.closest && e.target.closest(".themebtn");
-    if (!btn) return;
-    var next = current() === "dark" ? "light" : "dark";
-    apply(next);
-    try { localStorage.setItem(KEY, next); } catch (err) { /* private mode */ }
-    btn.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
-  });
-
-  /* ---------- Placeholders for images not uploaded yet ---------- */
+  /* ---------- Placeholders for photos not uploaded yet ---------- */
   var ICON =
-    '<svg class="ph__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" ' +
+    '<svg class="ph__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
     'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-    '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/>' +
+    '<rect x="3" y="4" width="18" height="16" rx="1"/><circle cx="8.5" cy="9.5" r="1.5"/>' +
     '<path d="M21 15l-5-5L5 20"/></svg>';
 
   function placehold(img) {
-    var shot = img.closest(".shot, .card__thumb");
-    if (!shot || shot.classList.contains("is-missing")) return;
-    shot.classList.add("is-missing");
-    var src = img.getAttribute("src") || "";
+    var host = img.closest(".photo, .row__thumb, .pfp, .minigrid a");
+    if (!host || host.classList.contains("is-missing")) return;
+    host.classList.add("is-missing");
     var div = document.createElement("div");
     div.className = "ph";
-    div.innerHTML =
-      ICON +
-      '<span class="ph__label">Photo not uploaded yet</span>' +
-      '<span class="ph__path"></span>';
-    div.querySelector(".ph__path").textContent = src;
-    shot.appendChild(div);
+    div.innerHTML = ICON + '<span class="ph__label">Photo not uploaded yet</span><span class="ph__path"></span>';
+    div.querySelector(".ph__path").textContent = img.getAttribute("src") || "";
+    host.appendChild(div);
   }
 
-  function watch(img) {
+  document.querySelectorAll("img").forEach(function (img) {
     if (img.complete) {
       if (!img.naturalWidth) placehold(img);
     } else {
       img.addEventListener("error", function () { placehold(img); });
-      img.addEventListener("load", function () {
-        if (!img.naturalWidth) placehold(img);
-      });
+      img.addEventListener("load", function () { if (!img.naturalWidth) placehold(img); });
     }
-  }
-  document.querySelectorAll(".shot img, .card__thumb img").forEach(watch);
+  });
 
-  /* ---------- Lightbox ---------- */
+  /* ---------- Photo viewer ---------- */
   var lb = document.querySelector(".lb");
   if (lb) {
     var lbImg = lb.querySelector("img");
@@ -82,20 +53,44 @@
     }
 
     document.addEventListener("click", function (e) {
-      var img = e.target.closest && e.target.closest(".shot img");
+      var img = e.target.closest && e.target.closest(".photo img");
       if (img && img.naturalWidth) {
         var fig = img.closest("figure");
         var cap = fig && fig.querySelector("figcaption");
         open(img.currentSrc || img.src, img.alt, cap ? cap.textContent.trim() : "");
         return;
       }
-      if (e.target.closest && e.target.closest(".lb")) {
-        if (e.target === lbImg) return;
-        close();
-      }
+      if (e.target.closest && e.target.closest(".lb") && e.target !== lbImg) close();
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && lb.classList.contains("is-open")) close();
+    });
+  }
+
+  /* ---------- Top-bar search: filters the items on this page ---------- */
+  var search = document.querySelector(".topsearch input");
+  if (search) {
+    var items = [].slice.call(document.querySelectorAll("[data-search]"));
+    var empty = document.querySelector(".noresults");
+
+    function filter() {
+      var q = search.value.trim().toLowerCase();
+      var hits = 0;
+      items.forEach(function (el) {
+        var hit = !q || (el.getAttribute("data-search") + " " + el.textContent).toLowerCase().indexOf(q) > -1;
+        el.classList.toggle("is-filtered", !hit);
+        if (hit) hits++;
+      });
+      if (empty) empty.hidden = !(q && hits === 0);
+    }
+    search.addEventListener("input", filter);
+    search.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { search.value = ""; filter(); search.blur(); }
+    });
+    search.closest("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var first = items.filter(function (el) { return !el.classList.contains("is-filtered"); })[0];
+      if (first) first.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 

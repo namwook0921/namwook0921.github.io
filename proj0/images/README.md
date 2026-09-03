@@ -3,15 +3,18 @@
 The page (`proj0/index.html`) looks for these exact paths. Until a file exists, the page
 shows a dashed placeholder box naming the file it wants, so nothing breaks while you shoot.
 
-| Path                                | What it is                                  |
-| ----------------------------------- | ------------------------------------------- |
-| `cover.jpg`                         | Thumbnail for the card on the home page     |
-| `part1/close.jpg`                   | Selfie at arm's length (the wrong way)      |
-| `part1/far.jpg`                     | Same face from far away + zoom (right way)  |
-| `part2/far-tele.jpg`                | Building, far away, zoomed in (compressed)  |
-| `part2/near-wide.jpg`               | Building, walked in close, wide angle       |
-| `part3/dollyzoom.gif`               | The animated dolly zoom                     |
-| `part3/frame-01.jpg` … `frame-06.jpg` | The stills that make up the GIF           |
+| Path                                  | What it is                                 | Status |
+| ------------------------------------- | ------------------------------------------ | ------ |
+| `cover.jpg`                           | Profile picture / project thumbnail        | done (IMG_8089) |
+| `part1/close.jpg`                     | Selfie at arm's length (the wrong way)     | done (IMG_8088, 24 mm eq.) |
+| `part1/far.jpg`                       | Same face from far away + zoom (right way) | done (IMG_8089, 151 mm eq.) |
+| `part2/far-tele.jpg`                  | Building, far away, zoomed in (compressed) | needed |
+| `part2/near-wide.jpg`                 | Building, walked in close, wide angle      | needed |
+| `part3/dollyzoom.gif`                 | The animated dolly zoom                    | needed |
+| `part3/frame-01.jpg` … `frame-06.jpg` | The stills that make up the GIF            | needed |
+
+The three finished files were resized to 1600 px on the long edge and had their EXIF
+orientation baked into the pixels, so they display right side up everywhere.
 
 Using different names or more dolly-zoom frames is fine — just edit the matching
 `<img src="...">` lines in `proj0/index.html`.
