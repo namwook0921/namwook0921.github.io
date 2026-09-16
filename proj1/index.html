@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project 1: Colorizing the Prokudin-Gorskii Photo Collection — Namwook Lee, CS 180</title>
+<meta name="description" content="CS 180 Project 1: aligning the Prokudin-Gorskii glass plate negatives into color photographs — NCC and L2 search, gradient-based matching, and a fast pyramid.">
+<meta name="author" content="Namwook Lee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project 1: Colorizing the Prokudin-Gorskii Photo Collection">
+<meta property="og:description" content="Aligning glass plate negatives into color photographs — CS 180, UC Berkeley.">
+<meta property="og:image" content="https://namwook0921.github.io/proj1/images/part4/emir_aligned.jpg">
+<link rel="stylesheet" href="../assets/css/insta.css?v=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23262626'/><circle cx='36' cy='42' r='20' fill='%23ff2d2d' opacity='.85'/><circle cx='64' cy='42' r='20' fill='%2300d26a' opacity='.85'/><circle cx='50' cy='66' r='20' fill='%232d6bff' opacity='.85'/></svg>">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<svg class="sr" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-9.5A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.5C19 15.5 12 20 12 20z"/></symbol>
+  <symbol id="i-comment" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L10 14M21 3l-7 18-3-7-7-3 17-8z"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4.5L6 21z"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="wordmark" href="../" aria-label="Home">Namwook</a>
+    <div class="topbar__title">
+      <div class="t1">Project 1</div>
+      <div class="t2">Colorizing the Prokudin-Gorskii Photo Collection</div>
+    </div>
+    <a class="backlink" href="../">All projects</a>
+  </div>
+</header>
+
+<main class="feed" id="main">
+
+  <!-- Shown only when printing to PDF for Gradescope -->
+  <div class="printhead">
+    <div><b>Namwook Lee</b> — CS 180, UC Berkeley, Fall 2026 — Project 1: Colorizing the Prokudin-Gorskii Photo Collection</div>
+    <div>URL: <span class="u">https://namwook0921.github.io/proj1/</span></div>
+  </div>
+
+  <!-- ==================== PROFILE ==================== -->
+  <section class="post">
+    <div class="profile">
+      <span class="ring ring--lg"><img src="images/avatar.jpg" alt="Namwook Lee"></span>
+      <div class="profile__meta">
+        <div class="profile__user">namwook_lee</div>
+        <div class="profile__sub">
+          Project 1 · Colorizing the Prokudin-Gorskii Photo Collection<br>
+          <a href="https://cal-cs180.github.io/fa26/hw/proj1/index.html" target="_blank" rel="noopener">cal-cs180.github.io/fa26/hw/proj1</a>
+        </div>
+        <div class="stats">
+          <span><b>4</b> posts</span>
+          <span><b>180</b> followers</span>
+          <span><b>280</b> following</span>
+        </div>
+      </div>
+    </div>
+    <div class="post__body">
+      <p><a href="#part1"><b>Part 1</b></a> · Naive Search Using L2 norm and Normalized Cross Correlation</p>
+      <p><a href="#part2"><b>Part 2</b></a> · Pyramid Search for Larger Images</p>
+      <p><a href="#part3"><b>Part 3</b></a> · Failure Modes of Raw Pyramid Search</p>
+      <p><a href="#part4"><b>Part 4</b></a> · Gradient Magnitude Matching &amp; Size-Aware Parameters for Pyramid Search</p>
+      <p class="cap cap--slide" style="color:var(--text-2)">Use ← and → to move through the photos in each post.</p>
+    </div>
+  </section>
+
+  <!-- ==================== POST 1 · NCC, L2, naive search ==================== -->
+  <article class="post" id="part1">
+    <div class="post__hd">
+      <span class="ring ring--sm"><img src="images/avatar.jpg" alt=""></span>
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Exhaustive search</div>
+      </div>
+      <span class="post__tag">Part 1</span>
+    </div>
+
+    <div class="car" data-car>
+      <div class="car__track">
+        <figure data-caption="cathedral.jpg — G shift (-7, -1), B shift (-12, -3).">
+          <img src="images/part1/cathedral.jpg" alt="Colorized Prokudin-Gorskii photograph of a cathedral, aligned with an exhaustive search.">
+          <figcaption>cathedral.jpg — G shift (-7, -1), B shift (-12, -3).</figcaption>
+        </figure>
+        <figure data-caption="monastery.jpg — G shift (-6, -1), B shift (-3, -2).">
+          <img loading="lazy" src="images/part1/monastery.jpg" alt="Colorized Prokudin-Gorskii photograph of a monastery, aligned with an exhaustive search.">
+          <figcaption>monastery.jpg — G shift (-6, -1), B shift (-3, -2).</figcaption>
+        </figure>
+        <figure data-caption="tobolsk.jpg — G shift (-4, -1), B shift (-6, -3).">
+          <img loading="lazy" src="images/part1/tobolsk.jpg" alt="Colorized Prokudin-Gorskii photograph of Tobolsk, aligned with an exhaustive search.">
+          <figcaption>tobolsk.jpg — G shift (-4, -1), B shift (-6, -3).</figcaption>
+        </figure>
+      </div>
+      <button class="car__btn car__prev" type="button" aria-label="Previous photo"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
+      <button class="car__btn car__next" type="button" aria-label="Next photo"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
+      <span class="car__count"></span>
+    </div>
+    <div class="dots"></div>
+
+    <div class="post__actions">
+      <svg aria-hidden="true"><use href="#i-heart"/></svg>
+      <svg aria-hidden="true"><use href="#i-comment"/></svg>
+      <svg aria-hidden="true"><use href="#i-share"/></svg>
+      <svg class="spacer" aria-hidden="true"><use href="#i-save"/></svg>
+    </div>
+
+    <div class="post__body">
+      <p class="cap cap--slide"></p>
+      <p class="cap"><b>namwook_lee</b> Naive Search Using L2 norm and Normalized Cross Correlation</p>
+
+      <table>
+        <tr><th>Image</th><th>G shift</th><th>B shift</th></tr>
+        <tr><td><code>cathedral.jpg</code></td><td>(-7, -1)</td><td>(-12, -3)</td></tr>
+        <tr><td><code>monastery.jpg</code></td><td>(-6, -1)</td><td>(-3, -2)</td></tr>
+        <tr><td><code>tobolsk.jpg</code></td><td>(-4, -1)</td><td>(-6, -3)</td></tr>
+      </table>
+
+      <p>The first approach we take is fixing an image from a single channel, and moving around an image from a different channel, and comparing the similarity of the two images. The most simple metric to compare the similarity is the Euclidean distance, which is the sum of the pixel-wise distance between the two images. A better metric is Normalized-Cross-Correlation (NCC) which is the dot product between two normalized images. A caveat is that L2 norm is a metric we would like to minimize, and NCC is a metric we would like to maximize. In my implementation, we find the minimum for the L2 norm and the negative NCC for consistency. The method of normalizing is by subtracting with mean, then dividing by the standard deviation across the whole pixels.</p>
+
+      <p>Cropping off the edges (10% of top, bottom, left, right in my implementation) works better in finding the right shift, because the edge of the films do not contain the clear image, but instead is usually stained in the old pictures from the early 20th century.</p>
+
+      <p class="post__time">Part 1 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== POST 2 · Pyramid search ==================== -->
+  <article class="post" id="part2">
+    <div class="post__hd">
+      <span class="ring ring--sm"><img src="images/avatar.jpg" alt=""></span>
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Pyramid search</div>
+      </div>
+      <span class="post__tag">Part 2</span>
+    </div>
+
+    <div class="car" data-car>
+      <div class="car__track">
+        <figure data-caption="wharf.tif — depth 7, G shift (-68, 9), B shift (-83, 16).">
+          <img src="images/part2/wharf.jpg" alt="Colorized Prokudin-Gorskii photograph wharf, aligned with a pyramid search." loading="lazy">
+          <figcaption>wharf.tif — depth 7, G shift (-68, 9), B shift (-83, 16).</figcaption>
+        </figure>
+        <figure data-caption="religous_painting.tif — depth 7, G shift (-41, -5), B shift (-70, -6).">
+          <img src="images/part2/religous_painting.jpg" alt="Colorized Prokudin-Gorskii photograph religous_painting, aligned with a pyramid search." loading="lazy">
+          <figcaption>religous_painting.tif — depth 7, G shift (-41, -5), B shift (-70, -6).</figcaption>
+        </figure>
+        <figure data-caption="church.tif — depth 7, G shift (-33, 8), B shift (-58, 4).">
+          <img src="images/part2/church.jpg" alt="Colorized Prokudin-Gorskii photograph church, aligned with a pyramid search." loading="lazy">
+          <figcaption>church.tif — depth 7, G shift (-33, 8), B shift (-58, 4).</figcaption>
+        </figure>
+        <figure data-caption="three_generations.tif — depth 7, G shift (-58, 4), B shift (-111, -8).">
+          <img src="images/part2/three_generations.jpg" alt="Colorized Prokudin-Gorskii photograph three_generations, aligned with a pyramid search." loading="lazy">
+          <figcaption>three_generations.tif — depth 7, G shift (-58, 4), B shift (-111, -8).</figcaption>
+        </figure>
+        <figure data-caption="melons.tif — depth 7, G shift (-96, -3), B shift (-177, -13).">
+          <img src="images/part2/melons.jpg" alt="Colorized Prokudin-Gorskii photograph melons, aligned with a pyramid search." loading="lazy">
+          <figcaption>melons.tif — depth 7, G shift (-96, -3), B shift (-177, -13).</figcaption>
+        </figure>
+        <figure data-caption="icon.tif — depth 7, G shift (-48, -5), B shift (-90, -23).">
+          <img src="images/part2/icon.jpg" alt="Colorized Prokudin-Gorskii photograph icon, aligned with a pyramid search." loading="lazy">
+          <figcaption>icon.tif — depth 7, G shift (-48, -5), B shift (-90, -23).</figcaption>
+        </figure>
+        <figure data-caption="siren.tif — depth 7, G shift (-47, 19), B shift (-96, 24).">
+          <img src="images/part2/siren.jpg" alt="Colorized Prokudin-Gorskii photograph siren, aligned with a pyramid search." loading="lazy">
+          <figcaption>siren.tif — depth 7, G shift (-47, 19), B shift (-96, 24).</figcaption>
+        </figure>
+        <figure data-caption="self_portrait.tif — depth 7, G shift (-98, -8), B shift (-175, -37).">
+          <img src="images/part2/self_portrait.jpg" alt="Colorized Prokudin-Gorskii photograph self_portrait, aligned with a pyramid search." loading="lazy">
+          <figcaption>self_portrait.tif — depth 7, G shift (-98, -8), B shift (-175, -37).</figcaption>
+        </figure>
+        <figure data-caption="harvesters.tif — depth 7, G shift (-64, 3), B shift (-124, -13).">
+          <img src="images/part2/harvesters.jpg" alt="Colorized Prokudin-Gorskii photograph harvesters, aligned with a pyramid search." loading="lazy">
+          <figcaption>harvesters.tif — depth 7, G shift (-64, 3), B shift (-124, -13).</figcaption>
+        </figure>
+        <figure data-caption="ilemselga.tif — depth 7, G shift (-91, -4), B shift (-131, -11).">
+          <img src="images/part2/ilemselga.jpg" alt="Colorized Prokudin-Gorskii photograph ilemselga, aligned with a pyramid search." loading="lazy">
+          <figcaption>ilemselga.tif — depth 7, G shift (-91, -4), B shift (-131, -11).</figcaption>
+        </figure>
+      </div>
+      <button class="car__btn car__prev" type="button" aria-label="Previous photo"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
+      <button class="car__btn car__next" type="button" aria-label="Next photo"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
+      <span class="car__count"></span>
+    </div>
+    <div class="dots"></div>
+
+    <div class="post__actions">
+      <svg aria-hidden="true"><use href="#i-heart"/></svg>
+      <svg aria-hidden="true"><use href="#i-comment"/></svg>
+      <svg aria-hidden="true"><use href="#i-share"/></svg>
+      <svg class="spacer" aria-hidden="true"><use href="#i-save"/></svg>
+    </div>
+
+    <div class="post__body">
+      <p class="cap cap--slide"></p>
+      <p class="cap"><b>namwook_lee</b> Pyramid Search for Larger Images</p>
+
+      <table>
+        <tr><th>Image</th><th>Depth</th><th>G shift</th><th>B shift</th></tr>
+        <tr><td><code>wharf.tif</code></td><td>6</td><td>(-68, 9)</td><td>(-83, 16)</td></tr>
+        <tr><td><code>monastery.jpg</code></td><td>naive</td><td>(-6, -1)</td><td>(-3, -2)</td></tr>
+        <tr><td><code>religous_painting.tif</code></td><td>6</td><td>(-41, -5)</td><td>(-70, -6)</td></tr>
+        <tr><td><code>church.tif</code></td><td>6</td><td>(-33, 8)</td><td>(-58, 4)</td></tr>
+        <tr><td><code>three_generations.tif</code></td><td>6</td><td>(-58, 4)</td><td>(-111, -8)</td></tr>
+        <tr><td><code>melons.tif</code></td><td>6</td><td>(-96, -3)</td><td>(-177, -13)</td></tr>
+        <tr><td><code>tobolsk.jpg</code></td><td>naive</td><td>(-4, -1)</td><td>(-6, -3)</td></tr>
+        <tr><td><code>icon.tif</code></td><td>6</td><td>(-48, -5)</td><td>(-90, -23)</td></tr>
+        <tr><td><code>cathedral.jpg</code></td><td>naive</td><td>(-7, -1)</td><td>(-12, -3)</td></tr>
+        <tr><td><code>siren.tif</code></td><td>6</td><td>(-47, 19)</td><td>(-96, 24)</td></tr>
+        <tr><td><code>self_portrait.tif</code></td><td>6</td><td>(-98, -8)</td><td>(-175, -37)</td></tr>
+        <tr><td><code>harvesters.tif</code></td><td>6</td><td>(-64, 3)</td><td>(-124, -13)</td></tr>
+        <tr><td><code>ilemselga.tif</code></td><td>6</td><td>(-91, -4)</td><td>(-131, -11)</td></tr>
+      </table>
+
+      <p>The naive alignment search is a great way to aligning the images from different colors channels. However, it gets more expensive as the image size increases, and first, we analyze the scale mathematically. Let's assume the height and the width of the image scales proportionately, which means the width = (ratio) * height where ratio is bounded for instance, [0.5, 2]. Then let's assign n = height and figure out how the computation for naive alignment search scales with n. The range for the search is proportionate to the n^2. Assume when taking the pictures, Prokudin-Gorskii allowed a sway up to 3 % both horizontally and vertically. Then, the number of pixels to measure the displacement is max 3 pixels for a 100 x 100 image, and this grows to 30 pixels for a 1000 x 1000 image. Therefore, for larger n, we need to search proportionately to n both vertically and horizontally, which leads the whole search grid proportionate to n^2. Second, the NCC or L2 norm both does operations for all pixels, which is also O(n^2). Therefore, as both the number of operations and the computation of the operations increase in O(n^2) scale, the whole search's time is proportionate to O(n^4) scale, roughly. Therefore, the time it takes for <code>emir.tif</code> which is (3209, 3702) size could be approximately 10,000 times of <code>cathedral.jpg</code> which is the size of (341, 390). Therefore, this motivates us to implement a pyramid search which reduces both the number of searches and the size of the image.</p>
+
+      <p>The pyramid search works as follows: Reduce the image in 0.5 ^ depth scale using anti-aliasing methods. Do a grid search (r^2) around the origin and find the best aligning shift. Assign this shift as a next origin, then for the 0.5 ^ (depth - 1) scaled-down image, we do a grid search around the new origin, and assign the best shift as the next origin. We repeat this step until we come back to the original image. Let's compute the approximate time complexity for this method: for each step, we do r^2 computations, and for the steps, the complexity of finding the loss is (0.5 ^ d * n)^2. Therefore, we take the sum of r^2 * (0.5 ^ d * n)^2 for d in 0, ... , depth, which adds up to approximately 4 / 3 * r^2 * n^2. Therefore, we reduce the time complexity of the search from O(n^4) to O(n^2). Adding to this, the size of the grid becomes smaller than the naive align search as every new origin, we know that the best aligned is close around to it. In practice, I used 31 * 31 grid (from -15 to 15) for the naive search, and 7 * 7 grid (from -3 to 3) for the initial pyramid search which gives us a ~20x speed-up.</p>
+
+      <p class="post__time">Part 2 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== POST 3 · Depth, offsets, speed ==================== -->
+  <article class="post" id="part3">
+    <div class="post__hd">
+      <span class="ring ring--sm"><img src="images/avatar.jpg" alt=""></span>
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Tuning depth &amp; offsets</div>
+      </div>
+      <span class="post__tag">Part 3</span>
+    </div>
+
+    <div class="car" data-car>
+      <div class="car__track">
+        <figure data-caption="1 — emir.tif aligned on raw pixel values: G shift (-112, -8), B shift (-114, -16).">
+          <img src="images/part3/emir_misaligned.jpg" alt="Emir of Bukhara reconstructed from raw pixel alignment, with the three channels visibly offset." loading="lazy">
+          <figcaption>1 — emir.tif aligned on raw pixel values: G shift (-112, -8), B shift (-114, -16).</figcaption>
+        </figure>
+        <figure data-caption="2 — monastery.jpg forced to depth 7: G shift (-94, -305), B shift (-93, -305).">
+          <img src="images/part3/monastery_misaligned.jpg" alt="Monastery photograph reconstructed with too deep a pyramid, badly misaligned." loading="lazy">
+          <figcaption>2 — monastery.jpg forced to depth 7: G shift (-94, -305), B shift (-93, -305).</figcaption>
+        </figure>
+      </div>
+      <button class="car__btn car__prev" type="button" aria-label="Previous photo"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
+      <button class="car__btn car__next" type="button" aria-label="Next photo"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
+      <span class="car__count"></span>
+    </div>
+    <div class="dots"></div>
+
+    <div class="post__actions">
+      <svg aria-hidden="true"><use href="#i-heart"/></svg>
+      <svg aria-hidden="true"><use href="#i-comment"/></svg>
+      <svg aria-hidden="true"><use href="#i-share"/></svg>
+      <svg class="spacer" aria-hidden="true"><use href="#i-save"/></svg>
+    </div>
+
+    <div class="post__body">
+      <p class="cap cap--slide"></p>
+      <p class="cap"><b>namwook_lee</b> Failure Modes of Raw Pyramid Search</p>
+
+      <p>In Emir's photo, he is wearing a robe in a blue background color, with green and red patterns. This makes taking the naive l2 or the NCC norm not a great metric. Imagine a red pattern in the blue robe and denote them as set R, B. When normalized, for the blue channel, the pixel values will be positive in B, negative in R. For the red channel, it will be negative in R, positive in B. So a perfectly aligned picture, will result in a negative NCC which is different from our optimize to maximize the NCC.</p>
+
+      <p>Then why can't we just minimize the NCC instead? Then, the background or other features that do not have such a vivid color would score high NCC. Therefore, there are two regimes with different objectives: for colors that include all three color channels, NCC has to be maximized, and for single-colored parts, NCC has to be minimized. This mechanism works similarly for l2 norm, since in the areas with a single color, the gap between the different color channels increase.</p>
+
+      <p>Also, fixed hyperparameters for pyramid search introduces a problem. As we are using a fixed depth for images of different scale, we require a depth of 6~7 to find a good estimate for the .tif images. However, this results in image 2 which is a heavily misaligned version of the monastery.jpg. Too much downsampling blurs the image and results in a very bad shift for the monastery.jpg file.</p>
+
+      <p class="post__time">Part 3 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== POST 4 · Gradient magnitude + derived parameters ==================== -->
+  <article class="post" id="part4">
+    <div class="post__hd">
+      <span class="ring ring--sm"><img src="images/avatar.jpg" alt=""></span>
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Gradient magnitude</div>
+      </div>
+      <span class="post__tag">Part 4</span>
+    </div>
+
+    <div class="car" data-car>
+      <div class="car__track">
+        <figure data-caption="1 — emir.tif reconstructed from gradient magnitude matching: G shift (-58, -17), B shift (-107, -40).">
+          <img src="images/part4/emir_aligned.jpg" alt="The Emir of Bukhara in color, with all three channels correctly aligned." loading="lazy">
+          <figcaption>1 — emir.tif reconstructed from gradient magnitude matching: G shift (-58, -17), B shift (-107, -40).</figcaption>
+        </figure>
+        <figure data-caption="2 — Gradient magnitude of the blue plate of emir.tif.">
+          <img src="images/part4/emir_blue_grad.jpg" alt="Gradient magnitude of the blue plate: bright edges on a dark background." loading="lazy">
+          <figcaption>2 — Gradient magnitude of the blue plate of emir.tif.</figcaption>
+        </figure>
+        <figure data-caption="3 — Gradient magnitude of the green plate of emir.tif.">
+          <img src="images/part4/emir_green_grad.jpg" alt="Gradient magnitude of the green plate: bright edges on a dark background." loading="lazy">
+          <figcaption>3 — Gradient magnitude of the green plate of emir.tif.</figcaption>
+        </figure>
+        <figure data-caption="4 — Gradient magnitude of the red plate of emir.tif.">
+          <img src="images/part4/emir_red_grad.jpg" alt="Gradient magnitude of the red plate: bright edges on a dark background." loading="lazy">
+          <figcaption>4 — Gradient magnitude of the red plate of emir.tif.</figcaption>
+        </figure>
+      </div>
+      <button class="car__btn car__prev" type="button" aria-label="Previous photo"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
+      <button class="car__btn car__next" type="button" aria-label="Next photo"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
+      <span class="car__count"></span>
+    </div>
+    <div class="dots"></div>
+
+    <div class="post__actions">
+      <svg aria-hidden="true"><use href="#i-heart"/></svg>
+      <svg aria-hidden="true"><use href="#i-comment"/></svg>
+      <svg aria-hidden="true"><use href="#i-share"/></svg>
+      <svg class="spacer" aria-hidden="true"><use href="#i-save"/></svg>
+    </div>
+
+    <div class="post__body">
+      <p class="cap cap--slide"></p>
+      <p class="cap"><b>namwook_lee</b> Gradient Magnitude Matching &amp; Size-Aware Parameters for Pyramid Search</p>
+
+      <p>To overcome the issue that happens with Emir's photo because different brightness for each channels, we take the approach of using the gradient magnitude instead of using the raw pixel values of each channel images. The gradient magnitude finds the edges in the pictures, and isn't signed because it's the magnitude. Therefore, it doesn't have conflicting objectives like in the raw pixels - we can aim to maximize the NCC. The gradient of emir is shown in images 2, 3, 4. Gradient is normally defined in a continuous function, but as the pixels are a very small unit, we use a numerical approximation as following: grad_x is obtained by shifting the image by 1 pixel and subtracting it from the original image. Similarly, grad_y is obtained, then we sum the square of the two and take a square root to obtain the final gradient magnitude. We then do pyramid search using NCC loss to obtain the aligning shift for the channel images and reconstruct the image.</p>
+
+      <p>For the parameters, we introduce flexible parameters that optimizes the pyramid search using a simple method. The first intuition is that the depth of the pyramid search should be proportionate to log scale of the height (or width) of the image. Since the scaling factor of the image is 2, we take 2 as the base of the log, and calculate depth = log2(max(height, width)) - 5. 5 is chosen as a hyperparameter so that the coarsest image is at least 64px wide and tall.</p>
+
+      <p>The second intuition is that for deeper depths, we can afford more searches. Since the images get smaller and the pixels become less by a scale of 4 each downsampling, the main bottleneck in complexity is the first layer where the image is the biggest. Therefore, we linearly increase the range of grid exploration as the image gets downsampled.</p>
+
+      <p>The collection of the above strategies result into a single reconstruct() function that takes in different sized images, and flexible inputs for the difference metric (ncc, l2_loss, etc.) and also the preprocessing method (gradient magnitude, identity, horizontal/vertical edges, etc.).</p>
+
+      <p class="post__time">Part 4 · September 2026</p>
+    </div>
+  </article>
+
+</main>
+
+<footer class="foot">
+  <div class="links">
+    <a href="../">Profile</a><span>·</span>
+    <a href="../proj0/">Project 0</a><span>·</span>
+    <a href="./">Project 1</a><span>·</span>
+    <a href="https://cal-cs180.github.io/fa26/hw/proj1/index.html" target="_blank" rel="noopener">Project 1 spec</a><span>·</span>
+    <a href="https://github.com/namwook0921" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  Namwook Lee © 2026 · CS 180, UC Berkeley
+</footer>
+
+<div class="zoom" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="zoom__close" type="button" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  <div class="zoom__stage"><img alt=""></div>
+  <div class="zoom__bar"><p></p></div>
+</div>
+
+<script src="../assets/js/insta.js?v=1"></script>
+</body>
+</html>
