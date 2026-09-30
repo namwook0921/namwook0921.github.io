@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project 2: Fun with Filters and Frequencies — Namwook Lee, CS 180</title>
+<meta name="description" content="CS 180 Project 2: convolutions from scratch, finite difference and DoG edge detection, unsharp masking, hybrid images, Gaussian and Laplacian stacks, and multiresolution blending.">
+<meta name="author" content="Namwook Lee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project 2: Fun with Filters and Frequencies">
+<meta property="og:description" content="Filters, frequencies, hybrid images and multiresolution blending — CS 180, UC Berkeley.">
+<meta property="og:image" content="https://namwook0921.github.io/proj2/results/char_hybrid.png">
+<link rel="stylesheet" href="../assets/css/bereal.css?v=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23000'/><rect x='24' y='26' width='52' height='48' rx='9' fill='none' stroke='%23fff' stroke-width='6'/><rect x='30' y='32' width='22' height='20' rx='5' fill='%23fff'/></svg>">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<svg class="sr" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="wordmark" href="../" aria-label="Home">BeReal.</a>
+    <div class="topbar__title">
+      <div class="t1">Project 2</div>
+      <div class="t2">Fun with Filters and Frequencies</div>
+    </div>
+    <a class="backlink" href="../">All projects</a>
+  </div>
+</header>
+
+<main class="feed" id="main">
+
+  <!-- Shown only when printing to PDF for Gradescope -->
+  <div class="printhead">
+    <div><b>Namwook Lee</b> — CS 180, UC Berkeley, Fall 2026 — Project 2: Fun with Filters and Frequencies</div>
+    <div>URL: <span class="u">https://namwook0921.github.io/proj2/</span></div>
+  </div>
+
+  <!-- ==================== PROFILE ==================== -->
+  <section class="post">
+    <div class="profile">
+      <img class="av av--lg" src="images/avatar.jpg" alt="Namwook Lee">
+      <div class="profile__meta">
+        <div class="profile__user">namwook_lee</div>
+        <div class="profile__sub">
+          Project 2 · Fun with Filters and Frequencies<br>
+          <a href="https://cal-cs180.github.io/fa26/hw/proj2/index.html" target="_blank" rel="noopener">cal-cs180.github.io/fa26/hw/proj2</a>
+        </div>
+        <div class="stats">
+          <span><b>9</b> posts</span>
+          <span><b>180</b> friends</span>
+          <span><b>2</b> cameras</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="post__body">
+
+      <ul class="toc">
+        <li><a href="#p11"><span class="k">1.1</span><span class="v">Convolutions from Scratch</span></a></li>
+        <li><a href="#p12"><span class="k">1.2</span><span class="v">Finite Difference Operator</span></a></li>
+        <li><a href="#p13"><span class="k">1.3</span><span class="v">Derivative of Gaussian Filter</span></a></li>
+        <li><a href="#p21"><span class="k">2.1</span><span class="v">Image Sharpening</span></a></li>
+        <li><a href="#p22a"><span class="k">2.2</span><span class="v">Derek &amp; Nutmeg</span></a></li>
+        <li><a href="#p22b"><span class="k">2.2</span><span class="v">King &amp; LeBron</span></a></li>
+        <li><a href="#p22"><span class="k">2.2</span><span class="v">Hybrid Images</span></a></li>
+        <li><a href="#p23"><span class="k">2.3</span><span class="v">Gaussian and Laplacian Stacks</span></a></li>
+        <li><a href="#p24"><span class="k">2.4</span><span class="v">Multiresolution Blending</span></a></li>
+      </ul>
+
+      <p class="post__time">Tap the small frame in any post to swap the two views · click a photo to enlarge · ← → to move between photos</p>
+    </div>
+  </section>
+
+  <!-- ==================== 1.1 · CONVOLUTIONS FROM SCRATCH ==================== -->
+  <article class="post" id="p11">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Four loops, then two</div>
+      </div>
+      <span class="chip">Part 1.1</span>
+    </div>
+
+    <div class="dual" data-dual>
+      <figure class="dual__main" data-caption="A 9×9 box filter convolved with my photograph by my own implementation.">
+        <img src="images/me_box9.png" alt="My photograph blurred by a 9 by 9 box filter.">
+      </figure>
+      <figure class="dual__inset" data-caption="The grayscale photograph it came from, rescaled to a third.">
+        <img src="images/me_gray.png" alt="The original grayscale photograph.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Original">9×9 box filter</span>
+    </div>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="Dy = [[1], [0], [−1]] convolved with the grayscale photograph.">
+        <img src="results/me_dy.png" alt="Vertical finite difference of my photograph.">
+      </figure>
+      <figure class="dual__inset" data-caption="Dx = [[1, 0, −1]] convolved with the grayscale photograph.">
+        <img src="results/me_dx.png" alt="Horizontal finite difference of my photograph.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Dx">Dy</span>
+    </div>
+    <p class="mediacap">Since I wore a shirt with horizontal stripes, Dy shows more details.</p>
+
+    <div class="react"><span>🔥</span><span>😵‍💫</span><span>🐢</span><div class="who">and 178 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> Convolutions from Scratch</p>
+
+      <h3>Four loops</h3>
+      <pre><code>def convolution_4d(img, kernel, padding=None):
+    h, w = kernel.shape
+    m, n = img.shape
+    kernel = kernel[::-1,::-1]
+
+    if padding == "same":
+        pad_h = h // 2
+        pad_w = w // 2
+    elif padding == "full":
+        pad_h = h - 1
+        pad_w = w - 1
+
+    img_pad = np.pad(img, ((pad_h, pad_h), (pad_w, pad_w)))
+
+    h_out = img_pad.shape[0] - h + 1
+    w_out = img_pad.shape[1] - w + 1
+
+    img_out = np.zeros(shape=(h_out, w_out))
+
+    for i in range(h_out):
+        for j in range(w_out):
+            val = 0
+            for k in range(h):
+                for l in range(w):
+                    val += kernel[k][l] * img_pad[i+k][j+l]
+            img_out[i][j] = val
+
+    return img_out</code></pre>
+
+      <p>The four-loop convolution does a 2D loop across the offset of the kernel to the image's origin, and does
+        another 2D loop inside it across each element of the kernel. For a random 3×3 kernel, it takes 73.2 seconds.</p>
+
+      <h3>Two loops</h3>
+      <pre><code>def convolution_2d(img, kernel, padding=None):
+    h, w = kernel.shape
+    m, n = img.shape
+    kernel = kernel[::-1,::-1]
+
+    if padding == "same":
+        pad_h = h // 2
+        pad_w = w // 2
+    elif padding == "full":
+        pad_h = h - 1
+        pad_w = w - 1
+
+    img_pad = np.pad(img, ((pad_h, pad_h), (pad_w, pad_w)))
+
+    h_out = img_pad.shape[0] - h + 1
+    w_out = img_pad.shape[1] - w + 1
+
+    img_out = np.zeros(shape=(h_out, w_out))
+
+    for i in range(h_out):
+        for j in range(w_out):
+            img_out[i][j] = np.sum(kernel * img_pad[i:i+h,j:j+w])
+
+    return img_out</code></pre>
+
+      <p>The two-loop convolution reduces this by replacing the latter loop with an element-wise multiplication. For a
+        random 3×3 kernel, it takes 47.3 seconds.</p>
+
+      <h3>Timing</h3>
+      <table>
+        <tr><th>Method</th><th>Runtime</th><th>Speed-up over four loops</th></tr>
+        <tr><td>Four loops</td><td>73.2 s</td><td>1×</td></tr>
+        <tr><td>Two loops</td><td>47.3 s</td><td>1.5×</td></tr>
+        <tr><td><code>scipy.signal.convolve2d</code></td><td>2.9 s</td><td>25×</td></tr>
+      </table>
+
+      <p class="post__time">Part 1.1 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== 1.2 · FINITE DIFFERENCE OPERATOR ==================== -->
+  <article class="post" id="p12">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">cameraman.png</div>
+      </div>
+      <span class="chip">Part 1.2</span>
+    </div>
+
+    <figure class="shot" data-caption="cameraman.png, the image everything in this post is computed from.">
+      <img src="images/cameraman.png" alt="The original cameraman photograph.">
+    </figure>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="∂/∂x — cameraman convolved with Dx = [[1, 0, −1]], same padding.">
+        <img src="results/cameraman_dx.png" alt="Partial derivative of the cameraman image in x.">
+      </figure>
+      <figure class="dual__inset" data-caption="∂/∂y — cameraman convolved with Dy = [[1], [0], [−1]], same padding.">
+        <img src="results/cameraman_dy.png" alt="Partial derivative of the cameraman image in y.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Dy">Dx</span>
+    </div>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="Gradient magnitude, sqrt(dx² + dy²).">
+        <img src="results/cameraman_grad_magnitude.png" alt="Gradient magnitude of the cameraman image.">
+      </figure>
+      <figure class="dual__inset" data-caption="The gradient magnitude binarized at a threshold of 0.3.">
+        <img src="results/cameraman_edge.png" alt="Binary edge map of the cameraman photograph.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Binarized · 0.3">Gradient magnitude</span>
+    </div>
+    <figure class="shot" data-caption="Histogram of the gradient magnitude over all pixels, 10 bins across [0, 1]." style="margin-top:10px">
+      <img src="results/grad_magnitude_hist.png" alt="Histogram of the gradient magnitude, showing almost all pixels near zero.">
+    </figure>
+
+    <div class="react"><span>⚡</span><span>👀</span><div class="who">and 180 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> Finite Difference Operator</p>
+
+      <p>The histogram shows most of the value of the pixels lie within 0.1, and about a tenth of it in 0.2.
+        Therefore, I tried threshold = 0.2, but still included a lot of dots. Then, threshold 0.3 preserved most
+        of the edges while getting rid of the dots.</p>
+
+      <p class="post__time">Part 1.2 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== 1.3 · DERIVATIVE OF GAUSSIAN ==================== -->
+  <article class="post" id="p13">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Blur first, then differentiate</div>
+      </div>
+      <span class="chip">Part 1.3</span>
+    </div>
+
+    <div class="dual" data-dual>
+      <figure class="dual__main" data-caption="Blur with a Gaussian first, then convolve with Dx and Dy — imx² + imy².">
+        <img src="results/cameraman_Gaussian.png" alt="Squared gradient magnitude of the cameraman, computed by blurring first and then differentiating.">
+      </figure>
+      <figure class="dual__inset" data-caption="One convolution with DoGx and DoGy instead — imdx² + imdy².">
+        <img src="results/cameraman_DoG.png" alt="Squared gradient magnitude of the cameraman, computed with derivative-of-Gaussian filters in a single pass.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="One DoG pass">Blur, then differentiate</span>
+    </div>
+
+    <figure class="shot" data-caption="cameraman.png blurred with a 3×3 Gaussian, sigma = 1." style="margin-top:14px">
+      <img src="results/cameraman_blurred.png" alt="Gaussian-blurred cameraman photograph.">
+    </figure>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="∂/∂x of the blurred cameraman.">
+        <img src="results/blur_dx.png" alt="Partial derivative in x of the Gaussian-blurred cameraman.">
+      </figure>
+      <figure class="dual__inset" data-caption="∂/∂y of the blurred cameraman.">
+        <img src="results/blur_dy.png" alt="Partial derivative in y of the Gaussian-blurred cameraman.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Dy">Dx</span>
+    </div>
+
+    <div class="react"><span>🧈</span><span>🔥</span><span>🤝</span><div class="who">and 176 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> Derivative of Gaussian Filter</p>
+
+      <p>Gaussian Blur → (D_x² + D_y²) is exactly equal to (DoG_x² + DoG_y²) because convolution is associative.
+        Numerically, max pixel difference between the two images constructed by blur → convolution vs DoG
+        convolution is 3.74e-16.</p>
+
+      <p class="post__time">Part 1.3 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== 2.1 · IMAGE SHARPENING ==================== -->
+  <article class="post" id="p21">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Unsharp mask · Taj Mahal</div>
+      </div>
+      <span class="chip">Part 2.1</span>
+    </div>
+
+    <div class="dual" data-dual>
+      <figure class="dual__main" data-caption="taj.jpg after unsharp masking, alpha = 1.">
+        <img src="results/taj_sharpen_alpha1.png" alt="The Taj Mahal, sharpened with an unsharp mask.">
+      </figure>
+      <figure class="dual__inset" data-caption="taj.jpg, untouched.">
+        <img src="images/taj.jpg" alt="The original photograph of the Taj Mahal.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Original">Sharpened</span>
+    </div>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="The Gaussian-blurred Taj.">
+        <img src="results/taj_blurred.png" alt="The Taj Mahal, Gaussian blurred.">
+      </figure>
+      <figure class="dual__inset" data-caption="The high frequencies, image minus blur.">
+        <img src="results/taj_hf.png" alt="The high frequency detail extracted from the Taj Mahal photograph.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="High frequencies">Gaussian blur</span>
+    </div>
+    <p class="mediacap">The unsharp masking is done by applying I + alpha * (I - G), where I is the identity
+      operation and G is the Gaussian blur. Applying G to the image results in lowering the frequency, and
+      deleting most of the high frequency details, so that the image is blurred.</p>
+    <p class="mediacap">Subtracting the Gaussian from the original image, therefore leaves the high frequency
+      details, while reducing the low frequency aspects of the image.</p>
+
+    <figure class="strip" data-caption="taj.jpg sharpened at alpha = 0.5, 1, 2, 5 and 10." style="margin-top:14px">
+      <img src="results/sharpened_taj_group.png" alt="The Taj Mahal sharpened at a range of alpha values.">
+    </figure>
+    <p class="mediacap">(Click to zoom)</p>
+    <p class="mediacap">As (I - G) applied to the image leaves the high frequency details of the image, adding
+      this to the original image results in a sharpened version of the image. This is how the unsharpen mask
+      works, and above is a result of sweeping alpha, a constant multiplied to (I - G) when sharpening the image.
+      Higher alpha leads to a more exaggerated sharpening of the image.</p>
+
+    <figure class="strip" data-caption="A second image, sharpened at alpha = 0.5, 1, 2 and 5." style="margin-top:14px">
+      <img src="results/sharpened_dogs.png" alt="A photograph of a dog sharpened at a range of alpha values.">
+    </figure>
+
+    <h3 class="sr">Blur, then re-sharpen</h3>
+    <figure class="shot" data-caption="taj.jpg, Gaussian blurred." style="margin-top:14px">
+      <img src="results/taj_blurred.png" alt="The Taj Mahal after Gaussian blurring.">
+    </figure>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="taj.jpg, the sharp original.">
+        <img src="images/taj.jpg" alt="The original sharp photograph of the Taj Mahal.">
+      </figure>
+      <figure class="dual__inset" data-caption="The blurred photograph put back through the unsharp mask.">
+        <img src="results/taj_blur_sharpen.png" alt="The blurred Taj Mahal after sharpening.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Blurred, then sharpened">Original</span>
+    </div>
+    <p class="mediacap">The blurring destroys the high frequency details, so applying unsharp masking cannot salvage
+      the loss of it.</p>
+
+    <div class="react"><span>🔪</span><span>🔥</span><span>😬</span><div class="who">and 173 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> Image Sharpening</p>
+
+      <p class="post__time">Part 2.1 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== 2.2 · DEREK + NUTMEG ==================== -->
+  <article class="post" id="p22a">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Derek &amp; Nutmeg</div>
+      </div>
+      <span class="chip">Part 2.2</span>
+    </div>
+
+    <div class="dual" data-dual>
+      <figure class="dual__main" data-caption="DerekPicture.jpg">
+        <img src="cs180_proj2_hybrid_starter_code/DerekPicture.jpg" alt="Derek, the first input image.">
+      </figure>
+      <figure class="dual__inset" data-caption="nutmeg.jpg">
+        <img src="cs180_proj2_hybrid_starter_code/nutmeg.jpg" alt="Nutmeg the cat, the second input image.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Nutmeg">Derek</span>
+    </div>
+    <p class="mediacap">Derek &amp; Nutmeg</p>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="Derek and Nutmeg, hybridised.">
+        <img src="results/derek_nutmeg.png" alt="Hybrid image of Derek and Nutmeg.">
+      </figure>
+      <figure class="dual__inset" data-caption="The same hybrid image, small.">
+        <img src="results/derek_nutmeg.png" alt="The same hybrid image, small.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Hybrid">Hybrid</span>
+    </div>
+    <p class="mediacap">The human eye focuses on the high frequency details when the image is closer, and to the lower
+      frequencies when it's further. Therefore, you can find Nutmeg from the original size hybrid image (the screen is
+      close to your eye!). For the zoomed out image, you barely notice Nutmeg, and the shape of Derek is more
+      outstanding.</p>
+
+    <div class="react"><span>🐱</span><span>😂</span><div class="who">and 164 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> Derek &amp; Nutmeg</p>
+
+      <p class="post__time">Part 2.2 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== 2.2b · TWO MORE HYBRIDS ==================== -->
+  <article class="post" id="p22b">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">King &amp; LeBron</div>
+      </div>
+      <span class="chip">Part 2.2</span>
+    </div>
+
+    <div class="dual" data-dual>
+      <figure class="dual__main" data-caption="king.jpg">
+        <img src="images/king.jpg" alt="The first input image.">
+      </figure>
+      <figure class="dual__inset" data-caption="lbj.webp">
+        <img src="images/lbj.webp" alt="The second input image.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="lbj">king</span>
+    </div>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="king.jpg and lbj.webp, hybridised.">
+        <img src="results/king_lebron.png" alt="Hybrid image of the two LeBron photographs.">
+      </figure>
+      <figure class="dual__inset" data-caption="The same hybrid image, small.">
+        <img src="results/king_lebron.png" alt="The same hybrid image, small.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Hybrid">Hybrid</span>
+    </div>
+    <p class="mediacap">Real Recognize Real.</p>
+
+    <div class="react"><span>🐱</span><span>😂</span><div class="who">and 164 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> King &amp; LeBron</p>
+
+      <p class="post__time">Part 2.2 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== 2.2 · HYBRID IMAGES (documented one) ==================== -->
+  <article class="post" id="p22">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Charmander &amp; Charizard</div>
+      </div>
+      <span class="chip chip--late">⚡ Both cameras</span>
+    </div>
+
+    <div class="grid grid--2">
+      <figure data-caption="charmander.jpg — the high-frequency half, the one you see up close.">
+        <img src="images/charmander.jpg" alt="Charmander, the first input image.">
+      </figure>
+      <figure data-caption="charizard.jpg — the low-frequency half, the one you see from across the room.">
+        <img src="images/charizard.jpg" alt="Charizard, the second input image.">
+      </figure>
+    </div>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="Charizard through a low-pass filter (Gaussian, sigma = 15).">
+        <img src="results/charizard_low_pass.png" alt="Charizard, low-pass filtered.">
+      </figure>
+      <figure class="dual__inset" data-caption="Charmander through a high-pass filter (image minus Gaussian, sigma = 0.1).">
+        <img src="results/charmander_high_pass.png" alt="Charmander, high-pass filtered.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="High-pass · Charmander">Low-pass · Charizard</span>
+    </div>
+
+    <div class="dual" data-dual style="margin-top:14px">
+      <figure class="dual__main" data-caption="The hybrid: low-pass Charizard plus high-pass Charmander.">
+        <img src="results/char_hybrid.png" alt="Hybrid image of Charmander and Charizard.">
+      </figure>
+      <figure class="dual__inset" data-caption="The same hybrid image, small.">
+        <img src="results/char_hybrid.png" alt="The same hybrid image, small.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="Hybrid">Hybrid</span>
+    </div>
+
+    <h3 class="sr">Frequency analysis</h3>
+    <div class="grid grid--2" style="margin-top:14px">
+      <figure data-caption="log |FFT| of the Charmander input.">
+        <img src="results/fig2.png" alt="Log magnitude of the Fourier transform of the Charmander input.">
+      </figure>
+      <figure data-caption="log |FFT| of the Charizard input.">
+        <img src="results/fig3.png" alt="Log magnitude of the Fourier transform of the Charizard input.">
+      </figure>
+    </div>
+    <p class="mediacap">FFT of each images.</p>
+    <div class="grid grid--3" style="margin-top:8px">
+      <figure data-caption="log |FFT| after the low-pass — energy collapses to the centre.">
+        <img src="results/fig4.png" alt="Log magnitude of the Fourier transform of the low-pass filtered image.">
+      </figure>
+      <figure data-caption="log |FFT| after the high-pass — the centre is hollowed out.">
+        <img src="results/fig5.png" alt="Log magnitude of the Fourier transform of the high-pass filtered image.">
+      </figure>
+      <figure data-caption="log |FFT| of the hybrid — the two spectra, stacked.">
+        <img src="results/fig6.png" alt="Log magnitude of the Fourier transform of the hybrid image.">
+      </figure>
+    </div>
+    <p class="mediacap">Left is FFT of low pass charizard. Most of the mass is centered at the origin, because the
+      images is blurred. Middle is FFT of high pass (I - G) of charmander. The mass is spread out, and center is hollow.
+      Right is the FFT of the hybrid image, which resembles the distribution of the above 2 FFT of the original images,
+      as it is averaged out.</p>
+
+    <div class="react"><span>🦎</span><span>🔥</span><span>👁️</span><div class="who">and 180 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> Hybrid Images</p>
+
+      <p class="post__time">Part 2.2 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== 2.3 · GAUSSIAN AND LAPLACIAN STACKS ==================== -->
+  <article class="post" id="p23">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">Six levels, no downsampling</div>
+      </div>
+      <span class="chip">Part 2.3</span>
+    </div>
+
+    <figure class="strip" data-caption="Gaussian stack of apple.jpeg, levels 0 through 5.">
+      <img src="results/g_stack_ap.png" alt="Gaussian stack of the apple image across six levels.">
+    </figure>
+    <p class="mediacap">Gaussian stack — apple.</p>
+
+    <figure class="strip" data-caption="Gaussian stack of orange.jpeg, levels 0 through 5." style="margin-top:10px">
+      <img src="results/g_stack_or.png" alt="Gaussian stack of the orange image across six levels.">
+    </figure>
+    <p class="mediacap">Gaussian stack — orange.</p>
+
+    <figure class="strip" data-caption="Laplacian stack of apple.jpeg — differences between consecutive Gaussian levels, with the residual at the end." style="margin-top:10px">
+      <img src="results/l_stack_ap.png" alt="Laplacian stack of the apple image across six levels.">
+    </figure>
+    <p class="mediacap">Laplacian stack — apple.</p>
+
+    <figure class="strip" data-caption="Laplacian stack of orange.jpeg — differences between consecutive Gaussian levels, with the residual at the end." style="margin-top:10px">
+      <img src="results/l_stack_or.png" alt="Laplacian stack of the orange image across six levels.">
+    </figure>
+    <p class="mediacap">Laplacian stack — orange.</p>
+
+    <figure class="strip" data-caption="Masked apple, masked orange, and the blended result at level 1." style="margin-top:14px">
+      <img src="results/level1.png" alt="Masked apple, masked orange and the blend at level 1.">
+    </figure>
+    <figure class="strip" data-caption="Masked apple, masked orange, and the blended result at level 3." style="margin-top:10px">
+      <img src="results/level3.png" alt="Masked apple, masked orange and the blend at level 3.">
+    </figure>
+    <figure class="strip" data-caption="Masked apple, masked orange, and the blended result at level 5." style="margin-top:10px">
+      <img src="results/level5.png" alt="Masked apple, masked orange and the blend at level 5.">
+    </figure>
+    <p class="mediacap">Figure 3.42, recreated at levels 1, 3 and 5.</p>
+
+    <div class="react"><span>🍎</span><span>🍊</span><span>📚</span><div class="who">and 159 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> Gaussian and Laplacian Stacks</p>
+
+      <p class="post__time">Part 2.3 · September 2026</p>
+    </div>
+  </article>
+
+  <!-- ==================== 2.4 · MULTIRESOLUTION BLENDING ==================== -->
+  <article class="post" id="p24">
+    <div class="post__hd">
+      <img class="av av--sm" src="images/avatar.jpg" alt="">
+      <div class="post__who">
+        <div class="post__user">namwook_lee</div>
+        <div class="post__loc">The oraple, and friends</div>
+      </div>
+      <span class="chip chip--late">⚡ 4h late</span>
+    </div>
+
+    <div class="dual" data-dual>
+      <figure class="dual__main" data-caption="apple.jpeg">
+        <img src="images/apple.jpeg" alt="The apple input image.">
+      </figure>
+      <figure class="dual__inset" data-caption="orange.jpeg">
+        <img src="images/orange.jpeg" alt="The orange input image.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="orange">apple</span>
+    </div>
+    <figure class="shot" data-caption="The oraple — apple and orange blended across a vertical seam." style="margin-top:8px">
+      <img src="results/oraple.png" alt="The apple and orange blended into a single fruit.">
+    </figure>
+    <p class="mediacap">I want to try this fruit.</p>
+
+    <h3 class="sr">Custom pair, vertical seam</h3>
+    <div class="dual" data-dual style="margin-top:22px">
+      <figure class="dual__main" data-caption="batman.jpeg">
+        <img src="images/batman.jpeg" alt="The Batman input image.">
+      </figure>
+      <figure class="dual__inset" data-caption="joker.jpeg">
+        <img src="images/joker.jpeg" alt="The Joker input image.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="joker">batman</span>
+    </div>
+    <figure class="shot" data-caption="Batman and the Joker, blended across a vertical seam." style="margin-top:8px">
+      <img src="results/batker.png" alt="Batman and the Joker blended into one face.">
+    </figure>
+    <p class="mediacap">Goated movie, Goated archenemy</p>
+
+    <h3 class="sr">Irregular mask</h3>
+    <div class="dual" data-dual style="margin-top:22px">
+      <figure class="dual__main" data-caption="baby_me.png">
+        <img src="images/baby_me.png" alt="A photograph of me as a baby.">
+      </figure>
+      <figure class="dual__inset" data-caption="teletubby.jpg">
+        <img src="images/teletubby.jpg" alt="A still from Teletubbies.">
+        <span class="dual__swap">Swap</span>
+      </figure>
+      <span class="dual__label" data-alt="teletubby">baby_me</span>
+    </div>
+    <figure class="shot" data-caption="My baby photograph blended into the Teletubbies sun through an irregular mask." style="margin-top:8px">
+      <img src="results/telebaby.png" alt="A baby face blended into the Teletubbies sun.">
+    </figure>
+    <p class="mediacap">I always wanted to star in Teletubbies!!</p>
+
+    <div class="react"><span>🍎</span><span>🃏</span><span>☀️</span><div class="who">and 180 others</div></div>
+
+    <div class="post__body">
+      <p class="cap"><b>namwook_lee</b> Multiresolution Blending</p>
+
+      <p class="post__time">Part 2.4 · September 2026</p>
+    </div>
+  </article>
+
+</main>
+
+<footer class="foot">
+  <div class="links">
+    <a href="../">Profile</a><span>·</span>
+    <a href="../proj0/">Project 0</a><span>·</span>
+    <a href="../proj1/">Project 1</a><span>·</span>
+    <a href="./">Project 2</a><span>·</span>
+    <a href="https://cal-cs180.github.io/fa26/hw/proj2/index.html" target="_blank" rel="noopener">Project 2 spec</a><span>·</span>
+    <a href="https://github.com/namwook0921" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  Namwook Lee © 2026 · CS 180, UC Berkeley
+</footer>
+
+<div class="zoom" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="zoom__close" type="button" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  <div class="zoom__stage"><img alt=""></div>
+  <div class="zoom__bar"><p></p></div>
+</div>
+
+<script src="../assets/js/bereal.js?v=1"></script>
+</body>
+</html>
