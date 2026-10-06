@@ -1,0 +1,968 @@
+[
+  {
+    "id": "paper:multiresolution-spline-image-mosaics",
+    "title": "A Multiresolution Spline with Application to Image Mosaics",
+    "kind": "paper",
+    "year": 1983,
+    "concept_ids": [
+      "concept:multiresolution-blending",
+      "concept:image-pyramids",
+      "concept:frequency-bands",
+      "concept:seam-reduction"
+    ]
+  },
+  {
+    "id": "paper:a-simple-framework-for-contrastive-learning-of-visual-representations",
+    "title": "A Simple Framework for Contrastive Learning of Visual Representations (SimCLR)",
+    "kind": "paper",
+    "year": 2020,
+    "concept_ids": [
+      "concept:contrastive-learning",
+      "concept:representation-learning",
+      "concept:batch-normalization",
+      "concept:moco-comparison"
+    ]
+  },
+  {
+    "id": "paper:aligning-human-and-robot-representations",
+    "title": "Aligning Human and Robot Representations",
+    "kind": "paper",
+    "year": 2024,
+    "concept_ids": [
+      "concept:structured-representations",
+      "concept:end-to-end-learning",
+      "concept:human-feedback",
+      "concept:vlm-feedback"
+    ]
+  },
+  {
+    "id": "paper:classifier-free-diffusion-guidance",
+    "title": "Classifier-Free Diffusion Guidance",
+    "kind": "paper",
+    "year": 2022,
+    "concept_ids": [
+      "concept:classifier-free-guidance",
+      "concept:conditional-score",
+      "concept:unconditional-score"
+    ]
+  },
+  {
+    "id": "paper:commitment-without-regrets-online-learning-stackelberg-security-games",
+    "title": "Commitment Without Regrets: Online Learning in Stackelberg Security Games",
+    "kind": "paper",
+    "year": 2015,
+    "concept_ids": [
+      "concept:regret-minimization",
+      "concept:no-regret-algorithms",
+      "concept:mixed-strategies",
+      "concept:full-information-feedback",
+      "concept:partial-information-feedback"
+    ]
+  },
+  {
+    "id": "paper:data-efficient-hierarchical-reinforcement-learning",
+    "title": "Data-Efficient Hierarchical Reinforcement Learning",
+    "kind": "paper",
+    "year": 2018,
+    "concept_ids": [
+      "concept:goal-relabeling",
+      "concept:off-policy-learning",
+      "concept:high-level-and-low-level-policies"
+    ]
+  },
+  {
+    "id": "paper:denoising-diffusion-probabilistic-models",
+    "title": "Denoising Diffusion Probabilistic Models",
+    "kind": "paper",
+    "year": 2020,
+    "concept_ids": [
+      "concept:denoising-score-matching",
+      "concept:variational-bound",
+      "concept:langevin-dynamics",
+      "concept:noise-prediction"
+    ]
+  },
+  {
+    "id": "paper:diffusion-guidance-controllable-policy-improvement-operator",
+    "title": "Diffusion Guidance Is a Controllable Policy Improvement Operator",
+    "kind": "paper",
+    "year": 2025,
+    "concept_ids": [
+      "concept:classifier-free-guidance",
+      "concept:optimality-distribution",
+      "concept:q-or-advantage-guidance",
+      "concept:policy-improvement"
+    ]
+  },
+  {
+    "id": "paper:do-as-i-do-dexterous-manipulation",
+    "title": "Do as I Do: Dexterous Manipulation",
+    "kind": "paper",
+    "year": 2026,
+    "concept_ids": [
+      "concept:3d-hand-reconstruction",
+      "concept:object-tracking",
+      "concept:physics-based-retargeting",
+      "concept:robot-executable-trajectories"
+    ]
+  },
+  {
+    "id": "paper:dreamdojo",
+    "title": "DreamDojo",
+    "kind": "paper",
+    "year": 2026,
+    "concept_ids": [
+      "concept:continuous-latent-actions",
+      "concept:action-conditioned-video-prediction",
+      "concept:robot-post-training",
+      "concept:action-conditioning"
+    ]
+  },
+  {
+    "id": "paper:equibot-sim3-equivariant-diffusion-policy",
+    "title": "EquiBot: SIM(3)-Equivariant Diffusion Policy for Generalizable and Data Efficient Learning",
+    "kind": "paper",
+    "year": 2024,
+    "concept_ids": [
+      "concept:sim-3-equivariance",
+      "concept:diffusion-policy",
+      "concept:visuomotor-policy"
+    ]
+  },
+  {
+    "id": "paper:from-words-to-safety",
+    "title": "From Words to Safety",
+    "kind": "paper",
+    "year": 2025,
+    "concept_ids": [
+      "concept:sampling-based-mpc",
+      "concept:safety-shield",
+      "concept:control-horizon",
+      "concept:receding-horizon-replanning"
+    ]
+  },
+  {
+    "id": "paper:how-to-train-your-latent-cbf",
+    "title": "How to Train Your Latent CBF",
+    "kind": "paper",
+    "year": 2025,
+    "concept_ids": [
+      "concept:latent-safety-value-function",
+      "concept:actor-critic",
+      "concept:safety-filtering",
+      "concept:classifier-constraints"
+    ]
+  },
+  {
+    "id": "paper:hybrid-images",
+    "title": "Hybrid Images",
+    "kind": "paper",
+    "year": 2006,
+    "concept_ids": [
+      "concept:hybrid-images",
+      "concept:spatial-frequency",
+      "concept:gaussian-low-pass-filtering",
+      "concept:high-pass-filtering"
+    ]
+  },
+  {
+    "id": "paper:learning-latent-dynamics-for-planning-from-pixels",
+    "title": "Learning Latent Dynamics for Planning from Pixels",
+    "kind": "paper",
+    "year": 2019,
+    "concept_ids": [
+      "concept:planning",
+      "concept:rssm",
+      "concept:cem",
+      "concept:latent-overshooting",
+      "concept:mpc"
+    ]
+  },
+  {
+    "id": "paper:mobi-pi",
+    "title": "Mobi-pi",
+    "kind": "paper",
+    "year": 2025,
+    "concept_ids": [
+      "concept:policy-mobilization",
+      "concept:camera-viewpoints",
+      "concept:out-of-distribution-generalization"
+    ]
+  },
+  {
+    "id": "paper:neural-reachable-tubes",
+    "title": "Verification of Neural Reachable Tubes via Scenario Optimization and Conformal Prediction",
+    "kind": "paper",
+    "year": 2024,
+    "concept_ids": [
+      "concept:reachable-sets",
+      "concept:recurrent-state-space-model",
+      "concept:latent-dynamics",
+      "concept:safety"
+    ]
+  },
+  {
+    "id": "paper:recovery-rl",
+    "title": "Recovery RL: Safe Reinforcement Learning with Learned Recovery Zones",
+    "kind": "paper",
+    "year": 2021,
+    "concept_ids": [
+      "concept:recovery-policy",
+      "concept:recovery-zones",
+      "concept:task-buffer",
+      "concept:recovery-buffer"
+    ]
+  },
+  {
+    "id": "paper:rlt",
+    "title": "RL Token: Bootstrapping Online RL with Vision-Language-Action Models",
+    "kind": "paper",
+    "year": 2026,
+    "concept_ids": [
+      "concept:rl-token",
+      "concept:frozen-vla",
+      "concept:actor-critic",
+      "concept:action-refinement"
+    ]
+  },
+  {
+    "id": "paper:td-mpc2",
+    "title": "TD-MPC2: Scalable, Robust World Models for Continuous Control",
+    "kind": "paper",
+    "year": 2024,
+    "concept_ids": [
+      "concept:latent-planning",
+      "concept:task-embedding",
+      "concept:online-simulator-data",
+      "concept:multitask-replay-data"
+    ]
+  },
+  {
+    "id": "paper:transformer-layer-correction-mechanism",
+    "title": "LLM Layers Immediately Correct Each Other",
+    "kind": "paper",
+    "year": 2025,
+    "concept_ids": [
+      "concept:cross-layer-correction",
+      "concept:sparse-autoencoders",
+      "concept:transformer-residual-stream"
+    ]
+  },
+  {
+    "id": "paper:uncovering-gaps-humans-llms-subjective-language",
+    "title": "Uncovering Gaps in How Humans and LLMs Interpret Subjective Language",
+    "kind": "paper",
+    "year": 2025,
+    "concept_ids": [
+      "concept:ted-method",
+      "concept:human-llm-interpretation-gaps"
+    ]
+  },
+  {
+    "id": "paper:pi-star-0-6",
+    "title": "π*0.6: A VLA That Learns From Experience",
+    "kind": "paper",
+    "year": 2025,
+    "concept_ids": [
+      "concept:recap",
+      "concept:distributional-value-function",
+      "concept:policy-improvement",
+      "concept:behavior-cloning"
+    ]
+  },
+  {
+    "id": "paper:diayn",
+    "title": "Diversity is All You Need: Learning Skills without a Reward Function",
+    "kind": "paper",
+    "year": 2019,
+    "concept_ids": [
+      "concept:diayn",
+      "concept:skill-discriminator",
+      "concept:unsupervised-skill-discovery",
+      "concept:mutual-information",
+      "concept:skill-latent",
+      "concept:intrinsic-reward",
+      "concept:maximum-entropy-rl",
+      "concept:downstream-transfer",
+      "concept:temporal-coherence",
+      "concept:task-relevance"
+    ]
+  },
+  {
+    "id": "paper:dads",
+    "title": "Dynamics-Aware Unsupervised Discovery of Skills (DADS)",
+    "kind": "paper",
+    "year": 2020,
+    "concept_ids": [
+      "concept:dads",
+      "concept:transition-mutual-information"
+    ]
+  },
+  {
+    "id": "paper:contrastive-intrinsic-control",
+    "title": "Contrastive Intrinsic Control (CIC)",
+    "kind": "paper",
+    "year": 2022,
+    "concept_ids": [
+      "concept:contrastive-intrinsic-control",
+      "concept:infonce",
+      "concept:control-relevant-representation"
+    ]
+  },
+  {
+    "id": "paper:lipschitz-constrained-unsupervised-skill-discovery",
+    "title": "Lipschitz-Constrained Unsupervised Skill Discovery (LSD)",
+    "kind": "paper",
+    "year": 2022,
+    "concept_ids": [
+      "concept:lipschitz-constrained-unsupervised-skill-discovery",
+      "concept:spectral-normalization",
+      "concept:skill-commitment"
+    ]
+  },
+  {
+    "id": "paper:direct-preference-optimization",
+    "title": "Direct Preference Optimization: Your Language Model Is Secretly a Reward Model (DPO)",
+    "kind": "paper",
+    "year": 2023,
+    "concept_ids": [
+      "concept:direct-preference-optimization",
+      "concept:preference-pair-objective",
+      "concept:kl-regularized-rlhf",
+      "concept:ppo",
+      "concept:implicit-reward",
+      "concept:preference-pairs",
+      "concept:reward-model-generalization",
+      "concept:distribution-shift",
+      "concept:reward-hacking"
+    ]
+  },
+  {
+    "id": "study:classifier-free-guidance",
+    "title": "Classifier Free Guidance",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:diffusion-models",
+      "concept:score-fields",
+      "concept:classifier-guidance",
+      "concept:conditional-generation",
+      "concept:classifier-free-guidance",
+      "concept:conditioning-dropout",
+      "concept:guidance-scale"
+    ],
+    "related_paper_ids": [
+      "paper:denoising-diffusion-probabilistic-models",
+      "paper:classifier-free-diffusion-guidance"
+    ]
+  },
+  {
+    "id": "study:clf-cbf",
+    "title": "CLF/CBF",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:control-lyapunov-function",
+      "concept:control-barrier-function",
+      "concept:quadratic-program",
+      "concept:lie-derivatives",
+      "concept:reference-control",
+      "concept:slack-variable",
+      "concept:l1-penalty",
+      "concept:quadratic-penalty"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:computing-hj-pde",
+    "title": "Computing HJ PDE",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:monotone-numerical-scheme",
+      "concept:numerical-hamiltonian",
+      "concept:finite-differences",
+      "concept:lax-friedrichs-scheme",
+      "concept:viscosity-solution",
+      "concept:grid-discretization",
+      "concept:optimal-control",
+      "concept:terminal-condition",
+      "concept:hamilton-jacobi-pde"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:contrastive-learning",
+    "title": "Contrastive Learning",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:self-supervised-learning",
+      "concept:contrastive-learning",
+      "concept:instance-discrimination",
+      "concept:data-augmentation",
+      "concept:embedding-vectors",
+      "concept:memory-banks",
+      "concept:noise-contrastive-estimation",
+      "concept:linear-probing",
+      "concept:generative-and-discriminative-models"
+    ],
+    "related_paper_ids": [
+      "paper:a-simple-framework-for-contrastive-learning-of-visual-representations"
+    ]
+  },
+  {
+    "id": "study:control-theory",
+    "title": "Control Theory",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:lyapunov-stability",
+      "concept:model-predictive-control",
+      "concept:robust-control",
+      "concept:learned-dynamics",
+      "concept:distribution-shift"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:ddpg",
+    "title": "DDPG",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:deterministic-policy-gradient",
+      "concept:actor-critic",
+      "concept:continuous-actions",
+      "concept:replay-buffer",
+      "concept:target-networks",
+      "concept:critic-overestimation",
+      "concept:td3"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:diffusion-models",
+    "title": "Diffusion Models",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:forward-noising-process",
+      "concept:reverse-denoising-process",
+      "concept:noise-prediction",
+      "concept:sampling-schedule",
+      "concept:classifier-free-guidance",
+      "concept:u-net",
+      "concept:skip-connections",
+      "concept:image-segmentation",
+      "concept:convolutional-inductive-bias",
+      "concept:vision-transformer"
+    ],
+    "related_paper_ids": [
+      "paper:denoising-diffusion-probabilistic-models",
+      "paper:classifier-free-diffusion-guidance"
+    ]
+  },
+  {
+    "id": "study:flow-matching",
+    "title": "Flow Matching",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:conditional-probability-path",
+      "concept:vector-field",
+      "concept:flow-matching-objective",
+      "concept:marginal-velocity-field",
+      "concept:continuity-equation",
+      "concept:ode-sampler",
+      "concept:continuous-normalizing-flow",
+      "concept:likelihood-training",
+      "concept:robot-action-chunk",
+      "concept:velocity-field",
+      "concept:noise-to-data-transport",
+      "concept:ode-sampling",
+      "concept:conditional-flow-matching",
+      "concept:robot-action-chunks",
+      "concept:rl-for-expressive-policies",
+      "concept:awr",
+      "concept:action-head-and-backbone-fine-tuning"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:gpu-basics",
+    "title": "GPU Basics",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:gpu-utilization",
+      "concept:vram",
+      "concept:activations",
+      "concept:flops",
+      "concept:throughput-and-latency",
+      "concept:cuda-kernels",
+      "concept:threads",
+      "concept:blocks",
+      "concept:warps",
+      "concept:streaming-multiprocessors",
+      "concept:cuda-cores",
+      "concept:tensor-cores",
+      "concept:memory-hierarchy",
+      "concept:kv-cache"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:harness",
+    "title": "Harness",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:agent-harness",
+      "concept:evaluation-harness",
+      "concept:tool-execution",
+      "concept:context-management",
+      "concept:memory",
+      "concept:verification",
+      "concept:permissions",
+      "concept:agent-control-loop"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:hji-reachability",
+    "title": "HJI Reachability",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:calculus-of-variations",
+      "concept:hamilton-jacobi-pde",
+      "concept:backward-reachable-set",
+      "concept:differential-games",
+      "concept:strategy-nonanticipativity",
+      "concept:viscosity-solution",
+      "concept:level-set-representation",
+      "concept:measurable-functions",
+      "concept:curse-of-dimensionality"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:imitation-learning",
+    "title": "Imitation Learning",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:behavior-cloning",
+      "concept:covariate-shift",
+      "concept:dagger",
+      "concept:aggrevate",
+      "concept:cost-to-go",
+      "concept:advantage-weighted-regression",
+      "concept:weighted-maximum-likelihood",
+      "concept:policy-gradient",
+      "concept:critic-extrapolation-error",
+      "concept:representation-learning"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:induction-heads",
+    "title": "Induction Heads",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:induction-heads",
+      "concept:attention-attribution",
+      "concept:compositional-paths",
+      "concept:attention-ablation",
+      "concept:qk-circuits",
+      "concept:ov-circuits",
+      "concept:residual-stream",
+      "concept:layernorm",
+      "concept:transformerlens-hooks"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:information-theory-representation-learning",
+    "title": "Information Theory & Representation Learning",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:shannon-entropy",
+      "concept:differential-entropy",
+      "concept:mutual-information",
+      "concept:kl-divergence",
+      "concept:variational-inference",
+      "concept:elbo",
+      "concept:vae",
+      "concept:likelihood",
+      "concept:posterior-approximation"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:irl",
+    "title": "IRL",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:inverse-reinforcement-learning",
+      "concept:imitation-learning",
+      "concept:behavioral-cloning",
+      "concept:apprenticeship-learning",
+      "concept:maximum-entropy-irl",
+      "concept:gail",
+      "concept:expert-demonstrations"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:jepa",
+    "title": "JEPA",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:joint-embedding-predictive-architecture",
+      "concept:latent-prediction",
+      "concept:self-supervised-learning",
+      "concept:representation-collapse",
+      "concept:target-encoder",
+      "concept:stop-gradient",
+      "concept:exponential-moving-average",
+      "concept:context-encoder",
+      "concept:world-models",
+      "concept:planning"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:learning-theory",
+    "title": "Learning Theory",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:learning-theory",
+      "concept:generalization",
+      "concept:sample-complexity",
+      "concept:ai-alignment",
+      "concept:robustness",
+      "concept:oversight",
+      "concept:scalable-supervision",
+      "concept:subjective-language"
+    ],
+    "related_paper_ids": [
+      "paper:uncovering-gaps-humans-llms-subjective-language"
+    ]
+  },
+  {
+    "id": "study:mdp-pomdp",
+    "title": "MDP, POMDP",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:markov-decision-process-mdp",
+      "concept:partially-observable-mdp-pomdp",
+      "concept:belief-state",
+      "concept:bayesian-filtering",
+      "concept:latent-state",
+      "concept:belief-space-planning",
+      "concept:imagination-rollout",
+      "concept:state-abstraction",
+      "concept:bisimulation",
+      "concept:value-equivalence"
+    ],
+    "related_paper_ids": [
+      "paper:learning-latent-dynamics-for-planning-from-pixels"
+    ]
+  },
+  {
+    "id": "study:modern-vla",
+    "title": "Modern VLA",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:vision-language-action-models",
+      "concept:robot-foundation-models",
+      "concept:mixture-of-experts",
+      "concept:action-chain-of-thought",
+      "concept:robot-action-generation"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:mpc",
+    "title": "MPC",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:model-predictive-control",
+      "concept:world-models",
+      "concept:receding-horizon-planning",
+      "concept:trajectory-optimization",
+      "concept:cross-entropy-method",
+      "concept:mppi",
+      "concept:sampling-based-control"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:pbrl",
+    "title": "PbRL",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:preference-based-rl",
+      "concept:preference-comparisons",
+      "concept:learned-reward-model",
+      "concept:alternating-updates",
+      "concept:pebble",
+      "concept:sac",
+      "concept:off-policy-rl",
+      "concept:entropy-regularization"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:rl-in-vlas",
+    "title": "RL in VLAs",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:vla-fine-tuning",
+      "concept:on-policy-actor-critic",
+      "concept:ppo",
+      "concept:group-relative-rl",
+      "concept:offline-rl",
+      "concept:diffusion-policies",
+      "concept:flow-matching",
+      "concept:denoising-mdp",
+      "concept:noise-action-aliasing",
+      "concept:q-value-distillation"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:rlaif",
+    "title": "RLAIF",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:reinforcement-learning-from-ai-feedback",
+      "concept:rlhf",
+      "concept:ai-preference-labels",
+      "concept:reward-models",
+      "concept:pairwise-preference-loss",
+      "concept:bradley-terry-model",
+      "concept:policy-optimization",
+      "concept:scalable-oversight"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:robot-anatomy",
+    "title": "Robot Anatomy",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:robot-body",
+      "concept:degrees-of-freedom",
+      "concept:actuators",
+      "concept:transmissions",
+      "concept:grippers-and-end-effectors",
+      "concept:proprioceptive-sensors",
+      "concept:exteroceptive-sensors",
+      "concept:exoskeletons",
+      "concept:slam"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:safety-filter",
+    "title": "Safety Filter",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:safety-filter",
+      "concept:nominal-action",
+      "concept:safety-shield",
+      "concept:hamilton-jacobi-reachability",
+      "concept:control-barrier-functions",
+      "concept:control-lyapunov-functions",
+      "concept:lipschitz-condition",
+      "concept:existence-and-uniqueness"
+    ],
+    "related_paper_ids": [
+      "paper:from-words-to-safety"
+    ]
+  },
+  {
+    "id": "study:semantic-safety",
+    "title": "Semantic Safety",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:semantic-safety",
+      "concept:physical-safety",
+      "concept:context-and-intent",
+      "concept:preference-based-reinforcement-learning",
+      "concept:rlhf",
+      "concept:preference-comparisons",
+      "concept:robotics-safety"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:st-transformers",
+    "title": "ST Transformers",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:spatiotemporal-attention",
+      "concept:spatial-attention",
+      "concept:temporal-attention",
+      "concept:factorized-attention",
+      "concept:attention-complexity",
+      "concept:video-transformers"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:transformers",
+    "title": "Transformers",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:sequence-modeling",
+      "concept:self-attention",
+      "concept:cross-attention",
+      "concept:query-key-value-projections",
+      "concept:causal-masking",
+      "concept:token-embeddings",
+      "concept:autoregressive-generation",
+      "concept:next-token-prediction",
+      "concept:kv-cache",
+      "concept:chat-formatting",
+      "concept:transformer-applications"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:unsupervised-skill-discovery",
+    "title": "Unsupervised Skill Discovery",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:diayn",
+      "concept:dads",
+      "concept:cic",
+      "concept:lipschitz-constrained-skill-discovery",
+      "concept:spectral-normalization",
+      "concept:infonce",
+      "concept:contrastive-learning",
+      "concept:representation-learning",
+      "concept:skill-commitment",
+      "concept:hierarchical-reinforcement-learning",
+      "concept:hiql"
+    ],
+    "related_paper_ids": [
+      "paper:dads",
+      "paper:contrastive-intrinsic-control",
+      "paper:lipschitz-constrained-unsupervised-skill-discovery"
+    ]
+  },
+  {
+    "id": "study:vae",
+    "title": "VAE",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:latent-variable-generative-model",
+      "concept:encoder",
+      "concept:decoder",
+      "concept:approximate-posterior",
+      "concept:elbo",
+      "concept:reparameterization",
+      "concept:prior-matching",
+      "concept:conditional-generation",
+      "concept:image-generation",
+      "concept:dalle-2"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:video-pre-training",
+    "title": "Video Pre-training",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:video-pretraining",
+      "concept:latent-action-models",
+      "concept:inverse-dynamics",
+      "concept:predictive-inverse-dynamics",
+      "concept:world-action-models",
+      "concept:robot-action-generation",
+      "concept:cross-embodiment-transfer"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:vision-transformers",
+    "title": "Vision Transformers",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:image-patches",
+      "concept:patch-embedding",
+      "concept:positional-embedding",
+      "concept:cls-token",
+      "concept:self-attention",
+      "concept:translation-equivariance",
+      "concept:translation-invariance",
+      "concept:classification-head",
+      "concept:dense-decoder",
+      "concept:cnn-inductive-bias",
+      "concept:vit-implementation"
+    ],
+    "related_paper_ids": []
+  },
+  {
+    "id": "study:world-models",
+    "title": "World Models",
+    "kind": "study",
+    "year": null,
+    "concept_ids": [
+      "concept:world-models",
+      "concept:latent-dynamics",
+      "concept:self-supervised-learning",
+      "concept:representation-collapse",
+      "concept:counterfactual-prediction",
+      "concept:world-action-models",
+      "concept:inverse-dynamics-model",
+      "concept:autoregressive-generation",
+      "concept:kv-cache",
+      "concept:vla",
+      "concept:post-training",
+      "concept:aleatoric-uncertainty",
+      "concept:latency-induced-drift",
+      "concept:residual-correction",
+      "concept:imagination-based-control",
+      "concept:value-equivalent-models",
+      "concept:video-world-models",
+      "concept:predictive-representations",
+      "concept:robotics-world-models"
+    ],
+    "related_paper_ids": [
+      "paper:learning-latent-dynamics-for-planning-from-pixels",
+      "paper:td-mpc2"
+    ]
+  },
+  {
+    "id": "paper:deepreach",
+    "title": "DeepReach: A Deep Learning Approach to High-Dimensional Reachability",
+    "kind": "paper",
+    "year": 2021,
+    "concept_ids": []
+  }
+]

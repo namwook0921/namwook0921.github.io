@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project 0: Becoming Friends with Your Camera — Namwook Lee, CS 180</title>
+<meta name="description" content="CS 180 Project 0: perspective and focal length, posted as a feed. Selfie the wrong way vs. the right way, Stanford architecture compressed, and a dolly zoom.">
+<meta name="author" content="Namwook Lee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project 0: Becoming Friends with Your Camera">
+<meta property="og:description" content="Perspective, focal length, and the center of projection — CS 180, UC Berkeley.">
+<meta property="og:image" content="https://namwook0921.github.io/cs180/proj0/images/part1/far.jpg">
+<link rel="stylesheet" href="../assets/css/style.css?v=5">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%231877f2'/><text x='50' y='76' font-family='Georgia,serif' font-size='72' font-weight='bold' fill='%23fff' text-anchor='middle'>n</text></svg>">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<svg class="sr" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="logo" href="../" aria-label="Home">n</a>
+    <div class="topbar__title">
+      <div class="t1">Project 0</div>
+      <div class="t2">Becoming Friends with Your Camera</div>
+    </div>
+    <a class="backlink" href="../">All projects</a>
+  </div>
+</header>
+
+<main class="feed" id="main">
+
+  <!-- Shown only when printing to PDF for Gradescope -->
+  <div class="printhead">
+    <div><b>Namwook Lee</b> — CS 180, UC Berkeley, Fall 2026 — Project 0: Becoming Friends with Your Camera</div>
+    <div>URL: <span class="u">https://namwook0921.github.io/cs180/proj0/</span></div>
+  </div>
+
+  <!-- ==================== POST 1 ==================== -->
+  <article class="card" id="part1">
+    <div class="post__hd">
+      <img class="avatar" src="images/avatar.jpg" alt="Namwook Lee">
+      <div class="post__who">
+        <div class="post__author">Namwook Lee</div>
+        <div class="post__meta">September 2 at 7:19 PM · <svg aria-hidden="true"><use href="#i-globe"/></svg></div>
+      </div>
+      <span class="post__tag">Part 1 · Selfie</span>
+    </div>
+
+    <p class="post__text">This could be two different people!</p>
+
+    <div class="grid grid--2">
+      <figure data-caption="Arm's length on the 24 mm main camera, about 1.5 ft away. The nose and forehead push forward and the ears fall away behind the cheeks.">
+        <span class="shotlabel shotlabel--wide">24 mm · ~1.5 ft</span>
+        <img src="images/part1/close.jpg" alt="Close-up selfie taken at arm's length on the wide camera, with exaggerated facial features.">
+      </figure>
+      <figure data-caption="The 151 mm telephoto from roughly six times farther back. Same face, same framing, proportions restored.">
+        <span class="shotlabel shotlabel--tele">151 mm · ~9.5 ft</span>
+        <img src="images/part1/far.jpg" alt="Portrait taken from several feet away on the telephoto camera, with natural facial proportions.">
+      </figure>
+    </div>
+
+  </article>
+
+  <!-- ==================== POST 2 ==================== -->
+  <article class="card" id="part2">
+    <div class="post__hd">
+      <img class="avatar" src="images/avatar.jpg" alt="Namwook Lee">
+      <div class="post__who">
+        <div class="post__author">Namwook Lee</div>
+        <div class="post__meta">September 2 at 7:34 PM · Stanford, CA · <svg aria-hidden="true"><use href="#i-globe"/></svg></div>
+      </div>
+      <span class="post__tag">Part 2 · Compression</span>
+    </div>
+
+    <p class="post__text">From the second best University in California</p>
+
+    <div class="grid grid--4">
+      <figure data-caption="Galvez Hall at 24 mm from up close. The arcade dives toward the vanishing point and the near arch dwarfs the far ones.">
+        <span class="shotlabel shotlabel--wide">Galvez · 24 mm, close</span>
+        <img src="images/part2/galvez-wide.jpg" alt="Galvez Hall arcade photographed close up at 24 mm, with arches receding steeply.">
+      </figure>
+      <figure data-caption="Galvez Hall at 63 mm from about 2.6 times farther back. The arches even out and the facade flattens against the picture plane.">
+        <span class="shotlabel shotlabel--tele">Galvez · 63 mm, far</span>
+        <img src="images/part2/galvez-tele.jpg" alt="The same Galvez Hall arcade photographed from farther away at 63 mm, appearing flattened.">
+      </figure>
+      <figure data-caption="Hoover Tower at 60 mm from the base. Looking up this close, the tower tapers hard and the dome shrinks away.">
+        <span class="shotlabel shotlabel--wide">Hoover · 60 mm, close</span>
+        <img src="images/part2/hoover-wide.jpg" alt="Hoover Tower photographed from close to its base at 60 mm, tapering steeply toward the dome.">
+      </figure>
+      <figure data-caption="Hoover Tower at 77 mm from farther out. The taper relaxes and the dome comes back to something closer to its true size.">
+        <span class="shotlabel shotlabel--tele">Hoover · 77 mm, far</span>
+        <img src="images/part2/hoover-tele.jpg" alt="Hoover Tower photographed from farther away at 77 mm, with a gentler taper and a larger dome.">
+      </figure>
+    </div>
+
+  </article>
+
+  <!-- ==================== POST 3 ==================== -->
+  <article class="card" id="part3">
+    <div class="post__hd">
+      <img class="avatar" src="images/avatar.jpg" alt="Namwook Lee">
+      <div class="post__who">
+        <div class="post__author">Namwook Lee</div>
+        <div class="post__meta">September 2 at 10:55 PM · <svg aria-hidden="true"><use href="#i-globe"/></svg></div>
+      </div>
+      <span class="post__tag">Part 3 · Dolly zoom</span>
+    </div>
+
+    <p class="post__text">What&rsquo;s hidden in the olive jar..?</p>
+
+    <div class="grid grid--1">
+      <figure data-caption="Dolly zoom: seven frames, walking backwards while zooming in so the jar holds its size while the room behind it stretches.">
+        <span class="shotlabel">7 frames · dolly zoom</span>
+        <img src="images/part3/dollyzoom.gif" alt="Animated dolly zoom: a jar of olives stays the same size while the kitchen behind it expands and contracts.">
+      </figure>
+    </div>
+
+  </article>
+
+</main>
+
+<footer class="foot">
+  <div class="links">
+    <a href="../">Profile</a><span>·</span>
+    <a href="./">Project 0</a><span>·</span>
+    <a href="https://cal-cs180.github.io/fa26/hw/proj0/index.html" target="_blank" rel="noopener">Project 0 spec</a><span>·</span>
+    <a href="https://github.com/namwook0921" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  Namwook Lee © 2026 · CS 180, UC Berkeley
+</footer>
+
+<div class="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb__btn lb__close" type="button" aria-label="Close"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  <button class="lb__btn lb__prev" type="button" aria-label="Previous photo"><svg aria-hidden="true"><use href="#i-prev"/></svg></button>
+  <button class="lb__btn lb__next" type="button" aria-label="Next photo"><svg aria-hidden="true"><use href="#i-next"/></svg></button>
+  <div class="lb__stage"><img alt=""></div>
+  <div class="lb__bar"><p class="cap"></p><p class="idx"></p></div>
+</div>
+
+<script src="../assets/js/site.js?v=5"></script>
+</body>
+</html>

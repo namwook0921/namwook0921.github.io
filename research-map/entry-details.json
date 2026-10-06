@@ -1,0 +1,1474 @@
+{
+  "entries": {
+    "paper:multiresolution-spline-image-mosaics": {
+      "id": "paper:multiresolution-spline-image-mosaics",
+      "kind": "paper",
+      "title": "A Multiresolution Spline with Application to Image Mosaics",
+      "authors": [
+        "Peter J. Burt",
+        "Edward H. Adelson"
+      ],
+      "institutions": [
+        "RCA David Sarnoff Research Center"
+      ],
+      "publication_year": 1983,
+      "venue": "ACM Transactions on Graphics",
+      "urls": {
+        "paper": "https://doi.org/10.1145/245.247",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Multiresolution blending smooths the mask at a different scale for each frequency band, allowing a seam to disappear without blurring all image detail."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-09",
+      "sessions": []
+    },
+    "paper:a-simple-framework-for-contrastive-learning-of-visual-representations": {
+      "id": "paper:a-simple-framework-for-contrastive-learning-of-visual-representations",
+      "kind": "paper",
+      "title": "A Simple Framework for Contrastive Learning of Visual Representations (SimCLR)",
+      "authors": [
+        "Ting Chen",
+        "Simon Kornblith",
+        "Mohammad Norouzi",
+        "Geoffrey Hinton"
+      ],
+      "institutions": [
+        "Google Research, Brain Team"
+      ],
+      "publication_year": 2020,
+      "venue": "ICML",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2002.05709",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:contrastive-learning"
+      ],
+      "public_insights": [
+        "Better contrastive prediction does not always imply better representations. Local batch-normalization statistics can leak which samples form a positive pair, creating a shortcut unrelated to semantic similarity."
+      ],
+      "asked_questions": [
+        {
+          "question": "How can batch normalization improve contrastive prediction without improving the representation?",
+          "answer": "If positive views share local batch statistics, those statistics can reveal pair membership. Aggregating normalization statistics across devices removes that particular shortcut and makes matching depend more on the learned representation."
+        }
+      ],
+      "studied_month": "2026-02",
+      "sessions": []
+    },
+    "paper:aligning-human-and-robot-representations": {
+      "id": "paper:aligning-human-and-robot-representations",
+      "kind": "paper",
+      "title": "Aligning Human and Robot Representations",
+      "authors": [
+        "Andreea Bobu",
+        "Andi Peng",
+        "Pulkit Agrawal",
+        "Julie A. Shah",
+        "Anca D. Dragan"
+      ],
+      "institutions": [
+        "UC Berkeley",
+        "MIT"
+      ],
+      "publication_year": 2024,
+      "venue": "ACM/IEEE HRI",
+      "urls": {
+        "paper": "https://doi.org/10.1145/3610977.3634987",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Representation alignment is a separate requirement from task performance. VLM feedback is useful only to the extent that its judgments reflect the features and preferences people actually care about."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "paper:classifier-free-diffusion-guidance": {
+      "id": "paper:classifier-free-diffusion-guidance",
+      "kind": "paper",
+      "title": "Classifier-Free Diffusion Guidance",
+      "authors": [
+        "Jonathan Ho",
+        "Tim Salimans"
+      ],
+      "institutions": [
+        "Google Research, Brain Team"
+      ],
+      "publication_year": 2022,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2207.12598",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:classifier-free-guidance",
+        "study:diffusion-models"
+      ],
+      "public_insights": [],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:commitment-without-regrets-online-learning-stackelberg-security-games": {
+      "id": "paper:commitment-without-regrets-online-learning-stackelberg-security-games",
+      "kind": "paper",
+      "title": "Commitment Without Regrets: Online Learning in Stackelberg Security Games",
+      "authors": [
+        "Maria-Florina Balcan",
+        "Avrim Blum",
+        "Nika Haghtalab",
+        "Ariel D. Procaccia"
+      ],
+      "institutions": [
+        "Carnegie Mellon University"
+      ],
+      "publication_year": 2015,
+      "venue": "ACM Conference on Economics and Computation",
+      "urls": {
+        "paper": "https://doi.org/10.1145/2764468.2764478",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "A fixed strategy can be a mixed strategy: the distribution stays fixed across rounds, while individual actions remain random. Sublinear cumulative regret makes average regret vanish."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:data-efficient-hierarchical-reinforcement-learning": {
+      "id": "paper:data-efficient-hierarchical-reinforcement-learning",
+      "kind": "paper",
+      "title": "Data-Efficient Hierarchical Reinforcement Learning",
+      "authors": [
+        "Ofir Nachum",
+        "Shixiang Gu",
+        "Honglak Lee",
+        "Sergey Levine"
+      ],
+      "institutions": [
+        "Google Brain",
+        "University of Cambridge",
+        "Max Planck Institute for Intelligent Systems",
+        "UC Berkeley"
+      ],
+      "publication_year": 2018,
+      "venue": "NeurIPS",
+      "urls": {
+        "paper": "https://arxiv.org/abs/1805.08296",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Goal relabeling makes old high-level experience compatible with a changing low-level policy. It corrects replay during training without restricting which goals the high-level policy can explore."
+      ],
+      "asked_questions": [
+        {
+          "question": "Does off-policy goal relabeling restrict high-level exploration to goals already in the dataset?",
+          "answer": "No. Relabeling makes recorded low-level actions compatible with the current low-level policy for high-level replay training. The high-level policy can still propose new goals during interaction; the corrected replay goal is not its full exploration space."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:denoising-diffusion-probabilistic-models": {
+      "id": "paper:denoising-diffusion-probabilistic-models",
+      "kind": "paper",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "authors": [
+        "Jonathan Ho",
+        "Ajay Jain",
+        "Pieter Abbeel"
+      ],
+      "institutions": [
+        "UC Berkeley"
+      ],
+      "publication_year": 2020,
+      "venue": "NeurIPS",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2006.11239",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:classifier-free-guidance",
+        "study:diffusion-models"
+      ],
+      "public_insights": [
+        "Noise prediction is connected to score estimation and supplies a direction for reversing the noising process. Dropping variational-bound weights changes the emphasis across noise levels, rather than merely simplifying the algebra."
+      ],
+      "asked_questions": [
+        {
+          "question": "Is dropping the variational-bound weighting just a simpler form of the same loss?",
+          "answer": "It changes the relative emphasis across noise levels. Noise prediction still connects to denoising score matching, but the simplified unweighted MSE is a reweighted training objective rather than an exactly equivalent expression for the original bound."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:diffusion-guidance-controllable-policy-improvement-operator": {
+      "id": "paper:diffusion-guidance-controllable-policy-improvement-operator",
+      "kind": "paper",
+      "title": "Diffusion Guidance Is a Controllable Policy Improvement Operator",
+      "authors": [
+        "Kevin Frans",
+        "Seohong Park",
+        "Pieter Abbeel",
+        "Sergey Levine"
+      ],
+      "institutions": [
+        "UC Berkeley"
+      ],
+      "publication_year": 2025,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2505.23458",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Classifier-free guidance can produce policy improvement through an optimality-conditioned action distribution. In the advantage-threshold formulation, the optimality label indicates whether an action’s estimated advantage is nonnegative."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:do-as-i-do-dexterous-manipulation": {
+      "id": "paper:do-as-i-do-dexterous-manipulation",
+      "kind": "paper",
+      "title": "Do as I Do: Dexterous Manipulation",
+      "authors": [
+        "Bhawna Paliwal",
+        "Haritheja Etukuru",
+        "William Liang",
+        "Pieter Abbeel",
+        "Nur Muhammad Mahi Shafiullah",
+        "Jitendra Malik"
+      ],
+      "institutions": [
+        "UC Berkeley"
+      ],
+      "publication_year": 2026,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2606.19333",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Learning directly from human video differs from converting video into robot training data. Hand-object reconstruction and physics-based retargeting bridge human motion to robot-executable trajectories."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "paper:dreamdojo": {
+      "id": "paper:dreamdojo",
+      "kind": "paper",
+      "title": "DreamDojo",
+      "authors": [
+        "Shenyuan Gao",
+        "William Liang",
+        "Kaiyuan Zheng",
+        "Ayaan Malik",
+        "Seonghyeon Ye",
+        "Sihyun Yu",
+        "Wei-Cheng Tseng",
+        "Yuzhu Dong",
+        "Kaichun Mo",
+        "Chen-Hsuan Lin",
+        "Qianli Ma",
+        "Seungjun Nah",
+        "Loic Magne",
+        "Jiannan Xiang",
+        "Yuqi Xie",
+        "Ruijie Zheng",
+        "Dantong Niu",
+        "You Liang Tan",
+        "K. R. Zentner",
+        "George Kurian",
+        "Suneel Indupuru",
+        "Pooya Jannaty",
+        "Jinwei Gu",
+        "Jun Zhang",
+        "Jitendra Malik",
+        "Pieter Abbeel",
+        "Ming-Yu Liu",
+        "Yuke Zhu",
+        "Joel Jang",
+        "Linxi Jim Fan"
+      ],
+      "institutions": [
+        "NVIDIA",
+        "Hong Kong University of Science and Technology",
+        "UC Berkeley",
+        "University of Washington",
+        "Stanford University",
+        "KAIST",
+        "University of Toronto",
+        "UC San Diego",
+        "UT Austin"
+      ],
+      "publication_year": 2026,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2602.06949",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Latent actions condition human-video prediction during pretraining. Robot post-training then adapts the world model’s action input using robot-labeled data; this differs from directly decoding a latent action into a robot command."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "paper:equibot-sim3-equivariant-diffusion-policy": {
+      "id": "paper:equibot-sim3-equivariant-diffusion-policy",
+      "kind": "paper",
+      "title": "EquiBot: SIM(3)-Equivariant Diffusion Policy for Generalizable and Data Efficient Learning",
+      "authors": [
+        "Jingyun Yang",
+        "Zi-ang Cao",
+        "Congyue Deng",
+        "Rika Antonova",
+        "Shuran Song",
+        "Jeannette Bohg"
+      ],
+      "institutions": [
+        "Stanford University"
+      ],
+      "publication_year": 2024,
+      "venue": "CoRL",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2407.01479",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Geometric equivariance must respect the meaning and physical limits of an action. Transforming actions with the scene can support generalization, but a gripper’s maximum opening does not automatically scale with the object."
+      ],
+      "asked_questions": [
+        {
+          "question": "Should geometric equivariance also apply when object size changes the required grasp?",
+          "answer": "Equivariance transforms the represented action consistently with the scene. That helps reuse geometry across scale, rotation, and translation, but it does not scale hardware limits or guarantee that every task is physically scale-symmetric."
+        }
+      ],
+      "studied_month": "2026-02",
+      "sessions": []
+    },
+    "paper:from-words-to-safety": {
+      "id": "paper:from-words-to-safety",
+      "kind": "paper",
+      "title": "From Words to Safety",
+      "authors": [
+        "Zeyuan Feng",
+        "Haimingyue Zhang",
+        "Somil Bansal"
+      ],
+      "institutions": [
+        "Stanford University",
+        "Tsinghua University"
+      ],
+      "publication_year": 2025,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2511.05889",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:safety-filter"
+      ],
+      "public_insights": [
+        "The optimized control trajectory differs from the action actually executed. The shield applies the first action, observes the result, and replans in a receding-horizon loop."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "paper:how-to-train-your-latent-cbf": {
+      "id": "paper:how-to-train-your-latent-cbf",
+      "kind": "paper",
+      "title": "How to Train Your Latent CBF",
+      "authors": [
+        "Kensuke Nakamura",
+        "Arun L. Bishop",
+        "Steven Man",
+        "Aaron M. Johnson",
+        "Zachary Manchester",
+        "Andrea Bajcsy"
+      ],
+      "institutions": [
+        "Carnegie Mellon University"
+      ],
+      "publication_year": 2025,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2511.18606",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "A learned safety value function needs useful gradients for smooth filtering. Its estimates must also remain reliable on the nominal policy’s states and actions, beyond conservative safety-policy data."
+      ],
+      "asked_questions": [
+        {
+          "question": "Why can a learned HJ value function fail when used directly as a smooth CBF filter?",
+          "answer": "A classifier-like safety margin can yield unhelpful or saturated gradients. A critic trained only on safety-policy data can also be inaccurate on nominal-policy states and actions. Smooth filtering therefore needs suitable margin gradients and value training that covers the actions being filtered."
+        }
+      ],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "paper:hybrid-images": {
+      "id": "paper:hybrid-images",
+      "kind": "paper",
+      "title": "Hybrid Images",
+      "authors": [
+        "Aude Oliva",
+        "Antonio Torralba",
+        "Philippe G. Schyns"
+      ],
+      "institutions": [
+        "MIT",
+        "University of Glasgow"
+      ],
+      "publication_year": 2006,
+      "venue": "ACM SIGGRAPH",
+      "urls": {
+        "paper": "https://doi.org/10.1145/1141911.1141919",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Viewing distance changes which spatial frequencies dominate perception: fine detail is prominent nearby, while low-frequency structure persists farther away. The high-pass component is the original image minus its Gaussian blur."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-09",
+      "sessions": []
+    },
+    "paper:learning-latent-dynamics-for-planning-from-pixels": {
+      "id": "paper:learning-latent-dynamics-for-planning-from-pixels",
+      "kind": "paper",
+      "title": "Learning Latent Dynamics for Planning from Pixels",
+      "authors": [
+        "Danijar Hafner",
+        "Timothy Lillicrap",
+        "Ian Fischer",
+        "Ruben Villegas",
+        "David Ha",
+        "Honglak Lee",
+        "James Davidson"
+      ],
+      "institutions": [
+        "Google Brain",
+        "University of Toronto",
+        "DeepMind",
+        "Google Research",
+        "University of Michigan"
+      ],
+      "publication_year": 2019,
+      "venue": "ICML",
+      "urls": {
+        "paper": "https://arxiv.org/abs/1811.04551",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:mdp-pomdp",
+        "study:world-models"
+      ],
+      "public_insights": [
+        "The observation-conditioned posterior repeatedly receives real observations, while the prior used in imagined rollouts depends on its own predictions. This distinction makes multi-step consistency important for planning."
+      ],
+      "asked_questions": [
+        {
+          "question": "Why train multi-step prior predictions against the observation-conditioned posterior?",
+          "answer": "The posterior is corrected by observations, while a prior rollout repeatedly uses its own predicted latent states. Latent overshooting adds consistency across multiple transition steps to address that accumulated prediction error; it does not turn the posterior into an observed ground-truth state."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:mobi-pi": {
+      "id": "paper:mobi-pi",
+      "kind": "paper",
+      "title": "Mobi-pi",
+      "authors": [
+        "Jingyun Yang",
+        "Isabella Huang",
+        "Brandon Vu",
+        "Max Bajracharya",
+        "Rika Antonova",
+        "Jeannette Bohg"
+      ],
+      "institutions": [
+        "Stanford University",
+        "Toyota Research Institute",
+        "University of Cambridge"
+      ],
+      "publication_year": 2025,
+      "venue": "CoRL",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2505.23692",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Policy mobilization adapts the robot’s starting pose and viewpoint before retraining its manipulation policy. A new environment can still contain a base pose from which the policy sees a familiar manipulation problem."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-02",
+      "sessions": []
+    },
+    "paper:neural-reachable-tubes": {
+      "id": "paper:neural-reachable-tubes",
+      "kind": "paper",
+      "title": "Verification of Neural Reachable Tubes via Scenario Optimization and Conformal Prediction",
+      "authors": [
+        "Albert Lin",
+        "Somil Bansal"
+      ],
+      "institutions": [
+        "University of Southern California"
+      ],
+      "publication_year": 2024,
+      "venue": "Learning for Dynamics and Control",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2312.08604",
+        "code": null
+      },
+      "related_entry_ids": [
+        "paper:deepreach"
+      ],
+      "public_insights": [
+        "An RSSM combines the current observation with recurrent information about the past, rather than encoding each frame independently. This was a related model-learning topic in the discussion."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "paper:recovery-rl": {
+      "id": "paper:recovery-rl",
+      "kind": "paper",
+      "title": "Recovery RL: Safe Reinforcement Learning with Learned Recovery Zones",
+      "authors": [
+        "Brijen Thananjeyan",
+        "Ashwin Balakrishna",
+        "Suraj Nair",
+        "Michael Luo",
+        "Krishnan Srinivasan",
+        "Minho Hwang",
+        "Joseph E. Gonzalez",
+        "Julian Ibarz",
+        "Chelsea Finn",
+        "Ken Goldberg"
+      ],
+      "institutions": [
+        "UC Berkeley",
+        "Stanford University",
+        "Google Brain Robotics"
+      ],
+      "publication_year": 2021,
+      "venue": "IEEE Robotics and Automation Letters",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2010.15920",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Recovery RL separates proposed and executed actions in replay. The recovery buffer records the executed action; the task buffer can retain a rejected task proposal through relabeling. Accepted task actions enter both buffers."
+      ],
+      "asked_questions": [
+        {
+          "question": "When recovery replaces an unsafe proposal, which action goes into each replay buffer?",
+          "answer": "The recovery buffer records the executed recovery action with its constraint signal. The task buffer can relabel the transition with the proposed task action and task reward. If the task proposal is accepted, that executed task action enters both buffers."
+        }
+      ],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "paper:rlt": {
+      "id": "paper:rlt",
+      "kind": "paper",
+      "title": "RL Token: Bootstrapping Online RL with Vision-Language-Action Models",
+      "authors": [
+        "Charles Xu",
+        "Jost Tobias Springenberg",
+        "Michael Equi",
+        "Ali Amin",
+        "Adnan Esmail",
+        "Sergey Levine",
+        "Liyiming Ke"
+      ],
+      "institutions": [
+        "Physical Intelligence"
+      ],
+      "publication_year": 2026,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2604.23073",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "The RL token provides an interface for adapting a frozen VLA: the VLA supplies a compact representation and reference action, while a small actor-critic learns refinements. Its role differs from a VAE latent trained to reconstruct observations."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "paper:td-mpc2": {
+      "id": "paper:td-mpc2",
+      "kind": "paper",
+      "title": "TD-MPC2: Scalable, Robust World Models for Continuous Control",
+      "authors": [
+        "Nicklas Hansen",
+        "Hao Su",
+        "Xiaolong Wang"
+      ],
+      "institutions": [
+        "UC San Diego"
+      ],
+      "publication_year": 2024,
+      "venue": "ICLR",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2310.16828",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:world-models"
+      ],
+      "public_insights": [
+        "Decision targets can shape useful latent representations without reconstructing images. Online simulator interaction is distinct from offline multitask replay, which is collected by RL agents rather than human demonstrators."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "paper:transformer-layer-correction-mechanism": {
+      "id": "paper:transformer-layer-correction-mechanism",
+      "kind": "paper",
+      "title": "LLM Layers Immediately Correct Each Other",
+      "authors": [
+        "Arjun Patrawala",
+        "Jiahai Feng",
+        "Erik Jones",
+        "Jacob Steinhardt"
+      ],
+      "institutions": [
+        "UC Berkeley"
+      ],
+      "publication_year": 2025,
+      "venue": "NeurIPS",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2609.07876",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "A feature expressed at one transformer layer need not persist at the next. Residual-stream changes can behave like proposals followed by selective corrections; token-dependent correction patterns also raise questions about adaptive computation."
+      ],
+      "asked_questions": [
+        {
+          "question": "Could token-dependent layer corrections support adaptive compute?",
+          "answer": "The discussion motivated this as a research question: correction patterns might help identify where extra computation is useful. The existence of TLCM alone does not establish a safe rule for skipping layers or a measured compute saving."
+        }
+      ],
+      "studied_month": "2026-03",
+      "sessions": []
+    },
+    "paper:uncovering-gaps-humans-llms-subjective-language": {
+      "id": "paper:uncovering-gaps-humans-llms-subjective-language",
+      "kind": "paper",
+      "title": "Uncovering Gaps in How Humans and LLMs Interpret Subjective Language",
+      "authors": [
+        "Erik Jones",
+        "Arjun Patrawala",
+        "Jacob Steinhardt"
+      ],
+      "institutions": [
+        "UC Berkeley"
+      ],
+      "publication_year": 2025,
+      "venue": "ICLR",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2503.04113",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:learning-theory"
+      ],
+      "public_insights": [
+        "TED makes subjective-language alignment measurable by comparing how phrases change model behavior with the relationships people expect between those phrases."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:pi-star-0-6": {
+      "id": "paper:pi-star-0-6",
+      "kind": "paper",
+      "title": "π*0.6: A VLA That Learns From Experience",
+      "authors": [
+        "Ali Amin",
+        "Raichelle Aniceto",
+        "Ashwin Balakrishna",
+        "Kevin Black",
+        "Ken Conley",
+        "Grace Connors",
+        "James Darpinian",
+        "Karan Dhabalia",
+        "Jared DiCarlo",
+        "Danny Driess",
+        "Michael Equi",
+        "Adnan Esmail",
+        "Yunhao Fang",
+        "Chelsea Finn",
+        "Catherine Glossop",
+        "Thomas Godden",
+        "Ivan Goryachev",
+        "Lachy Groom",
+        "Hunter Hancock",
+        "Karol Hausman",
+        "Gashon Hussein",
+        "Brian Ichter",
+        "Szymon Jakubczak",
+        "Rowan Jen",
+        "Tim Jones",
+        "Ben Katz",
+        "Liyiming Ke",
+        "Chandra Kuchi",
+        "Marinda Lamb",
+        "Devin LeBlanc",
+        "Sergey Levine",
+        "Adrian Li-Bell",
+        "Yao Lu",
+        "Vishnu Mano",
+        "Mohith Mothukuri",
+        "Suraj Nair",
+        "Karl Pertsch",
+        "Allen Z. Ren",
+        "Charvi Sharma",
+        "Lucy Xiaoyang Shi",
+        "Laura Smith",
+        "Jost Tobias Springenberg",
+        "Kyle Stachowicz",
+        "Will Stoeckle",
+        "Alex Swerdlow",
+        "James Tanner",
+        "Marcel Torne",
+        "Quan Vuong",
+        "Anna Walling",
+        "Haohuan Wang",
+        "Blake Williams",
+        "Sukwon Yoo",
+        "Lili Yu",
+        "Ury Zhilinsky",
+        "Zhiyuan Zhou"
+      ],
+      "institutions": [
+        "Physical Intelligence"
+      ],
+      "publication_year": 2025,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2511.14759",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "Distributional value learning predicts return bins using cross-entropy instead of fitting a single scalar with MSE. The resulting critic supports RECAP’s advantage-conditioned policy improvement."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:diayn": {
+      "id": "paper:diayn",
+      "kind": "paper",
+      "title": "Diversity is All You Need: Learning Skills without a Reward Function",
+      "authors": [
+        "Benjamin Eysenbach",
+        "Abhishek Gupta",
+        "Julian Ibarz",
+        "Sergey Levine"
+      ],
+      "institutions": [
+        "Carnegie Mellon University",
+        "Google Brain",
+        "UC Berkeley"
+      ],
+      "publication_year": 2019,
+      "venue": "ICLR",
+      "urls": {
+        "paper": "https://arxiv.org/abs/1802.06070",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "DIAYN separates the skill prior from the discriminator: a sampled skill conditions the policy, and the discriminator learns to recover that skill from visited states.",
+        "Distinguishable behavior is not necessarily useful behavior. Irrelevant finger motion can earn a diversity reward, so task relevance and meaningful action chunks require additional structure."
+      ],
+      "asked_questions": [
+        {
+          "question": "Does DIAYN’s diversity objective ensure meaningful, task-relevant action chunks?",
+          "answer": "No. Its intrinsic reward encourages skills whose visited states are distinguishable, without a downstream task reward. That can yield useful pretraining, but it can also reward irrelevant behavior; task selection and temporal abstraction need additional structure or downstream learning."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:dads": {
+      "id": "paper:dads",
+      "kind": "paper",
+      "title": "Dynamics-Aware Unsupervised Discovery of Skills (DADS)",
+      "authors": [
+        "Archit Sharma",
+        "Shixiang Gu",
+        "Sergey Levine",
+        "Vikash Kumar",
+        "Karol Hausman"
+      ],
+      "institutions": [
+        "Google Brain"
+      ],
+      "publication_year": 2020,
+      "venue": "ICLR",
+      "urls": {
+        "paper": "https://arxiv.org/abs/1907.01657",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:unsupervised-skill-discovery"
+      ],
+      "public_insights": [
+        "DADS distinguishes skills through their predicted effects from the current state. Distinguishable one-step transitions alone do not ensure coherent, temporally extended behavior or long-horizon commitment."
+      ],
+      "asked_questions": [
+        {
+          "question": "Does distinguishing one-step dynamics make a skill temporally committed?",
+          "answer": "Not by itself. Predictable transition effects make skills easier to model, but coherent longer-horizon execution depends on how a skill is held or composed. A one-step information objective does not alone guarantee that temporal structure."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:contrastive-intrinsic-control": {
+      "id": "paper:contrastive-intrinsic-control",
+      "kind": "paper",
+      "title": "Contrastive Intrinsic Control (CIC)",
+      "authors": [
+        "Michael Laskin",
+        "Hao Liu",
+        "Xue Bin Peng",
+        "Denis Yarats",
+        "Aravind Rajeswaran",
+        "Pieter Abbeel"
+      ],
+      "institutions": [
+        "UC Berkeley",
+        "New York University",
+        "Meta AI",
+        "Covariant"
+      ],
+      "publication_year": 2022,
+      "venue": null,
+      "urls": {
+        "paper": "https://arxiv.org/abs/2202.00161",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:unsupervised-skill-discovery"
+      ],
+      "public_insights": [
+        "Skills can be distinguished through the outcomes they induce. Contrastive learning organizes these representations by matching compatible pairs against negatives, without reconstructing every observation detail."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:lipschitz-constrained-unsupervised-skill-discovery": {
+      "id": "paper:lipschitz-constrained-unsupervised-skill-discovery",
+      "kind": "paper",
+      "title": "Lipschitz-Constrained Unsupervised Skill Discovery (LSD)",
+      "authors": [
+        "Seohong Park",
+        "Jongwook Choi",
+        "Jaekyeom Kim",
+        "Honglak Lee",
+        "Gunhee Kim"
+      ],
+      "institutions": [
+        "Seoul National University",
+        "University of Michigan",
+        "LG AI Research"
+      ],
+      "publication_year": 2022,
+      "venue": "ICLR",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2202.00914",
+        "code": null
+      },
+      "related_entry_ids": [
+        "study:unsupervised-skill-discovery"
+      ],
+      "public_insights": [
+        "LSD rewards movement in a learned embedding along a skill direction. Spectral normalization limits how much that embedding stretches distances, subject to the activation and architecture assumptions."
+      ],
+      "asked_questions": [
+        {
+          "question": "Does normalizing each linear layer guarantee a 1-Lipschitz embedding network?",
+          "answer": "The bound composes for sequential layers when each operator norm is bounded and the intervening activations are also 1-Lipschitz. Residual paths and other operations need their own bounds, and practical spectral-norm estimation can be approximate."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "paper:direct-preference-optimization": {
+      "id": "paper:direct-preference-optimization",
+      "kind": "paper",
+      "title": "Direct Preference Optimization: Your Language Model Is Secretly a Reward Model (DPO)",
+      "authors": [
+        "Rafael Rafailov",
+        "Archit Sharma",
+        "Eric Mitchell",
+        "Stefano Ermon",
+        "Christopher D. Manning",
+        "Chelsea Finn"
+      ],
+      "institutions": [
+        "Stanford University",
+        "CZ Biohub"
+      ],
+      "publication_year": 2023,
+      "venue": "NeurIPS",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2305.18290",
+        "code": null
+      },
+      "related_entry_ids": [],
+      "public_insights": [
+        "A preference pair records which response won, while the model can infer a continuous reward margin from such comparisons.",
+        "PPO’s potential to improve beyond the preference data depends on reward-model generalization, reliability, and exploitability. This does not establish a universal ranking between PPO and DPO."
+      ],
+      "asked_questions": [
+        {
+          "question": "Why does a preference pair give no numeric margin even though DPO implies a reward?",
+          "answer": "The observed label states which response was preferred. DPO’s policy/reference log-ratios imply a continuous reward difference, but that margin is fitted through the preference likelihood; it is not a numeric value directly supplied by the pair."
+        },
+        {
+          "question": "Can PPO outperform DPO if its reward model generalizes out of distribution?",
+          "answer": "It can benefit from reliable reward estimates beyond the preference data, but that is a conditional possibility. Optimization may also exploit reward-model errors. Cost, coverage, reward reliability, and optimization behavior matter, so there is no unconditional quality ranking."
+        }
+      ],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "paper:deepreach": {
+      "id": "paper:deepreach",
+      "kind": "paper",
+      "title": "DeepReach: A Deep Learning Approach to High-Dimensional Reachability",
+      "authors": [
+        "Somil Bansal",
+        "Claire J. Tomlin"
+      ],
+      "institutions": [
+        "UC Berkeley"
+      ],
+      "publication_year": 2021,
+      "venue": "IEEE ICRA",
+      "urls": {
+        "paper": "https://arxiv.org/abs/2011.02082",
+        "code": "https://github.com/smlbansal/deepreach"
+      },
+      "related_entry_ids": [
+        "paper:neural-reachable-tubes"
+      ],
+      "public_insights": [],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:classifier-free-guidance": {
+      "id": "study:classifier-free-guidance",
+      "kind": "study",
+      "title": "Classifier Free Guidance",
+      "related_entry_ids": [
+        "paper:denoising-diffusion-probabilistic-models",
+        "paper:classifier-free-diffusion-guidance"
+      ],
+      "public_insights": [
+        "At guidance scale one, the unconditional prediction cancels. Conditioning dropout learns the unconditional branch needed at other guidance scales; ordinary conditional generation does not mathematically require that branch."
+      ],
+      "asked_questions": [
+        {
+          "question": "If guidance scale is one, why train an unconditional branch with conditioning dropout?",
+          "answer": "At scale one, the unconditional terms cancel and the guided prediction equals the conditional prediction. The unconditional branch is useful when the scale differs from one, because guidance then uses the difference between conditional and unconditional predictions."
+        }
+      ],
+      "studied_month": "2026-02",
+      "sessions": []
+    },
+    "study:clf-cbf": {
+      "id": "study:clf-cbf",
+      "kind": "study",
+      "title": "CLF/CBF",
+      "related_entry_ids": [],
+      "public_insights": [
+        "With a finite quadratic slack penalty, a feasible zero-slack control need not minimize the QP: the optimizer may accept some violation to stay closer to the reference action. An L1 penalty can act as an exact penalty under suitable conditions."
+      ],
+      "asked_questions": [
+        {
+          "question": "Is zero slack guaranteed whenever the original CLF constraint is feasible?",
+          "answer": "Not with a finite quadratic penalty. A nonzero slack can reduce the control-deviation cost enough to lower the total objective. An L1-style penalty can be exact with a sufficiently large coefficient under suitable regularity conditions; feasibility alone is not the guarantee."
+        }
+      ],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:computing-hj-pde": {
+      "id": "study:computing-hj-pde",
+      "kind": "study",
+      "title": "Computing HJ PDE",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Numerical monotonicity means that the complete value-function update preserves order. Dependence on one-sided derivatives and neighboring grid values must be arranged so the next step does not reverse that order."
+      ],
+      "asked_questions": [
+        {
+          "question": "Why do one-sided derivative signs matter for an order-preserving HJ update?",
+          "answer": "Changing a neighboring grid value changes a one-sided derivative. The numerical Hamiltonian and timestep must combine those dependencies so that increasing the input grid values cannot decrease the next-step values. The relevant object is the full discrete update, not monotonicity of the continuous Hamiltonian in isolation."
+        }
+      ],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:contrastive-learning": {
+      "id": "study:contrastive-learning",
+      "kind": "study",
+      "title": "Contrastive Learning",
+      "related_entry_ids": [
+        "paper:a-simple-framework-for-contrastive-learning-of-visual-representations"
+      ],
+      "public_insights": [
+        "Augmentation specifies the invariances a representation should learn. Inappropriate augmentations can reward shortcuts such as color matching instead of useful semantic structure."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-02",
+      "sessions": []
+    },
+    "study:control-theory": {
+      "id": "study:control-theory",
+      "kind": "study",
+      "title": "Control Theory",
+      "related_entry_ids": [],
+      "public_insights": [],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:ddpg": {
+      "id": "study:ddpg",
+      "kind": "study",
+      "title": "DDPG",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Critic overestimation can pull the actor toward erroneous high-value actions. Twin critics and delayed actor updates address this coupling between policy learning and value-estimation error."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "study:diffusion-models": {
+      "id": "study:diffusion-models",
+      "kind": "study",
+      "title": "Diffusion Models",
+      "related_entry_ids": [
+        "paper:denoising-diffusion-probabilistic-models",
+        "paper:classifier-free-diffusion-guidance"
+      ],
+      "public_insights": [
+        "Diffusion training uses known corrupted examples, while generation repeatedly denoises a sample. U-Net skip connections preserve detail as multiscale paths provide broader context."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:flow-matching": {
+      "id": "study:flow-matching",
+      "kind": "study",
+      "title": "Flow Matching",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Flow matching trains a vector field against conditional velocity targets without solving the generative ODE at each update. Sampling still requires integration.",
+        "For robot control, the generated object can be a multi-step action chunk. RL feedback can update the action head, shared parameters, or both, depending on the training design."
+      ],
+      "asked_questions": [
+        {
+          "question": "How does flow matching avoid ODE integration during training while still generating through a flow?",
+          "answer": "Training samples points and times on a chosen conditional probability path and regresses the vector field against its known velocity targets. Averaging those conditional targets recovers the marginal field. Generation still integrates the learned field from the starting distribution to the data distribution."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:gpu-basics": {
+      "id": "study:gpu-basics",
+      "kind": "study",
+      "title": "GPU Basics",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Throughput, latency, and memory limits are different constraints. A larger batch can process more examples per second while taking longer per step; compute saturation differs from exhausting VRAM."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "study:harness": {
+      "id": "study:harness",
+      "kind": "study",
+      "title": "Harness",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Agent behavior depends on how the surrounding loop manages context, tools, observations, state, and completion checks."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:hji-reachability": {
+      "id": "study:hji-reachability",
+      "kind": "study",
+      "title": "HJI Reachability",
+      "related_entry_ids": [],
+      "public_insights": [
+        "The unsafe backward reachable set depends on quantifier order: a disturbance strategy must force failure against every admissible control. The strategy definition determines which information each side can use.",
+        "Replacing |x| with sqrt(x² + ε²) shifts its value at zero. Subtracting ε preserves that zero level, while the smoothing choice must still respect the function’s role in the problem."
+      ],
+      "asked_questions": [
+        {
+          "question": "Why does the unsafe backward reachable set use “exists a disturbance strategy, for every control”?",
+          "answer": "It describes states from which an admissible disturbance strategy can force the trajectory into the unsafe target despite any admissible control. The order concerns a strategy responding within the game’s information rules, not an unconstrained disturbance chosen after seeing the whole future control."
+        }
+      ],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:imitation-learning": {
+      "id": "study:imitation-learning",
+      "kind": "study",
+      "title": "Imitation Learning",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Imitation errors compound through the states the learner visits, beyond errors measured on expert data. DAgger changes the training distribution by collecting expert labels at learner-visited states.",
+        "Exponential advantage weights can magnify critic errors on unfamiliar states. Improving representations alone does not remove the risk of inaccurate value estimates."
+      ],
+      "asked_questions": [
+        {
+          "question": "What happens to advantage-weighted regression when the critic is wrong on unfamiliar states?",
+          "answer": "Incorrect advantages can assign large weights to poor actions, especially with exponential weighting. Representation learning can help the critic generalize, but cannot by itself guarantee correct values under distribution shift. The quality and coverage of the value estimates remain central."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:induction-heads": {
+      "id": "study:induction-heads",
+      "kind": "study",
+      "title": "Induction Heads",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Direct logit attribution can obscure a composed circuit. A later head may receive credit for a feature written into the residual stream by an earlier head, hiding the path that produced the effect."
+      ],
+      "asked_questions": [
+        {
+          "question": "Can a large direct-logit contribution make a later head look more important than the earlier head that enabled it?",
+          "answer": "Yes. Direct attribution can include the effect of a composed path while omitting the earlier head’s indirect role. Q/K composition changes attention scores and V/OV composition changes written information, so interpreting the circuit requires tracing those paths."
+        }
+      ],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "study:information-theory-representation-learning": {
+      "id": "study:information-theory-representation-learning",
+      "kind": "study",
+      "title": "Information Theory & Representation Learning",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Differential entropy changes when latent coordinates are rescaled. Mutual information, expressed as a KL divergence, is invariant to invertible reparameterization and avoids that particular ambiguity."
+      ],
+      "asked_questions": [
+        {
+          "question": "Why is changing latent scale a problem for entropy but not for mutual information?",
+          "answer": "Differential entropy changes with the coordinate transformation’s Jacobian and can be negative. Mutual information compares the joint distribution with the product of marginals through KL divergence, so matching Jacobian factors cancel under invertible reparameterizations."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:irl": {
+      "id": "study:irl",
+      "kind": "study",
+      "title": "IRL",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Inverse reinforcement learning explains behavior through an inferred reward objective. Behavior cloning directly fits the demonstrated actions; it does not separately recover the objective that could make them sensible."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:jepa": {
+      "id": "study:jepa",
+      "kind": "study",
+      "title": "JEPA",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Constant embeddings can minimize a naive latent-prediction loss without retaining useful information. The target pathway, stop-gradient, and slow target updates help address collapse; useful predicted latents still require a separate connection to action selection."
+      ],
+      "asked_questions": [
+        {
+          "question": "What prevents context and target encoders from minimizing prediction error by collapsing to a constant?",
+          "answer": "The target is not freely optimized by the same prediction gradient: stop-gradient and a slowly updated target pathway change the learning dynamics. These mechanisms and the training design resist trivial collapse; small latent-prediction error alone is still not evidence of useful representations."
+        }
+      ],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:learning-theory": {
+      "id": "study:learning-theory",
+      "kind": "study",
+      "title": "Learning Theory",
+      "related_entry_ids": [
+        "paper:uncovering-gaps-humans-llms-subjective-language"
+      ],
+      "public_insights": [
+        "Learning theory frames methods through assumptions, data requirements, and generalization guarantees alongside architecture and benchmark performance."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:mdp-pomdp": {
+      "id": "study:mdp-pomdp",
+      "kind": "study",
+      "title": "MDP, POMDP",
+      "related_entry_ids": [
+        "paper:learning-latent-dynamics-for-planning-from-pixels"
+      ],
+      "public_insights": [
+        "A belief state is a distribution over hidden states, rather than a single guessed state. A learned latent is a useful substitute only if it preserves decision-relevant information; similar observation predictions alone do not ensure this."
+      ],
+      "asked_questions": [
+        {
+          "question": "When can two hidden states be merged into one learned latent?",
+          "answer": "Only when the information lost is irrelevant to the decisions being made. Similar observations or predicted returns under one policy do not ensure identical action consequences. A useful latent should preserve the distinctions needed for control and uncertainty-aware planning."
+        }
+      ],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:modern-vla": {
+      "id": "study:modern-vla",
+      "kind": "study",
+      "title": "Modern VLA",
+      "related_entry_ids": [],
+      "public_insights": [],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:mpc": {
+      "id": "study:mpc",
+      "kind": "study",
+      "title": "MPC",
+      "related_entry_ids": [],
+      "public_insights": [
+        "MPC repeatedly solves a finite-horizon planning problem and executes only the first action. MPPI supplies a sampling-based optimization method within that loop."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:pbrl": {
+      "id": "study:pbrl",
+      "kind": "study",
+      "title": "PbRL",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Preference comparisons train a reward model, and the policy then learns under that reward. Updating the reward model can require relabeling stored replay data."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:rl-in-vlas": {
+      "id": "study:rl-in-vlas",
+      "kind": "study",
+      "title": "RL in VLAs",
+      "related_entry_ids": [],
+      "public_insights": [
+        "A recorded offline robot action does not identify the noise input that produced it. Learning action-space values first and distilling them into noise-space values can bridge this gap for diffusion noise-space RL."
+      ],
+      "asked_questions": [
+        {
+          "question": "How can offline robot transitions train a diffusion noise-space policy when the original noise is unknown?",
+          "answer": "First learn Q-values in the recorded action space. Then generate noise/action pairs using the diffusion policy and distill the action-space values into a noise-space critic. This uses offline action transitions without needing to recover the particular noise that generated each logged action."
+        }
+      ],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "study:rlaif": {
+      "id": "study:rlaif",
+      "kind": "study",
+      "title": "RLAIF",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Fitting AI preference judgments and updating the response-generating policy are separate stages. Pairwise comparison loss trains the reward model before policy optimization."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:robot-anatomy": {
+      "id": "study:robot-anatomy",
+      "kind": "study",
+      "title": "Robot Anatomy",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Actuation, transmission, sensing, computation, and mechanical structure jointly constrain a robot’s behavior. A software policy must operate through this complete physical system."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "study:safety-filter": {
+      "id": "study:safety-filter",
+      "kind": "study",
+      "title": "Safety Filter",
+      "related_entry_ids": [
+        "paper:from-words-to-safety"
+      ],
+      "public_insights": [
+        "The nominal action is the task controller’s preferred action. A safety filter intervenes between that proposal and execution according to its constraints and modeling assumptions."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:semantic-safety": {
+      "id": "study:semantic-safety",
+      "kind": "study",
+      "title": "Semantic Safety",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Physical feasibility does not imply contextual safety. A geometrically valid action can still be inappropriate because of an object’s meaning or a person’s intent."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:st-transformers": {
+      "id": "study:st-transformers",
+      "kind": "study",
+      "title": "ST Transformers",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Factorizing spatial and temporal attention changes cost from O(N²T²) to O(TN² + NT²). Sequential spatial and temporal stages still allow information to travel across both dimensions."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-07",
+      "sessions": []
+    },
+    "study:transformers": {
+      "id": "study:transformers",
+      "kind": "study",
+      "title": "Transformers",
+      "related_entry_ids": [],
+      "public_insights": [
+        "A transformer pass preserves the current sequence length; the decoding loop appends tokens across passes. KV caching reuses earlier keys and values rather than recomputing them."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:unsupervised-skill-discovery": {
+      "id": "study:unsupervised-skill-discovery",
+      "kind": "study",
+      "title": "Unsupervised Skill Discovery",
+      "related_entry_ids": [
+        "paper:dads",
+        "paper:contrastive-intrinsic-control",
+        "paper:lipschitz-constrained-unsupervised-skill-discovery"
+      ],
+      "public_insights": [
+        "Skill discovery can separate state occupancies or distinguish the effects skills produce. Diversity and predictability alone do not ensure useful robot behavior or temporal commitment."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-01",
+      "sessions": []
+    },
+    "study:vae": {
+      "id": "study:vae",
+      "kind": "study",
+      "title": "VAE",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Encoding an observation uses an approximate posterior, while unconditional generation samples a prior latent. Generating a specific class requires conditioning or latent selection beyond a standard unconditional VAE."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-02",
+      "sessions": []
+    },
+    "study:video-pre-training": {
+      "id": "study:video-pre-training",
+      "kind": "study",
+      "title": "Video Pre-training",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Latent actions provide action-like signals between frames when human videos lack control labels. Camera and appearance changes can create shortcuts; connecting those signals to robot control remains a separate challenge."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-06",
+      "sessions": []
+    },
+    "study:vision-transformers": {
+      "id": "study:vision-transformers",
+      "kind": "study",
+      "title": "Vision Transformers",
+      "related_entry_ids": [],
+      "public_insights": [
+        "Convolution is translation equivariant, while invariance usually comes from pooling or other design choices. Removing absolute position can hurt tasks in which location carries meaning."
+      ],
+      "asked_questions": [],
+      "studied_month": "2026-02",
+      "sessions": []
+    },
+    "study:world-models": {
+      "id": "study:world-models",
+      "kind": "study",
+      "title": "World Models",
+      "related_entry_ids": [
+        "paper:learning-latent-dynamics-for-planning-from-pixels",
+        "paper:td-mpc2"
+      ],
+      "public_insights": [
+        "An encoder and predictor can collapse together to constant latents. Low latent-prediction loss alone does not establish useful state information.",
+        "A proposed correction module would compare imagined and newly observed latents to adjust the next action. The motivation is to reduce drift during long action chunks when uncertainty and model latency make open-loop execution fragile."
+      ],
+      "asked_questions": [
+        {
+          "question": "Could an imagined-versus-observed latent residual correct drift during long action chunks?",
+          "answer": "The proposal was to use a small module that compares the predicted latent with an encoded fresh observation and adjusts the next action. It offers a feedback route around slow open-loop planning, but useful correction depends on the representation, delay, and training signal; effectiveness remains a question to test."
+        }
+      ],
+      "studied_month": "2026-06",
+      "sessions": []
+    }
+  }
+}
