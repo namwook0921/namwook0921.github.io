@@ -1,0 +1,704 @@
+{
+  "fields": [
+    {
+      "id": "general-ai",
+      "title": "General AI",
+      "color": "#61dfbe"
+    },
+    {
+      "id": "robotics",
+      "title": "Robotics & Embodied AI",
+      "color": "#f18aad"
+    },
+    {
+      "id": "control",
+      "title": "Control & Decision-Making",
+      "color": "#a8a3ff"
+    }
+  ],
+  "topics": [
+    {
+      "id": "visual-representations-and-perception",
+      "title": "Visual Representations & Perception",
+      "field_ids": [
+        "general-ai"
+      ],
+      "primary_field_id": "general-ai"
+    },
+    {
+      "id": "latent-representations-and-information",
+      "title": "Latent Representations & Information",
+      "field_ids": [
+        "general-ai"
+      ],
+      "primary_field_id": "general-ai"
+    },
+    {
+      "id": "generative-models",
+      "title": "Generative Models",
+      "field_ids": [
+        "general-ai"
+      ],
+      "primary_field_id": "general-ai"
+    },
+    {
+      "id": "transformers-and-interpretability",
+      "title": "Transformers & Interpretability",
+      "field_ids": [
+        "general-ai"
+      ],
+      "primary_field_id": "general-ai"
+    },
+    {
+      "id": "alignment-and-preferences",
+      "title": "Alignment & Preferences",
+      "field_ids": [
+        "general-ai",
+        "control"
+      ],
+      "primary_field_id": "general-ai"
+    },
+    {
+      "id": "learning-theory-and-generalization",
+      "title": "Learning Theory & Generalization",
+      "field_ids": [
+        "general-ai"
+      ],
+      "primary_field_id": "general-ai"
+    },
+    {
+      "id": "world-models",
+      "title": "World Models",
+      "field_ids": [
+        "general-ai",
+        "robotics",
+        "control"
+      ],
+      "primary_field_id": "general-ai"
+    },
+    {
+      "id": "foundations-and-compute",
+      "title": "AI Foundations & Compute",
+      "field_ids": [
+        "general-ai"
+      ],
+      "primary_field_id": "general-ai"
+    },
+    {
+      "id": "vla-and-robot-foundation-models",
+      "title": "VLA & Robot Foundation Models",
+      "field_ids": [
+        "robotics",
+        "general-ai"
+      ],
+      "primary_field_id": "robotics"
+    },
+    {
+      "id": "robot-world-models-and-video",
+      "title": "Robot World Models & Video",
+      "field_ids": [
+        "robotics",
+        "general-ai",
+        "control"
+      ],
+      "primary_field_id": "robotics"
+    },
+    {
+      "id": "manipulation-and-demonstration",
+      "title": "Manipulation & Demonstration",
+      "field_ids": [
+        "robotics"
+      ],
+      "primary_field_id": "robotics"
+    },
+    {
+      "id": "robot-skills-and-imitation",
+      "title": "Robot Skills & Imitation",
+      "field_ids": [
+        "robotics",
+        "control"
+      ],
+      "primary_field_id": "robotics"
+    },
+    {
+      "id": "embodied-perception-and-representation",
+      "title": "Embodied Perception & Representation",
+      "field_ids": [
+        "robotics",
+        "general-ai"
+      ],
+      "primary_field_id": "robotics"
+    },
+    {
+      "id": "robot-safety-and-reliability",
+      "title": "Robot Safety & Reliability",
+      "field_ids": [
+        "robotics",
+        "control"
+      ],
+      "primary_field_id": "robotics"
+    },
+    {
+      "id": "reinforcement-learning-and-policy-optimization",
+      "title": "Reinforcement Learning & Policy Optimization",
+      "field_ids": [
+        "control",
+        "general-ai",
+        "robotics"
+      ],
+      "primary_field_id": "control"
+    },
+    {
+      "id": "planning-and-state-estimation",
+      "title": "Planning & State Estimation",
+      "field_ids": [
+        "control",
+        "robotics"
+      ],
+      "primary_field_id": "control"
+    },
+    {
+      "id": "reachability-and-safety",
+      "title": "Reachability & Safety",
+      "field_ids": [
+        "control",
+        "robotics"
+      ],
+      "primary_field_id": "control"
+    },
+    {
+      "id": "games-and-multi-agent-systems",
+      "title": "Games & Multi-Agent Systems",
+      "field_ids": [
+        "control",
+        "general-ai"
+      ],
+      "primary_field_id": "control"
+    },
+    {
+      "id": "optimal-control-and-control-theory",
+      "title": "Optimal Control & Control Theory",
+      "field_ids": [
+        "control"
+      ],
+      "primary_field_id": "control"
+    },
+    {
+      "id": "risk-and-uncertainty",
+      "title": "Risk & Uncertainty",
+      "field_ids": [
+        "control",
+        "robotics"
+      ],
+      "primary_field_id": "control"
+    }
+  ],
+  "memberships": [
+    {
+      "entry_id": "paper:multiresolution-spline-image-mosaics",
+      "topic_ids": [
+        "visual-representations-and-perception"
+      ],
+      "primary_topic_id": "visual-representations-and-perception"
+    },
+    {
+      "entry_id": "paper:a-simple-framework-for-contrastive-learning-of-visual-representations",
+      "topic_ids": [
+        "visual-representations-and-perception",
+        "embodied-perception-and-representation"
+      ],
+      "primary_topic_id": "visual-representations-and-perception"
+    },
+    {
+      "entry_id": "paper:aligning-human-and-robot-representations",
+      "topic_ids": [
+        "embodied-perception-and-representation",
+        "manipulation-and-demonstration"
+      ],
+      "primary_topic_id": "embodied-perception-and-representation"
+    },
+    {
+      "entry_id": "paper:classifier-free-diffusion-guidance",
+      "topic_ids": [
+        "generative-models"
+      ],
+      "primary_topic_id": "generative-models"
+    },
+    {
+      "entry_id": "paper:commitment-without-regrets-online-learning-stackelberg-security-games",
+      "topic_ids": [
+        "games-and-multi-agent-systems",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "games-and-multi-agent-systems"
+    },
+    {
+      "entry_id": "paper:data-efficient-hierarchical-reinforcement-learning",
+      "topic_ids": [
+        "reinforcement-learning-and-policy-optimization",
+        "robot-skills-and-imitation"
+      ],
+      "primary_topic_id": "reinforcement-learning-and-policy-optimization"
+    },
+    {
+      "entry_id": "paper:denoising-diffusion-probabilistic-models",
+      "topic_ids": [
+        "generative-models"
+      ],
+      "primary_topic_id": "generative-models"
+    },
+    {
+      "entry_id": "paper:diffusion-guidance-controllable-policy-improvement-operator",
+      "topic_ids": [
+        "reinforcement-learning-and-policy-optimization",
+        "generative-models"
+      ],
+      "primary_topic_id": "reinforcement-learning-and-policy-optimization"
+    },
+    {
+      "entry_id": "paper:do-as-i-do-dexterous-manipulation",
+      "topic_ids": [
+        "manipulation-and-demonstration",
+        "robot-skills-and-imitation"
+      ],
+      "primary_topic_id": "manipulation-and-demonstration"
+    },
+    {
+      "entry_id": "paper:dreamdojo",
+      "topic_ids": [
+        "robot-world-models-and-video",
+        "world-models"
+      ],
+      "primary_topic_id": "robot-world-models-and-video"
+    },
+    {
+      "entry_id": "paper:equibot-sim3-equivariant-diffusion-policy",
+      "topic_ids": [
+        "manipulation-and-demonstration",
+        "vla-and-robot-foundation-models"
+      ],
+      "primary_topic_id": "manipulation-and-demonstration"
+    },
+    {
+      "entry_id": "paper:from-words-to-safety",
+      "topic_ids": [
+        "reachability-and-safety",
+        "robot-safety-and-reliability",
+        "planning-and-state-estimation"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    },
+    {
+      "entry_id": "paper:how-to-train-your-latent-cbf",
+      "topic_ids": [
+        "reachability-and-safety",
+        "robot-safety-and-reliability"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    },
+    {
+      "entry_id": "paper:hybrid-images",
+      "topic_ids": [
+        "visual-representations-and-perception"
+      ],
+      "primary_topic_id": "visual-representations-and-perception"
+    },
+    {
+      "entry_id": "paper:learning-latent-dynamics-for-planning-from-pixels",
+      "topic_ids": [
+        "world-models",
+        "planning-and-state-estimation"
+      ],
+      "primary_topic_id": "world-models"
+    },
+    {
+      "entry_id": "paper:mobi-pi",
+      "topic_ids": [
+        "manipulation-and-demonstration",
+        "vla-and-robot-foundation-models"
+      ],
+      "primary_topic_id": "manipulation-and-demonstration"
+    },
+    {
+      "entry_id": "paper:neural-reachable-tubes",
+      "topic_ids": [
+        "reachability-and-safety",
+        "robot-safety-and-reliability",
+        "world-models"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    },
+    {
+      "entry_id": "paper:recovery-rl",
+      "topic_ids": [
+        "reachability-and-safety",
+        "robot-safety-and-reliability",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    },
+    {
+      "entry_id": "paper:rlt",
+      "topic_ids": [
+        "vla-and-robot-foundation-models",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "vla-and-robot-foundation-models"
+    },
+    {
+      "entry_id": "paper:td-mpc2",
+      "topic_ids": [
+        "world-models",
+        "planning-and-state-estimation",
+        "optimal-control-and-control-theory"
+      ],
+      "primary_topic_id": "world-models"
+    },
+    {
+      "entry_id": "paper:transformer-layer-correction-mechanism",
+      "topic_ids": [
+        "transformers-and-interpretability"
+      ],
+      "primary_topic_id": "transformers-and-interpretability"
+    },
+    {
+      "entry_id": "paper:uncovering-gaps-humans-llms-subjective-language",
+      "topic_ids": [
+        "transformers-and-interpretability",
+        "alignment-and-preferences",
+        "learning-theory-and-generalization"
+      ],
+      "primary_topic_id": "transformers-and-interpretability"
+    },
+    {
+      "entry_id": "paper:pi-star-0-6",
+      "topic_ids": [
+        "vla-and-robot-foundation-models",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "vla-and-robot-foundation-models"
+    },
+    {
+      "entry_id": "study:classifier-free-guidance",
+      "topic_ids": [
+        "generative-models"
+      ],
+      "primary_topic_id": "generative-models"
+    },
+    {
+      "entry_id": "study:clf-cbf",
+      "topic_ids": [
+        "reachability-and-safety",
+        "robot-safety-and-reliability",
+        "optimal-control-and-control-theory"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    },
+    {
+      "entry_id": "study:computing-hj-pde",
+      "topic_ids": [
+        "reachability-and-safety"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    },
+    {
+      "entry_id": "study:contrastive-learning",
+      "topic_ids": [
+        "visual-representations-and-perception",
+        "embodied-perception-and-representation"
+      ],
+      "primary_topic_id": "visual-representations-and-perception"
+    },
+    {
+      "entry_id": "study:control-theory",
+      "topic_ids": [
+        "optimal-control-and-control-theory",
+        "planning-and-state-estimation"
+      ],
+      "primary_topic_id": "optimal-control-and-control-theory"
+    },
+    {
+      "entry_id": "study:ddpg",
+      "topic_ids": [
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "reinforcement-learning-and-policy-optimization"
+    },
+    {
+      "entry_id": "study:diffusion-models",
+      "topic_ids": [
+        "generative-models"
+      ],
+      "primary_topic_id": "generative-models"
+    },
+    {
+      "entry_id": "study:flow-matching",
+      "topic_ids": [
+        "generative-models",
+        "vla-and-robot-foundation-models"
+      ],
+      "primary_topic_id": "generative-models"
+    },
+    {
+      "entry_id": "study:gpu-basics",
+      "topic_ids": [
+        "foundations-and-compute"
+      ],
+      "primary_topic_id": "foundations-and-compute"
+    },
+    {
+      "entry_id": "study:harness",
+      "topic_ids": [
+        "foundations-and-compute"
+      ],
+      "primary_topic_id": "foundations-and-compute"
+    },
+    {
+      "entry_id": "study:hji-reachability",
+      "topic_ids": [
+        "reachability-and-safety",
+        "games-and-multi-agent-systems",
+        "robot-safety-and-reliability"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    },
+    {
+      "entry_id": "study:imitation-learning",
+      "topic_ids": [
+        "robot-skills-and-imitation",
+        "manipulation-and-demonstration"
+      ],
+      "primary_topic_id": "robot-skills-and-imitation"
+    },
+    {
+      "entry_id": "study:induction-heads",
+      "topic_ids": [
+        "transformers-and-interpretability"
+      ],
+      "primary_topic_id": "transformers-and-interpretability"
+    },
+    {
+      "entry_id": "study:information-theory-representation-learning",
+      "topic_ids": [
+        "latent-representations-and-information",
+        "visual-representations-and-perception",
+        "generative-models"
+      ],
+      "primary_topic_id": "latent-representations-and-information"
+    },
+    {
+      "entry_id": "study:irl",
+      "topic_ids": [
+        "reinforcement-learning-and-policy-optimization",
+        "robot-skills-and-imitation"
+      ],
+      "primary_topic_id": "reinforcement-learning-and-policy-optimization"
+    },
+    {
+      "entry_id": "study:jepa",
+      "topic_ids": [
+        "world-models",
+        "robot-world-models-and-video",
+        "visual-representations-and-perception",
+        "latent-representations-and-information"
+      ],
+      "primary_topic_id": "world-models"
+    },
+    {
+      "entry_id": "study:learning-theory",
+      "topic_ids": [
+        "learning-theory-and-generalization",
+        "alignment-and-preferences",
+        "transformers-and-interpretability"
+      ],
+      "primary_topic_id": "learning-theory-and-generalization"
+    },
+    {
+      "entry_id": "study:mdp-pomdp",
+      "topic_ids": [
+        "planning-and-state-estimation",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "planning-and-state-estimation"
+    },
+    {
+      "entry_id": "study:modern-vla",
+      "topic_ids": [
+        "vla-and-robot-foundation-models"
+      ],
+      "primary_topic_id": "vla-and-robot-foundation-models"
+    },
+    {
+      "entry_id": "study:mpc",
+      "topic_ids": [
+        "planning-and-state-estimation",
+        "optimal-control-and-control-theory",
+        "world-models"
+      ],
+      "primary_topic_id": "planning-and-state-estimation"
+    },
+    {
+      "entry_id": "study:pbrl",
+      "topic_ids": [
+        "alignment-and-preferences",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "alignment-and-preferences"
+    },
+    {
+      "entry_id": "study:rl-in-vlas",
+      "topic_ids": [
+        "vla-and-robot-foundation-models",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "vla-and-robot-foundation-models"
+    },
+    {
+      "entry_id": "study:rlaif",
+      "topic_ids": [
+        "alignment-and-preferences",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "alignment-and-preferences"
+    },
+    {
+      "entry_id": "study:robot-anatomy",
+      "topic_ids": [
+        "manipulation-and-demonstration"
+      ],
+      "primary_topic_id": "manipulation-and-demonstration"
+    },
+    {
+      "entry_id": "study:safety-filter",
+      "topic_ids": [
+        "reachability-and-safety",
+        "robot-safety-and-reliability",
+        "optimal-control-and-control-theory"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    },
+    {
+      "entry_id": "study:semantic-safety",
+      "topic_ids": [
+        "robot-safety-and-reliability",
+        "alignment-and-preferences",
+        "reachability-and-safety"
+      ],
+      "primary_topic_id": "robot-safety-and-reliability"
+    },
+    {
+      "entry_id": "study:st-transformers",
+      "topic_ids": [
+        "transformers-and-interpretability",
+        "visual-representations-and-perception"
+      ],
+      "primary_topic_id": "transformers-and-interpretability"
+    },
+    {
+      "entry_id": "study:transformers",
+      "topic_ids": [
+        "transformers-and-interpretability"
+      ],
+      "primary_topic_id": "transformers-and-interpretability"
+    },
+    {
+      "entry_id": "study:unsupervised-skill-discovery",
+      "topic_ids": [
+        "robot-skills-and-imitation",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "robot-skills-and-imitation"
+    },
+    {
+      "entry_id": "study:vae",
+      "topic_ids": [
+        "generative-models",
+        "visual-representations-and-perception",
+        "latent-representations-and-information"
+      ],
+      "primary_topic_id": "generative-models"
+    },
+    {
+      "entry_id": "study:video-pre-training",
+      "topic_ids": [
+        "robot-world-models-and-video",
+        "vla-and-robot-foundation-models",
+        "world-models"
+      ],
+      "primary_topic_id": "robot-world-models-and-video"
+    },
+    {
+      "entry_id": "study:vision-transformers",
+      "topic_ids": [
+        "visual-representations-and-perception",
+        "transformers-and-interpretability"
+      ],
+      "primary_topic_id": "visual-representations-and-perception"
+    },
+    {
+      "entry_id": "study:world-models",
+      "topic_ids": [
+        "world-models",
+        "robot-world-models-and-video",
+        "planning-and-state-estimation"
+      ],
+      "primary_topic_id": "world-models"
+    },
+    {
+      "entry_id": "paper:diayn",
+      "topic_ids": [
+        "robot-skills-and-imitation",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "robot-skills-and-imitation"
+    },
+    {
+      "entry_id": "paper:dads",
+      "topic_ids": [
+        "robot-skills-and-imitation",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "robot-skills-and-imitation"
+    },
+    {
+      "entry_id": "paper:contrastive-intrinsic-control",
+      "topic_ids": [
+        "robot-skills-and-imitation",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "robot-skills-and-imitation"
+    },
+    {
+      "entry_id": "paper:lipschitz-constrained-unsupervised-skill-discovery",
+      "topic_ids": [
+        "robot-skills-and-imitation",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "robot-skills-and-imitation"
+    },
+    {
+      "entry_id": "paper:direct-preference-optimization",
+      "topic_ids": [
+        "alignment-and-preferences",
+        "reinforcement-learning-and-policy-optimization"
+      ],
+      "primary_topic_id": "alignment-and-preferences"
+    },
+    {
+      "entry_id": "paper:deepreach",
+      "topic_ids": [
+        "reachability-and-safety",
+        "optimal-control-and-control-theory"
+      ],
+      "primary_topic_id": "reachability-and-safety"
+    }
+  ],
+  "reading_rule": "Paper nodes require at least three paper-specific exchanges; saved records remain in ontology.json.",
+  "entry_aliases": {
+    "study:diayn": "paper:diayn",
+    "study:dpo": "paper:direct-preference-optimization"
+  },
+  "manual_additions": [
+    "paper:deepreach"
+  ]
+}
