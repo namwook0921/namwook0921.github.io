@@ -1,0 +1,627 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project 3 · Fun with Flow Models — Namwook Lee</title><link rel="stylesheet" href="style.css"></head><body><a class="skip" href="#main">Skip to content</a>
+<div class="layout">
+<aside class="left"><a class="x-logo" href="../" aria-label="All projects">𝕏</a>
+<nav aria-label="Main navigation"><a class="nav-item" href="../"><span>⌂</span> All projects</a><a class="nav-item active" href="#main"><span>＃</span> Project 3</a><a class="nav-item" href="#part-a"><span>▤</span> Part A</a><a class="nav-item" href="#part-b"><span>▤</span> Part B</a>
+</nav><a class="spec-button" href="https://cal-cs180.github.io/fa26/hw/proj3-flow/parta.html" target="_blank" rel="noopener">Assignment ↗</a>
+<div class="account">
+<div class="avatar">N</div>
+<div><strong>Namwook Lee</strong><small>@namwook_lee</small>
+</div>
+</div>
+</aside>
+<main id="main">
+<header class="feed-header"><a href="../" aria-label="All projects">←</a>
+<div><strong>Project 3</strong><small>CS 180 · Fall 2026</small>
+</div><span class="header-x">𝕏</span>
+</header>
+<section class="profile">
+<div class="cover"><span>CS / 180</span><b>03</b>
+</div>
+<div class="profile-details">
+<div class="profile-avatar">N</div>
+<h1>Fun with Flow Models</h1>
+<p class="handle">@namwook_lee</p>
+<p>Part A: Exploring the Power of Flow Models</p>
+<p>Part B: Flow Matching from Scratch</p>
+<div class="profile-meta"><span>⌖ UC Berkeley</span><span>▦ Fall 2026</span><a href="https://cal-cs180.github.io/fa26/hw/proj3-flow/parta.html">↗ Project specification</a>
+</div>
+</div>
+<nav class="tabs" aria-label="Project parts"><a class="selected" href="#part-a">Part A</a><a href="#part-b">Part B</a>
+</nav>
+</section>
+<header class="part-heading" id="part-a"><span>PART A</span><h2>Exploring the Power of Flow Models</h2></header>
+<article class="post" id="a11">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 1st</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Constructing Noisy Training Inputs (1.1)</h2>
+<p>For Part A, I will primarily be using a beautiful picture of Gyeongbokgung Palace in Seoul, Korea.</p>
+<p>The noise is sampled from a Gaussian distribution with the same dimensions as the image. The noisy inputs are then constructed by linearly interpolating between the noise and the image: <code>x_t = (1 − t) × noise + t × image</code>.</p>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.1-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.1-2.png" alt="t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.1-3.png" alt="t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>t = 0.50</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.1-4.png" alt="t = 0.75" loading="lazy" tabindex="0" role="link">
+<figcaption>t = 0.75</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_1.1.png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a11" aria-label="Link to Constructing Noisy Training Inputs">↗</a>
+</div>
+</div>
+</article>
+<article class="post" id="a12">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 2nd</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Classical Denoising (1.2)</h2>
+<p>Gaussian blur denoises noisy inputs by smoothing neighboring pixels. Higher noise levels generally benefit from stronger smoothing with a larger sigma, at the cost of image detail.</p>
+<h3>t = 0.25</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_A/tiles/result_1.2_0.25-1.png" alt="Noisy input · t = 0.25" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · t = 0.25</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.2_0.25-2.png" alt="Gaussian denoising · σ = 8.0 · t = 0.25" loading="lazy" tabindex="0" role="link"><figcaption>Gaussian denoising · σ = 8.0 · t = 0.25</figcaption></figure></div><p class="panel-source"><a href="results/part_A/result_1.2_0.25.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+<h3>t = 0.50</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_A/tiles/result_1.2_0.5-1.png" alt="Noisy input · t = 0.50" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · t = 0.50</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.2_0.5-2.png" alt="Gaussian denoising · σ = 2.0 · t = 0.50" loading="lazy" tabindex="0" role="link"><figcaption>Gaussian denoising · σ = 2.0 · t = 0.50</figcaption></figure></div><p class="panel-source"><a href="results/part_A/result_1.2_0.5.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+<h3>t = 0.75</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_A/tiles/results_1.2-1.png" alt="Noisy input · t = 0.75" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · t = 0.75</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.2-2.png" alt="Gaussian denoising · σ = 1.0 · t = 0.75" loading="lazy" tabindex="0" role="link"><figcaption>Gaussian denoising · σ = 1.0 · t = 0.75</figcaption></figure></div><p class="panel-source"><a href="results/part_A/results_1.2.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a12" aria-label="Link to Classical Denoising">↗</a>
+</div>
+</div>
+</article>
+<article class="post" id="a13">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 3rd</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>One-Step Denoising (1.3)</h2>
+<p>One-step denoising reconstructs the image in a single step by predicting the velocity once at the starting state and extrapolating to t = 1.0. Starting at a smaller t leaves less original image information and results in fewer reconstructed details. However, it is still impressive how well it reconstructs the coarse details.</p>
+<h3>t = 0.25</h3><div class="result-grid cols-3"><figure class="result-tile"><img src="results/part_A/tiles/results_1.3-1.png" alt="Original" loading="lazy" tabindex="0" role="link"><figcaption>Original</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.3-2.png" alt="Noisy input · t = 0.25" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · t = 0.25</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.3-3.png" alt="One-step estimate · t = 0.25" loading="lazy" tabindex="0" role="link"><figcaption>One-step estimate · t = 0.25</figcaption></figure></div><p class="panel-source"><a href="results/part_A/results_1.3.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+<h3>t = 0.50</h3><div class="result-grid cols-3"><figure class="result-tile"><img src="results/part_A/tiles/result_1.3_0.5-1.png" alt="Original" loading="lazy" tabindex="0" role="link"><figcaption>Original</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.3_0.5-2.png" alt="Noisy input · t = 0.50" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · t = 0.50</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.3_0.5-3.png" alt="One-step estimate · t = 0.50" loading="lazy" tabindex="0" role="link"><figcaption>One-step estimate · t = 0.50</figcaption></figure></div><p class="panel-source"><a href="results/part_A/result_1.3_0.5.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+<h3>t = 0.75</h3><div class="result-grid cols-3"><figure class="result-tile"><img src="results/part_A/tiles/result_1.3_0.75-1.png" alt="Original" loading="lazy" tabindex="0" role="link"><figcaption>Original</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.3_0.75-2.png" alt="Noisy input · t = 0.75" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · t = 0.75</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.3_0.75-3.png" alt="One-step estimate · t = 0.75" loading="lazy" tabindex="0" role="link"><figcaption>One-step estimate · t = 0.75</figcaption></figure></div><p class="panel-source"><a href="results/part_A/result_1.3_0.75.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a13" aria-label="Link to One-Step Denoising">↗</a>
+</div>
+</div>
+</article>
+<article class="post" id="a14">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 4th</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Visualizing Velocity (1.4)</h2>
+<p>As expected, the error decreases as t increases. For noisier inputs, the coarse structure of the image is well preserved, while fine details, such as the characters and the tightly spaced roof tile patterns, have higher errors.</p>
+
+<figure class="result-tile original-alone"><img src="results/part_A/gyeongbokgug.png" alt="Original image" loading="lazy" tabindex="0" role="link"><figcaption>Original image</figcaption></figure>
+<div class="velocity-rows"><section class="velocity-time"><h3>t = 0.25</h3><div class="result-grid velocity-images"><figure class="result-tile"><img src="results/part_A/tiles/result_1.4_0.25-1.png" alt="Noisy input" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.4_0.25-2.png" alt="Predicted update (1 − t) v̂" loading="lazy" tabindex="0" role="link"><figcaption>Predicted update (1 − t) v̂</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.4_0.25-3.png" alt="Ground-truth update (1 − t) vgt" loading="lazy" tabindex="0" role="link"><figcaption>Ground-truth update (1 − t) vgt</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.4_0.25-4.png" alt="Error (RGB RMS)" loading="lazy" tabindex="0" role="link"><figcaption>Error (RGB RMS)</figcaption></figure></div><p class="panel-source"><a href="results/part_A/result_1.4_0.25.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+</section><section class="velocity-time"><h3>t = 0.50</h3><div class="result-grid velocity-images"><figure class="result-tile"><img src="results/part_A/tiles/result_1.4_0.5-1.png" alt="Noisy input" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.4_0.5-2.png" alt="Predicted update (1 − t) v̂" loading="lazy" tabindex="0" role="link"><figcaption>Predicted update (1 − t) v̂</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.4_0.5-3.png" alt="Ground-truth update (1 − t) vgt" loading="lazy" tabindex="0" role="link"><figcaption>Ground-truth update (1 − t) vgt</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/result_1.4_0.5-4.png" alt="Error (RGB RMS)" loading="lazy" tabindex="0" role="link"><figcaption>Error (RGB RMS)</figcaption></figure></div><p class="panel-source"><a href="results/part_A/result_1.4_0.5.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+</section><section class="velocity-time"><h3>t = 0.75</h3><div class="result-grid velocity-images"><figure class="result-tile"><img src="results/part_A/tiles/results_1.4-1.png" alt="Noisy input" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.4-2.png" alt="Predicted update (1 − t) v̂" loading="lazy" tabindex="0" role="link"><figcaption>Predicted update (1 − t) v̂</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.4-3.png" alt="Ground-truth update (1 − t) vgt" loading="lazy" tabindex="0" role="link"><figcaption>Ground-truth update (1 − t) vgt</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.4-4.png" alt="Error (RGB RMS)" loading="lazy" tabindex="0" role="link"><figcaption>Error (RGB RMS)</figcaption></figure></div><p class="panel-source"><a href="results/part_A/results_1.4.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+</section></div><div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a14" aria-label="Link to Visualizing Velocity">↗</a>
+</div>
+</div>
+</article>
+<article class="post" id="a15">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 5th</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Iterative Denoising with Euler Sampling (1.5)</h2>
+<p>At each step, the model predicts the velocity at the current image and time, then uses it to update the image. Starting from t = 0.50 with a step size of 0.02 requires 25 steps to reach t = 1.0. Compared with one-step denoising, details such as the texture of the tree look much better. The result also preserves more detail than Gaussian blur.</p>
+
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.5-1.png" alt="Initial · t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Initial · t = 0.50</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.5-2.png" alt="Update 5 · t = 0.60" loading="lazy" tabindex="0" role="link">
+<figcaption>Update 5 · t = 0.60</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.5-3.png" alt="Update 10 · t = 0.70" loading="lazy" tabindex="0" role="link">
+<figcaption>Update 10 · t = 0.70</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.5-4.png" alt="Update 15 · t = 0.80" loading="lazy" tabindex="0" role="link">
+<figcaption>Update 15 · t = 0.80</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.5-5.png" alt="Update 20 · t = 0.90" loading="lazy" tabindex="0" role="link">
+<figcaption>Update 20 · t = 0.90</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.5-6.png" alt="Update 25 · t = 1.00" loading="lazy" tabindex="0" role="link">
+<figcaption>Update 25 · t = 1.00</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_1.5.png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Denoising methods · t = 0.50</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_A/tiles/results_1.5_comparison-1.png" alt="Original" loading="lazy" tabindex="0" role="link"><figcaption>Original</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.5_comparison-2.png" alt="Gaussian blur" loading="lazy" tabindex="0" role="link"><figcaption>Gaussian blur</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.5_comparison-3.png" alt="One-step denoising" loading="lazy" tabindex="0" role="link"><figcaption>One-step denoising</figcaption></figure><figure class="result-tile"><img src="results/part_A/tiles/results_1.5_comparison-4.png" alt="Euler denoising" loading="lazy" tabindex="0" role="link"><figcaption>Euler denoising</figcaption></figure></div><p class="panel-source"><a href="results/part_A/results_1.5_comparison.png" target="_blank" rel="noopener">View original panel ↗</a></p>
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a15" aria-label="Link to Iterative Denoising with Euler Sampling">↗</a>
+</div>
+</div>
+</article>
+
+<article class="post" id="a21">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · February 1st</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Classifier-Free Guidance (1.6 &amp; 2.1)</h2>
+<p>Without classifier-free guidance, the images look somewhat realistic but fall into the uncanny valley. These samples are still conditioned on the prompt “a high quality photo.”</p>
+<p>However, increasing the CFG weight w strengthens the influence of the conditional velocity relative to the unconditional prediction. In these samples, this produces more realistic-looking images.</p>
+
+
+<h3>Sample 1</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.6-1.png" alt="Without CFG" loading="lazy" tabindex="0" role="link">
+<figcaption>Without CFG</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_2.1-1.png" alt="With CFG · w = 7" loading="lazy" tabindex="0" role="link">
+<figcaption>With CFG · w = 7</figcaption>
+</figure>
+</div>
+<h3>Sample 2</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.6-2.png" alt="Without CFG" loading="lazy" tabindex="0" role="link">
+<figcaption>Without CFG</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_2.1-2.png" alt="With CFG · w = 7" loading="lazy" tabindex="0" role="link">
+<figcaption>With CFG · w = 7</figcaption>
+</figure>
+</div>
+<h3>Sample 3</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.6-3.png" alt="Without CFG" loading="lazy" tabindex="0" role="link">
+<figcaption>Without CFG</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_2.1-3.png" alt="With CFG · w = 7" loading="lazy" tabindex="0" role="link">
+<figcaption>With CFG · w = 7</figcaption>
+</figure>
+</div>
+<h3>Sample 4</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.6-4.png" alt="Without CFG" loading="lazy" tabindex="0" role="link">
+<figcaption>Without CFG</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_2.1-4.png" alt="With CFG · w = 7" loading="lazy" tabindex="0" role="link">
+<figcaption>With CFG · w = 7</figcaption>
+</figure>
+</div>
+<h3>Sample 5</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_1.6-5.png" alt="Without CFG" loading="lazy" tabindex="0" role="link">
+<figcaption>Without CFG</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_2.1-5.png" alt="With CFG · w = 7" loading="lazy" tabindex="0" role="link">
+<figcaption>With CFG · w = 7</figcaption>
+</figure>
+</div>
+
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a21" aria-label="Link to Classifier-Free Guidance">↗</a>
+</div>
+</div>
+</article>
+<article class="post" id="a31">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · March 1st</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Image-to-Image Editing (3.1)</h2>
+<h3>Campanile</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.1.png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Gyeongbokgung Palace</h3>
+<p>As the noise level increases, the input becomes closer to pure noise, giving the flow model less information about the original image and more freedom to generate a different scene. As t increases, the final output begins to retain coarse features of the input. At t = 0.04, the palace’s three entrances form three circular objects that look like cups of coffee.</p>
+
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-b-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-b-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-b-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-b-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-b-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-b-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-b-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-b-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.1(b).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Starfield Library, COEX</h3>
+<p>The new image shows Starfield Library at COEX, also in Seoul, which used to be my favorite place to visit when I was in middle school.</p>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-c-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-c-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-c-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-c-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-c-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-c-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-c-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.1-c-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.1(c).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<p>The web image is Chiikawa, a Japanese cartoon character. The two drawings are Pikachu (sorry, Pokémon fans) and a stick figure I drew on my iPad. Similarly, at t = 0.02 or 0.04, the outputs often lose the structure of the original drawings. At t = 0.06 and above, the outputs mostly retain a drawing-like appearance, with greater resemblance to the originals as t increases.</p>
+<h3>Chiikawa · web image</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-a-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-a-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-a-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-a-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-a-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-a-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-a-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-a-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.2(a).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Pikachu · own drawing</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-b-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-b-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-b-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-b-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-b-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-b-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-b-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-b-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.2(b).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Stick figure · own drawing</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-c-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-c-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-c-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-c-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-c-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-c-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-c-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.2-c-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.2(c).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a31" aria-label="Link to Image-to-Image Editing">↗</a>
+</div>
+</div>
+</article>
+<article class="post" id="a32">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · March 2nd</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Text-Guided Image Editing (3.2)</h2>
+<p>At lower t, the starting image is closer to noise, giving the flow model more freedom to follow the prompt, even when it conflicts with the original image. As t increases, more details from the original image are preserved, leaving less room for the denoising process to change the image toward the prompt.</p>
+
+<h3>Campanile</h3>
+<p class="prompt-label">Prompt: <q>Big Ben</q>
+</p>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-a-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-a-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-a-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-a-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-a-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-a-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-a-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-a-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.3(a).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Own image 1</h3>
+<p class="prompt-label">Prompt: <q>Modern Architecture</q>
+</p>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-b-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-b-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-b-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-b-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-b-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-b-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-b-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-b-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.3(b).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Own image 2</h3>
+<p class="prompt-label">Prompt: <q>Outdoor Park</q>
+</p>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-c-1.png" alt="Original" loading="lazy" tabindex="0" role="link">
+<figcaption>Original</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-c-2.png" alt="Starting t = 0.02" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.02</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-c-3.png" alt="Starting t = 0.04" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.04</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-c-4.png" alt="Starting t = 0.06" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.06</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-c-5.png" alt="Starting t = 0.10" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.10</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-c-6.png" alt="Starting t = 0.14" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.14</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-c-7.png" alt="Starting t = 0.25" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.25</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.3-c-8.png" alt="Starting t = 0.50" loading="lazy" tabindex="0" role="link">
+<figcaption>Starting t = 0.50</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.3(c).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a32" aria-label="Link to Text-Guided Image Editing">↗</a>
+</div>
+</div>
+</article>
+<article class="post" id="a33">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · March 3rd</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Visual Anagrams (3.3)</h2>
+<p>By predicting velocities under two different conditions—one on the intermediate image and the other on its 180-degree rotation—then rotating the second prediction back and averaging the two, we can generate an image that depicts one prompt upright and the other when flipped upside down.</p>
+<h3>LBJ + Himalayas</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.4-1.png" alt="Portrait of Lebron James · upright" loading="lazy" tabindex="0" role="link">
+<figcaption>Portrait of Lebron James · upright</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.4-2.png" alt="Himalayas · rotated 180°" loading="lazy" tabindex="0" role="link">
+<figcaption>Himalayas · rotated 180°</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.4.png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Forest + Factories</h3>
+<div class="result-grid cols-2">
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.4-b-1.png" alt="devastated forest · upright" loading="lazy" tabindex="0" role="link">
+<figcaption>devastated forest · upright</figcaption>
+</figure>
+<figure class="result-tile "><img src="results/part_A/tiles/results_3.4-b-2.png" alt="factories emitting gas · rotated 180°" loading="lazy" tabindex="0" role="link">
+<figcaption>factories emitting gas · rotated 180°</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/results_3.4(b).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a33" aria-label="Link to Visual Anagrams">↗</a>
+</div>
+</div>
+</article>
+<article class="post" id="a34">
+<div class="avatar" aria-hidden="true">N</div>
+<div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · March 4th</span><span class="dots" aria-hidden="true">···</span>
+</div>
+<h2>Hybrid Images (3.4)</h2>
+<p>We apply the frequency-separation idea from the Gaussian and Laplacian filters used in earlier projects. A high-pass filter emphasizes fine details, while a low-pass filter preserves coarse structure. We combine the high-pass component of the velocity predicted for the close-view prompt with the low-pass component of the velocity predicted for the distant-view prompt. The resulting image aligns with one prompt up close and the other from a distance.</p>
+<h3>Batman + Joker</h3>
+<div class="hybrid-pair">
+<figure class="result-tile "><img src="results/part_A/tiles/result_hybrid-image.png" alt="Close: Joker" loading="lazy" tabindex="0" role="link">
+<figcaption>Close: Joker</figcaption>
+</figure>
+<figure class="result-tile reduced"><img src="results/part_A/tiles/result_hybrid-image.png" alt="Distant: Batman" loading="lazy" tabindex="0" role="link">
+<figcaption>Distant: Batman</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/result_hybrid.png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<h3>Forest + Blue Whale</h3>
+<div class="hybrid-pair">
+<figure class="result-tile "><img src="results/part_A/tiles/result_hybrid-b-image.png" alt="Close: a forest" loading="lazy" tabindex="0" role="link">
+<figcaption>Close: a forest</figcaption>
+</figure>
+<figure class="result-tile reduced"><img src="results/part_A/tiles/result_hybrid-b-image.png" alt="Distant: a blue whale" loading="lazy" tabindex="0" role="link">
+<figcaption>Distant: a blue whale</figcaption>
+</figure>
+</div>
+<p class="panel-source"><a href="results/part_A/result_hybrid(b).png" target="_blank" rel="noopener">View original panel ↗</a>
+</p>
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part A</span><a href="#a34" aria-label="Link to Hybrid Images">↗</a>
+</div>
+</div>
+</article>
+<header class="part-heading" id="part-b"><span>PART B</span><h2>Flow Matching from Scratch</h2><a href="https://cal-cs180.github.io/fa26/hw/proj3-flow/partb.html" target="_blank" rel="noopener">Part B assignment ↗</a></header>
+<article class="post" id="b12">
+<div class="avatar" aria-hidden="true">N</div><div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 2nd</span><span class="dots" aria-hidden="true">···</span></div>
+<h2>Visualizing the Noising Process (1.2)</h2><p>Noisy inputs of the digit “7” from the MNIST dataset.</p><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_B/tiles/ood-1-0.png" alt="Noisy input · σ = 0.0" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.0</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-2-0.png" alt="Noisy input · σ = 0.2" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.2</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-3-0.png" alt="Noisy input · σ = 0.4" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.4</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-4-0.png" alt="Noisy input · σ = 0.5" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.5</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-5-0.png" alt="Noisy input · σ = 0.6" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.6</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-6-0.png" alt="Noisy input · σ = 0.8" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.8</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-7-0.png" alt="Noisy input · σ = 1.0" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 1.0</figcaption></figure></div><div class="post-footer"><span>CS 180</span><span>Project 3 · Part B</span><a href="#b12" aria-label="Link to Visualizing the Noising Process">↗</a></div></div></article>
+<article class="post" id="b121">
+<div class="avatar" aria-hidden="true">N</div><div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 2nd</span><span class="dots" aria-hidden="true">···</span></div>
+<h2>Training a Single-Step Denoiser (1.2.1)</h2>
+<p>These are the results of a single-step denoiser trained for a noise level of σ = 0.5. From the training loss curve, we can infer that the performance has improved from epoch 1 to epoch 5 (at least on the training distribution), and we can see the results in the denoised samples. Although the results from epoch 1 also look mostly interpretable, the results from epoch 5 have clearer and sharper reconstructed images.</p>
+<figure class="media"><div class="image-slot loaded"><img src="results/part_B/1_2_1_epoch1.png" alt="Test-set results · σ = 0.5 · epoch 1" loading="eager"><div class="missing"><span class="image-icon">▧</span><strong>Test-set results · σ = 0.5 · epoch 1</strong><code>results/part_B/1_2_1_epoch1.png</code></div></div><figcaption>Test-set results · σ = 0.5 · epoch 1</figcaption></figure><figure class="media"><div class="image-slot loaded"><img src="results/part_B/1_2_1_epoch_5.png" alt="Test-set results · σ = 0.5 · epoch 5" loading="eager"><div class="missing"><span class="image-icon">▧</span><strong>Test-set results · σ = 0.5 · epoch 5</strong><code>results/part_B/1_2_1_epoch_5.png</code></div></div><figcaption>Test-set results · σ = 0.5 · epoch 5</figcaption></figure><figure class="media"><div class="image-slot loaded"><img src="results/part_B/1_2_1.png" alt="Training loss over the full training process · σ = 0.5" loading="eager"><div class="missing"><span class="image-icon">▧</span><strong>Training loss over the full training process · σ = 0.5</strong><code>results/part_B/1_2_1.png</code></div></div><figcaption>Training loss over the full training process · σ = 0.5</figcaption></figure>
+<div class="post-footer"><span>CS 180</span><span>Project 3 · Part B</span><a href="#b121" aria-label="Link to Training a Single-Step Denoiser">↗</a></div></div></article>
+<article class="post" id="b122">
+<div class="avatar" aria-hidden="true">N</div><div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 2nd</span><span class="dots" aria-hidden="true">···</span></div>
+<h2>Out-of-Distribution Testing (1.2.2)</h2>
+<p>Up to σ = 0.6, the model produces decent reconstructions of the digit 7. This noise level is close to σ = 0.5, which the model was trained on. At σ = 0.8 and σ = 1.0, the outputs are harder to interpret, although they still resemble a 7.</p><h3>σ = 0.0</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_B/tiles/ood-1-0.png" alt="Noisy input · σ = 0.0" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.0</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-1-1.png" alt="Denoised output · σ = 0.0" loading="lazy" tabindex="0" role="link"><figcaption>Denoised output · σ = 0.0</figcaption></figure></div><h3>σ = 0.2</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_B/tiles/ood-2-0.png" alt="Noisy input · σ = 0.2" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.2</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-2-1.png" alt="Denoised output · σ = 0.2" loading="lazy" tabindex="0" role="link"><figcaption>Denoised output · σ = 0.2</figcaption></figure></div><h3>σ = 0.4</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_B/tiles/ood-3-0.png" alt="Noisy input · σ = 0.4" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.4</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-3-1.png" alt="Denoised output · σ = 0.4" loading="lazy" tabindex="0" role="link"><figcaption>Denoised output · σ = 0.4</figcaption></figure></div><h3>σ = 0.5</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_B/tiles/ood-4-0.png" alt="Noisy input · σ = 0.5" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.5</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-4-1.png" alt="Denoised output · σ = 0.5" loading="lazy" tabindex="0" role="link"><figcaption>Denoised output · σ = 0.5</figcaption></figure></div><h3>σ = 0.6</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_B/tiles/ood-5-0.png" alt="Noisy input · σ = 0.6" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.6</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-5-1.png" alt="Denoised output · σ = 0.6" loading="lazy" tabindex="0" role="link"><figcaption>Denoised output · σ = 0.6</figcaption></figure></div><h3>σ = 0.8</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_B/tiles/ood-6-0.png" alt="Noisy input · σ = 0.8" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 0.8</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-6-1.png" alt="Denoised output · σ = 0.8" loading="lazy" tabindex="0" role="link"><figcaption>Denoised output · σ = 0.8</figcaption></figure></div><h3>σ = 1.0</h3><div class="result-grid cols-2"><figure class="result-tile"><img src="results/part_B/tiles/ood-7-0.png" alt="Noisy input · σ = 1.0" loading="lazy" tabindex="0" role="link"><figcaption>Noisy input · σ = 1.0</figcaption></figure><figure class="result-tile"><img src="results/part_B/tiles/ood-7-1.png" alt="Denoised output · σ = 1.0" loading="lazy" tabindex="0" role="link"><figcaption>Denoised output · σ = 1.0</figcaption></figure></div><p class="panel-source"><a href="results/part_B/1_2_2.png" target="_blank" rel="noopener">View original panel ↗</a></p><div class="post-footer"><span>CS 180</span><span>Project 3 · Part B</span><a href="#b122" aria-label="Link to Out-of-Distribution Testing">↗</a></div></div></article>
+<article class="post" id="b123">
+<div class="avatar" aria-hidden="true">N</div><div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · January 2nd</span><span class="dots" aria-hidden="true">···</span></div>
+<h2>Denoising Pure Noise (1.2.3)</h2>
+<p>This is the result of the pure-noise denoiser. Since the inputs are pure noise independent of the target images, the denoiser is trained to minimize the MSE between its predictions and images from the MNIST distribution, which results in denoised samples that look like a blur of numbers. Also, since the optimal prediction is approximately the average of the digits, the training loss decreases very rapidly, and the results from epochs 1 and 5 do not differ significantly, nor do the results across samples.</p><figure class="media"><div class="image-slot loaded"><img src="results/part_B/1_2_3_examples_epoch1_5.png" alt="Pure-noise samples · epochs 1 and 5" loading="eager"><div class="missing"><strong>Pure-noise samples · epochs 1 and 5</strong></div></div><figcaption>Pure-noise samples · epochs 1 and 5</figcaption></figure><figure class="media"><div class="image-slot loaded"><img src="results/part_B/1_2_3_noise.png" alt="Pure-noise denoiser · training loss" loading="eager"><div class="missing"><strong>Pure-noise denoiser · training loss</strong></div></div><figcaption>Pure-noise denoiser · training loss</figcaption></figure><div class="post-footer"><span>CS 180</span><span>Project 3 · Part B</span><a href="#b123" aria-label="Link to Denoising Pure Noise">↗</a></div></div></article>
+<article class="post" id="b22">
+<div class="avatar" aria-hidden="true">N</div><div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · February 2nd</span><span class="dots" aria-hidden="true">···</span></div>
+<h2>Training the Time-Conditioned UNet (2.2)</h2>
+<p>This is the training loss curve for the time-conditioned UNet. Since the early high values dominate the scale, I added the epoch loss, which is the loss averaged across an epoch. We can see a clear downward trend during training.</p><figure class="media"><div class="image-slot loaded"><img src="results/part_B/2_2_loss.png" alt="Time-conditioned UNet · training loss by step" loading="eager"><div class="missing"><strong>Time-conditioned UNet · training loss by step</strong></div></div><figcaption>Time-conditioned UNet · training loss by step</figcaption></figure><figure class="media"><div class="image-slot loaded"><img src="results/part_B/2_2_epoch_loss.png" alt="Time-conditioned UNet · mean training loss by epoch" loading="eager"><div class="missing"><strong>Time-conditioned UNet · mean training loss by epoch</strong></div></div><figcaption>Time-conditioned UNet · mean training loss by epoch</figcaption></figure><div class="post-footer"><span>CS 180</span><span>Project 3 · Part B</span><a href="#b22" aria-label="Link to Training the Time-Conditioned UNet">↗</a></div></div></article>
+<article class="post" id="b23">
+<div class="avatar" aria-hidden="true">N</div><div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · February 3rd</span><span class="dots" aria-hidden="true">···</span></div>
+<h2>Sampling from the Time-Conditioned UNet (2.3)</h2>
+<p>The results from epoch 1 do not look like numbers at all, while those from epoch 5 contain a few features of numbers but are still ambiguous. Epoch 10 mostly produces samples that correspond to a single number, while a few, like sample 7, are still a bit ambiguous.</p><figure class="media"><div class="image-slot loaded"><img src="results/part_B/2_3_samples_1_5_10.png" alt="Time-conditioned samples · epochs 1, 5, and 10" loading="eager"><div class="missing"><strong>Time-conditioned samples · epochs 1, 5, and 10</strong></div></div><figcaption>Time-conditioned samples · epochs 1, 5, and 10</figcaption></figure><div class="post-footer"><span>CS 180</span><span>Project 3 · Part B</span><a href="#b23" aria-label="Link to Sampling from the Time-Conditioned UNet">↗</a></div></div></article>
+<article class="post" id="b25">
+<div class="avatar" aria-hidden="true">N</div><div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · February 5th</span><span class="dots" aria-hidden="true">···</span></div>
+<h2>Training the Class-Conditioned UNet (2.5)</h2>
+<p>A training loss curve plot for the class-conditioned UNet.</p><figure class="media"><div class="image-slot loaded"><img src="results/part_B/2_6_loss.png" alt="Class-conditioned UNet · training loss" loading="eager"><div class="missing"><strong>Class-conditioned UNet · training loss</strong></div></div><figcaption>Class-conditioned UNet · training loss</figcaption></figure><div class="post-footer"><span>CS 180</span><span>Project 3 · Part B</span><a href="#b25" aria-label="Link to Training the Class-Conditioned UNet">↗</a></div></div></article>
+<article class="post" id="b26">
+<div class="avatar" aria-hidden="true">N</div><div class="post-content">
+<div class="byline"><strong>Namwook Lee</strong><span>@namwook_lee · February 6th</span><span class="dots" aria-hidden="true">···</span></div>
+<h2>Sampling from the Class-Conditioned UNet (2.6)</h2>
+<p>This is a comparison of epochs 1, 5, and 10 of the class-conditioned samples and the epoch 10 result of the no-scheduler comparison. At epoch 5, the class-conditioned UNet already produces reliable results compared to the time-conditioned UNet. This is because class conditioning makes the objective clearer while denoising the image. Epochs 5 and 10 both produce near-perfect outputs. This motivated me to try a lower constant learning rate for the no-scheduler option. I changed it to 5e-3, which is half the initial learning rate of the original experiment and which I deemed sufficient, since epoch 5 was already performing well with the scheduler.</p><figure class="media"><div class="image-slot loaded"><img src="results/part_B/2_6_samples.png" alt="Class-conditioned samples · epochs 1, 5, 10, and no-scheduler comparison · four instances per digit" loading="eager"><div class="missing"><strong>Class-conditioned samples · epochs 1, 5, 10, and no-scheduler comparison · four instances per digit</strong></div></div><figcaption>Class-conditioned samples · epochs 1, 5, 10, and no-scheduler comparison · four instances per digit</figcaption></figure><figure class="media"><div class="image-slot loaded"><img src="results/part_B/2_6_loss_constant_lr.png" alt="Class-conditioned UNet · constant-learning-rate training loss" loading="eager"><div class="missing"><strong>Class-conditioned UNet · constant-learning-rate training loss</strong></div></div><figcaption>Class-conditioned UNet · constant-learning-rate training loss</figcaption></figure><div class="post-footer"><span>CS 180</span><span>Project 3 · Part B</span><a href="#b26" aria-label="Link to Sampling from the Class-Conditioned UNet">↗</a></div></div></article>
+<footer class="end-note">Namwook Lee · CS 180 · Project 3</footer>
+</main>
+<aside class="right">
+<div class="search-label">⌕ <span>Explore Project 3</span>
+</div>
+<section class="index-card">
+<h2>In this project</h2>
+<p>Part A · Flow models</p>
+<nav aria-label="Sections"><a href="#a11"><span>1.1</span>Constructing Noisy Training Inputs</a><a href="#a12"><span>1.2</span>Classical Denoising</a><a href="#a13"><span>1.3</span>One-Step Denoising</a><a href="#a14"><span>1.4</span>Visualizing Velocity</a><a href="#a15"><span>1.5</span>Iterative Denoising with Euler Sampling</a><a href="#a21"><span>1.6 &amp; 2.1</span>Classifier-Free Guidance</a><a href="#a31"><span>3.1</span>Image-to-Image Editing</a><a href="#a32"><span>3.2</span>Text-Guided Image Editing</a><a href="#a33"><span>3.3</span>Visual Anagrams</a><a href="#a34"><span>3.4</span>Hybrid Images</a>
+</nav><p class="index-part-b">Part B · Flow matching from scratch</p><nav aria-label="Part B sections"><a href="#b12"><span>1.2</span>Visualizing the Noising Process</a><a href="#b121"><span>1.2.1</span>Training a Single-Step Denoiser</a><a href="#b122"><span>1.2.2</span>Out-of-Distribution Testing</a><a href="#b123"><span>1.2.3</span>Denoising Pure Noise</a><a href="#b22"><span>2.2</span>Training the Time-Conditioned UNet</a><a href="#b23"><span>2.3</span>Sampling from the Time-Conditioned UNet</a><a href="#b25"><span>2.5</span>Training the Class-Conditioned UNet</a><a href="#b26"><span>2.6</span>Sampling from the Class-Conditioned UNet</a></nav>
+</section>
+<div class="right-note">CS 180 · UC Berkeley<br>Fall 2026</div>
+</aside>
+</div>
+<script src="preview.js">
+</script>
+<script>
+document.querySelectorAll('.result-tile img, .media img').forEach(img => {
+  const reveal = () => { const slot = img.closest('.image-slot'); if (slot) slot.classList.add('loaded'); img.tabIndex = 0; img.setAttribute('role', 'link'); };
+  img.addEventListener('load', reveal);
+  if (img.complete && img.naturalWidth) reveal();
+  img.onclick = () => window.open(img.src, '_blank', 'noopener');
+  img.onkeydown = event => { if (event.key === 'Enter') img.click(); };
+});
+</script></body></html>
