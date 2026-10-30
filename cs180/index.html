@@ -62,9 +62,48 @@
     border-top: 1px solid var(--rule);
   }
 
+  /* Each project page is dressed up as a different social app. */
+  .fb   { --app: #1877f2; }
+  .ig   { --app: #d62976; }
+  .br   { --app: #000; }
+  .x    { --app: #000; }
+  .snap { --app: #e6c800; }
+  @media (prefers-color-scheme: dark) { .br, .x { --app: #f2f2f2; } }
+
+  .appicon {
+    width: 52px; height: 52px; border-radius: 14px; flex: none;
+    display: grid; place-items: center; color: #fff; text-decoration: none;
+    box-shadow: 0 6px 16px -8px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08);
+    transition: transform .15s ease;
+  }
+  .appicon svg { width: 60%; height: 60%; }
+  .appicon b { font-family: var(--sans); font-size: 1.7rem; line-height: 1; }
+  .fb .appicon   { background: #1877f2; }
+  .ig .appicon   { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+  .br .appicon   { background: #000; }
+  .x .appicon    { background: #000; }
+  .snap .appicon { background: #fffc00; color: #000; }
+  @media (prefers-color-scheme: dark) { .br .appicon, .x .appicon { box-shadow: inset 0 0 0 1px #3a3d42; } }
+
+  .apps { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; margin: -.4rem 0 1.4rem; }
+  .apps .appicon { width: 34px; height: 34px; border-radius: 10px; }
+  .apps .appicon b { font-size: 1.1rem; }
+  .apps .arrow { color: var(--ink-3); font-family: var(--mono); font-size: .8rem; }
+  .apps a:hover .appicon, ul.projects li:hover .appicon { transform: translateY(-2px) rotate(-4deg); }
+
   ul.projects { list-style: none; margin: 0; padding: 0; }
-  ul.projects li { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+  ul.projects li {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem .8rem; margin: 0 -.8rem; border-bottom: 1px solid var(--rule);
+    border-left: 3px solid transparent; transition: background .15s ease, border-color .15s ease;
+  }
   ul.projects li:last-child { border-bottom: none; }
+  ul.projects li:hover { background: color-mix(in srgb, var(--app) 7%, transparent); border-left-color: var(--app); }
+  .styled {
+    display: inline-block; margin-left: .5rem; padding: .05rem .5rem; border-radius: 999px;
+    font-family: var(--sans); font-size: .68rem; font-weight: 600; letter-spacing: .02em; text-transform: none;
+    color: var(--app); border: 1px solid color-mix(in srgb, var(--app) 45%, transparent);
+  }
   .no {
     font-family: var(--mono); font-size: .7rem; letter-spacing: .12em;
     text-transform: uppercase; color: var(--ink-3);
@@ -101,46 +140,72 @@
 
 <main>
   <h2>Projects</h2>
+  <div class="apps" aria-label="Each project page is styled as a different social app">
+    <span class="fb"><a class="appicon" href="proj0/" aria-label="Facebook — open project"><b>f</b></a></span>
+    <span class="arrow">→</span>
+    <span class="ig"><a class="appicon" href="proj1/" aria-label="Instagram — open project"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="#fff" stroke="none"/></svg></a></span>
+    <span class="arrow">→</span>
+    <span class="br"><a class="appicon" href="proj2/" aria-label="BeReal — open project"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3.5" y="4" width="17" height="16" rx="3"/><rect x="6" y="6.5" width="7" height="6.5" rx="1.6" fill="#fff" stroke="none"/></svg></a></span>
+    <span class="arrow">→</span>
+    <span class="x"><a class="appicon" href="proj3/" aria-label="X — open project"><b>𝕏</b></a></span>
+    <span class="arrow">→</span>
+    <span class="snap"><a class="appicon" href="proj4/" aria-label="Snapchat — open project"><svg viewBox="0 0 24 24"><path d="M12 3.5c-3 0-5 2.2-5 5.2v2.2l-1.5.8c-.5.3-.3.8.2 1l1.3.3c-.5 1.5-1.6 2.6-3.1 3.1 0 .8 1.5 1 2.5 1.2l.5 1h1.5c1 0 2 1 3.6 1s2.6-1 3.6-1h1.5l.5-1c1-.2 2.5-.4 2.5-1.2-1.5-.5-2.6-1.6-3.1-3.1l1.3-.3c.5-.2.7-.7.2-1l-1.5-.8V8.7c0-3-2-5.2-5-5.2z" fill="#fff" stroke="#000" stroke-width="1.3" stroke-linejoin="round"/></svg></a></span>
+  </div>
   <ul class="projects">
-    <li>
-      <div class="no">Project 0</div>
+    <li class="fb">
+      <a class="appicon" href="proj0/" aria-label="Facebook — open project"><b>f</b></a>
+      <div>
+      <div class="no">Project 0<span class="styled">styled as Facebook</span></div>
       <div class="title"><a href="proj0/">Becoming Friends with Your Camera</a></div>
       <p class="desc">
         Perspective, focal length, and the center of projection — a selfie shot two ways, Stanford
         architecture flattened by a long lens, and a dolly zoom.
       </p>
+      </div>
     </li>
-    <li>
-      <div class="no">Project 1</div>
+    <li class="ig">
+      <a class="appicon" href="proj1/" aria-label="Instagram — open project"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1" fill="#fff" stroke="none"/></svg></a>
+      <div>
+      <div class="no">Project 1<span class="styled">styled as Instagram</span></div>
       <div class="title"><a href="proj1/">Colorizing the Prokudin-Gorskii Photo Collection</a></div>
       <p class="desc">
         Three glass plate negatives from 1907, aligned back into one color photograph — a naive
         search over shifts, gradient-based matching, and a pyramid that keeps the big scans fast.
       </p>
+      </div>
     </li>
-    <li>
-      <div class="no">Project 2</div>
+    <li class="br">
+      <a class="appicon" href="proj2/" aria-label="BeReal — open project"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3.5" y="4" width="17" height="16" rx="3"/><rect x="6" y="6.5" width="7" height="6.5" rx="1.6" fill="#fff" stroke="none"/></svg></a>
+      <div>
+      <div class="no">Project 2<span class="styled">styled as BeReal</span></div>
       <div class="title"><a href="proj2/">Fun with Filters and Frequencies</a></div>
       <p class="desc">
         Convolution written out by hand, edges found two ways, and then the frequency tricks — unsharp
         masking, hybrid images that change identity as you walk away, and seams blended away one scale
         at a time.
       </p>
+      </div>
     </li>
-    <li>
-      <div class="no">Project 3</div>
+    <li class="x">
+      <a class="appicon" href="proj3/" aria-label="X — open project"><b>𝕏</b></a>
+      <div>
+      <div class="no">Project 3<span class="styled">styled as X</span></div>
       <div class="title"><a href="proj3/">Fun with Flow Models</a></div>
       <p class="desc">
         Image editing, visual anagrams, and hybrid images with a pretrained flow model, followed by
         training time-conditioned and class-conditioned flow matching models on MNIST from scratch.
       </p>
+      </div>
     </li>
-    <li>
-      <div class="no">Project 4</div>
+    <li class="snap">
+      <a class="appicon" href="proj4/" aria-label="Snapchat — open project"><svg viewBox="0 0 24 24"><path d="M12 3.5c-3 0-5 2.2-5 5.2v2.2l-1.5.8c-.5.3-.3.8.2 1l1.3.3c-.5 1.5-1.6 2.6-3.1 3.1 0 .8 1.5 1 2.5 1.2l.5 1h1.5c1 0 2 1 3.6 1s2.6-1 3.6-1h1.5l.5-1c1-.2 2.5-.4 2.5-1.2-1.5-.5-2.6-1.6-3.1-3.1l1.3-.3c.5-.2.7-.7.2-1l-1.5-.8V8.7c0-3-2-5.2-5-5.2z" fill="#fff" stroke="#000" stroke-width="1.3" stroke-linejoin="round"/></svg></a>
+      <div>
+      <div class="no">Project 4<span class="styled">styled as Snapchat</span></div>
       <div class="title"><a href="proj4/">Image Warping and Mosaicing</a></div>
       <p class="desc">
         Part A: homographies, rectification, and image mosaics.
       </p>
+      </div>
     </li>
   </ul>
 
