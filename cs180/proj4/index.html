@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project 4A: Image Warping and Mosaicing — Namwook Lee, CS 180</title>
+<meta name="description" content="CS 180 Project 4A: recovering homographies, inverse warping with nearest-neighbor and bilinear interpolation, rectification, and feathered image mosaics.">
+<meta name="author" content="Namwook Lee">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project 4A: Image Warping and Mosaicing">
+<meta property="og:description" content="Homographies, rectification, and image mosaics — CS 180, UC Berkeley.">
+<meta property="og:image" content="https://namwook0921.github.io/cs180/proj4/results/a4/morocco_mosaic.jpg">
+<link rel="stylesheet" href="../assets/css/snap.css?v=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23fffc00'/><path d='M50 22c-12 0-20 9-20 21v9l-6 3c-2 1-1 3 1 4l5 1c-2 6-6 10-12 12 0 3 6 4 10 5l2 4h6c4 0 8 4 14 4s10-4 14-4h6l2-4c4-1 10-2 10-5-6-2-10-6-12-12l5-1c2-1 3-3 1-4l-6-3v-9c0-12-8-21-20-21z' fill='%23fff' stroke='%23000' stroke-width='4' stroke-linejoin='round'/></svg>">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="bitmoji" href="#main" aria-label="Profile">N</a>
+    <div class="topbar__title">
+      <div class="t1">Project 4A</div>
+      <div class="t2">Image Warping and Mosaicing</div>
+    </div>
+    <a class="iconbtn ghost" href="../" aria-label="All projects" title="All projects">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c-3 0-5 2.2-5 5.2v2.2l-1.5.8c-.5.3-.3.8.2 1l1.3.3c-.5 1.5-1.6 2.6-3.1 3.1 0 .8 1.5 1 2.5 1.2l.5 1h1.5c1 0 2 1 3.6 1s2.6-1 3.6-1h1.5l.5-1c1-.2 2.5-.4 2.5-1.2-1.5-.5-2.6-1.6-3.1-3.1l1.3-.3c.5-.2.7-.7.2-1l-1.5-.8V8.7c0-3-2-5.2-5-5.2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</header>
+
+<main class="feed" id="main">
+
+  <!-- Shown only when printing to PDF for Gradescope -->
+  <div class="printhead">
+    <div><b>Namwook Lee</b> — CS 180, UC Berkeley, Fall 2026 — Project 4A: Image Warping and Mosaicing</div>
+    <div>URL: <span class="u">https://namwook0921.github.io/cs180/proj4/</span></div>
+  </div>
+
+  <!-- ==================== PROFILE ==================== -->
+  <section class="profile">
+    <div class="snapcode" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M12 3.5c-3 0-5 2.2-5 5.2v2.2l-1.5.8c-.5.3-.3.8.2 1l1.3.3c-.5 1.5-1.6 2.6-3.1 3.1 0 .8 1.5 1 2.5 1.2l.5 1h1.5c1 0 2 1 3.6 1s2.6-1 3.6-1h1.5l.5-1c1-.2 2.5-.4 2.5-1.2-1.5-.5-2.6-1.6-3.1-3.1l1.3-.3c.5-.2.7-.7.2-1l-1.5-.8V8.7c0-3-2-5.2-5-5.2z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
+    </div>
+    <h1>Image Warping and Mosaicing</h1>
+    <div class="user">Namwook Lee · namwook_lee</div>
+    <div class="pills">
+      <span class="pill pill--snap">Project 4 · Part A</span>
+      <span class="pill">🔥 180 Snapscore</span>
+      <span class="pill">📍 UC Berkeley · Fall 2026</span>
+      <a class="pill" href="https://cal-cs180.github.io/fa26/hw/proj3/partA.html" target="_blank" rel="noopener">↗ Assignment</a>
+    </div>
+
+    <nav class="stories" aria-label="Sections">
+      <a class="story" href="#a1"><div class="story__ring"><img src="results/a1/morocco1.jpg" alt=""></div>A.1 Shoot</a>
+      <a class="story" href="#a2"><div class="story__ring"><img src="results/a2/apt_corr.jpg" alt=""></div>A.2 Homography</a>
+      <a class="story" href="#a3"><div class="story__ring"><img src="results/a3/vietnam_warp_bilinear.jpg" alt=""></div>A.3 Warp</a>
+      <a class="story" href="#rect"><div class="story__ring"><img src="results/rect/tomato_soup_bilinear.jpg" alt=""></div>Rectify</a>
+      <a class="story" href="#interp"><div class="story__ring"><img src="results/rect/tomato_soup_nn_zoom.png" alt=""></div>NN vs Bilinear</a>
+      <a class="story" href="#a4"><div class="story__ring"><img src="results/a4/apt_mosaic.jpg" alt=""></div>A.4 Mosaics</a>
+    </nav>
+
+  </section>
+
+  <!-- ==================== A.1 · SHOOT THE PICTURES ==================== -->
+  <section class="thread" id="a1" data-short="A.1 · Shoot the Pictures">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Shoot the Pictures</h2><div class="sub">3 pairs · fixed center of projection</div></div>
+      <span class="chip">A.1</span>
+    </div>
+
+    <div class="msg msg--them">
+      <div class="msg__who">CS 180</div>
+      <div class="msg__body"><p>Show at least 2 sets of images with projective transformations between them (fixed center of projection, rotate the camera).</p></div>
+    </div>
+
+
+    <div class="day">Apartment courtyard</div>
+    <div class="snaps cols-2">
+      <figure class="snap tall"><img src="results/a1/apt1.jpg" alt="Apartment, left view" loading="lazy"><figcaption>apt1 · left</figcaption></figure>
+      <figure class="snap tall"><img src="results/a1/apt2.jpg" alt="Apartment, right view" loading="lazy"><figcaption>apt2 · right</figcaption></figure>
+    </div>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>Night view from my apartment.</p></div>
+    </div>
+
+    <div class="day">Morocco resort</div>
+    <div class="snaps cols-2">
+      <figure class="snap tall"><img src="results/a1/morocco1.jpg" alt="Morocco resort, left view" loading="lazy"><figcaption>morocco1 · left</figcaption></figure>
+      <figure class="snap tall"><img src="results/a1/morocco2.jpg" alt="Morocco resort, right view" loading="lazy"><figcaption>morocco2 · right</figcaption></figure>
+    </div>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>Morocco was beautiful!!!</p></div>
+    </div>
+
+    <div class="day">Vietnam temple</div>
+    <div class="snaps cols-2">
+      <figure class="snap tall"><img src="results/a1/vietnam1.jpg" alt="Vietnam temple, looking down" loading="lazy"><figcaption>vietnam1</figcaption></figure>
+      <figure class="snap tall"><img src="results/a1/vietnam2.jpg" alt="Vietnam temple, looking out" loading="lazy"><figcaption>vietnam2</figcaption></figure>
+    </div>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>So was Danang :&gt;</p></div>
+    </div>
+  </section>
+
+  <!-- ==================== A.2 · RECOVER HOMOGRAPHIES ==================== -->
+  <section class="thread" id="a2" data-short="A.2 · Recover Homographies">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Recover Homographies</h2><div class="sub">computeH(im1_pts, im2_pts) · least squares</div></div>
+      <span class="chip">A.2</span>
+    </div>
+
+    <div class="msg msg--them">
+      <div class="msg__who">CS 180</div>
+      <div class="msg__body"><p>Implement <code>computeH(im1_pts, im2_pts)</code>. Show your correspondences visualized on the images, the system of equations, and the recovered homography matrix.</p></div>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body">
+        <p>Homographies map points from a plane to another plane viewed from a different angle or perspective. For each pair of (x,y) and (x',y'), <code>computeH(im1_pts, im2_pts)</code> wants to find the homography matrix H that projects (x,y) to (x',y') as accurately as possible. In practice, there isn't an exact solution for more than 4 points, so we find the least-squares solution of Ah = b, where A and b are constructed by stacking the rows shown below. The resulting h gives the entries of the homography matrix (H[3,3] is fixed to 1).</p>
+        <div class="card">
+          <h4>Two rows per correspondence (x, y) → (x′, y′)</h4>
+          <div class="math"><span class="eq">
+            <span class="mat c8"><span>x</span><span>y</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−xx′</span><span>−yx′</span><span>0</span><span>0</span><span>0</span><span>x</span><span>y</span><span>1</span><span>−xy′</span><span>−yy′</span></span>
+            <span class="mat c1"><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span></span>
+            <span>=</span>
+            <span class="mat c1"><span>x′</span><span>y′</span></span>
+          </span></div>
+          <div class="note">H = [[a, b, c], [d, e, f], [g, h, 1]] · stack all rows into A h = b and solve with np.linalg.lstsq</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">Apartment · 7 points</div>
+    <figure class="snap wide"><img src="results/a2/apt_corr.jpg" alt="Apartment correspondences" loading="lazy"><figcaption>Apartment · correspondences</figcaption></figure>
+    <div class="mats">
+        <div class="card"><h4>Apartment · first 2 of 7 correspondences (4 of 14 rows)</h4>
+          <div class="math"><span class="eq"><span class="mat c8"><span>1569</span><span>973.5</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−2.652×10<sup>5</sup></span><span>−1.645×10<sup>5</sup></span><span>0</span><span>0</span><span>0</span><span>1569</span><span>973.5</span><span>1</span><span>−1.644×10<sup>6</sup></span><span>−1.02×10<sup>6</sup></span><span>1850</span><span>643.5</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−8.119×10<sup>5</sup></span><span>−2.825×10<sup>5</sup></span><span>0</span><span>0</span><span>0</span><span>1850</span><span>643.5</span><span>1</span><span>−1.427×10<sup>6</sup></span><span>−4.965×10<sup>5</sup></span></span><span>h =</span><span class="mat c1"><span>169</span><span>1048</span><span>439</span><span>771.5</span></span></span></div>
+        </div>
+        <div class="card"><h4>Apartment · recovered H</h4>
+          <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>1.727</span><span>0.06076</span><span>−2510</span><span>0.4873</span><span>1.503</span><span>−623</span><span>0.0003602</span><span>−4.439×10<sup>−5</sup></span><span>1</span></span></span></div>
+          <div class="note">Reprojection error: mean 8.6 px, max 11.1 px (half-size images)</div>
+        </div>
+      </div>
+
+    <div class="day">Morocco · 8 points</div>
+    <figure class="snap wide"><img src="results/a2/morocco_corr.jpg" alt="Morocco correspondences" loading="lazy"><figcaption>Morocco · correspondences</figcaption></figure>
+    <div class="mats">
+        <div class="card"><h4>Morocco · first 2 of 8 correspondences (4 of 16 rows)</h4>
+          <div class="math"><span class="eq"><span class="mat c8"><span>1308</span><span>1350</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−6.985×10<sup>5</sup></span><span>−7.212×10<sup>5</sup></span><span>0</span><span>0</span><span>0</span><span>1308</span><span>1350</span><span>1</span><span>−1.538×10<sup>6</sup></span><span>−1.588×10<sup>6</sup></span><span>1318</span><span>1454</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−7.242×10<sup>5</sup></span><span>−7.992×10<sup>5</sup></span><span>0</span><span>0</span><span>0</span><span>1318</span><span>1454</span><span>1</span><span>−1.694×10<sup>6</sup></span><span>−1.87×10<sup>6</sup></span></span><span>h =</span><span class="mat c1"><span>534</span><span>1176</span><span>549.5</span><span>1286</span></span></span></div>
+        </div>
+        <div class="card"><h4>Morocco · recovered H</h4>
+          <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>1.757</span><span>0.03289</span><span>−1435</span><span>0.4187</span><span>1.601</span><span>−713.7</span><span>0.00047</span><span>5.473×10<sup>−5</sup></span><span>1</span></span></span></div>
+          <div class="note">Reprojection error: mean 4.8 px, max 11.1 px (half-size images)</div>
+        </div>
+      </div>
+
+    <div class="day">Vietnam · 8 points</div>
+    <figure class="snap wide"><img src="results/a2/vietnam_corr.jpg" alt="Vietnam correspondences" loading="lazy"><figcaption>Vietnam · correspondences</figcaption></figure>
+    <div class="mats">
+        <div class="card"><h4>Vietnam · first 2 of 8 correspondences (4 of 16 rows)</h4>
+          <div class="math"><span class="eq"><span class="mat c8"><span>1418</span><span>27.5</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−8.231×10<sup>5</sup></span><span>−1.596×10<sup>4</sup></span><span>0</span><span>0</span><span>0</span><span>1418</span><span>27.5</span><span>1</span><span>−1.273×10<sup>6</sup></span><span>−2.468×10<sup>4</sup></span><span>1786</span><span>92</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−1.561×10<sup>6</sup></span><span>−8.041×10<sup>4</sup></span><span>0</span><span>0</span><span>0</span><span>1786</span><span>92</span><span>1</span><span>−1.717×10<sup>6</sup></span><span>−8.846×10<sup>4</sup></span></span><span>h =</span><span class="mat c1"><span>580.5</span><span>897.5</span><span>874</span><span>961.5</span></span></span></div>
+        </div>
+        <div class="card"><h4>Vietnam · recovered H</h4>
+          <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>1.046</span><span>−0.4116</span><span>−805.3</span><span>0.08753</span><span>0.3373</span><span>917.6</span><span>0.0001131</span><span>−0.0004369</span><span>1</span></span></span></div>
+          <div class="note">Reprojection error: mean 23.5 px, max 41.0 px (half-size images)</div>
+        </div>
+      </div>
+  </section>
+
+  <!-- ==================== A.3 · WARP THE IMAGES ==================== -->
+  <section class="thread" id="a3" data-short="A.3 · Warp the Images">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Warp the Images</h2><div class="sub">inverse warping · nearest neighbor &amp; bilinear</div></div>
+      <span class="chip">A.3</span>
+    </div>
+
+    <div class="msg msg--them">
+      <div class="msg__who">CS 180</div>
+      <div class="msg__body"><p>Implement <code>warpImageNearestNeighbor(im, H)</code> and <code>warpImageBilinear(im, H)</code> using inverse warping. Apply to 2+ images for rectification. Show comparisons.</p></div>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body">
+        <p>We can now warp an image to match the reference plane's frame, or even warp both images to a certain plane we want, using the homography matrix. In warping, the coordinates don't map one-to-one onto pixels, so we implement nearest neighbor, which copies the nearest pixel's value, and bilinear, which takes the weighted average of the four neighboring pixels.</p>
+      </div>
+    </div>
+
+    <div class="day">Left image warped into the right image's frame</div>
+    <div class="snaps cols-2">
+      <figure class="snap wide"><img src="results/a3/apt_warp_nn.jpg" alt="Apartment warped, nearest neighbor" loading="lazy"><figcaption>Apartment · nearest neighbor</figcaption></figure>
+      <figure class="snap wide"><img src="results/a3/apt_warp_bilinear.jpg" alt="Apartment warped, bilinear" loading="lazy"><figcaption>Apartment · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="results/a3/morocco_warp_nn.jpg" alt="Morocco warped, nearest neighbor" loading="lazy"><figcaption>Morocco · nearest neighbor</figcaption></figure>
+      <figure class="snap wide"><img src="results/a3/morocco_warp_bilinear.jpg" alt="Morocco warped, bilinear" loading="lazy"><figcaption>Morocco · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="results/a3/vietnam_warp_nn.jpg" alt="Vietnam warped, nearest neighbor" loading="lazy"><figcaption>Vietnam · nearest neighbor</figcaption></figure>
+      <figure class="snap wide"><img src="results/a3/vietnam_warp_bilinear.jpg" alt="Vietnam warped, bilinear" loading="lazy"><figcaption>Vietnam · bilinear</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ==================== A.3 · RECTIFICATION ==================== -->
+  <section class="thread" id="rect" data-short="A.3 · Rectification">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Rectification</h2><div class="sub">making known rectangles rectangular</div></div>
+      <span class="chip">A.3</span>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body">
+        <p>We verify our warp functions by finding a rectangular region in the original image and mapping it to a full image with a homography.</p>
+      </div>
+    </div>
+
+    <div class="day">Concert · stage screen</div>
+    <figure class="snap wide"><img src="results/rect/concert_corr.jpg" alt="Concert original and rectified stage screen" loading="lazy"><figcaption>Concert · original → rectified</figcaption></figure>
+    <div class="card"><h4>Concert · H (clicked quad → 1.3 : 1 rectangle, blue stage screen)</h4>
+          <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>0.4912</span><span>0</span><span>−179.8</span><span>−0.1451</span><span>0.346</span><span>−70.07</span><span>−0.000907</span><span>0</span><span>1</span></span></span></div>
+        </div>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>BIGBANG is the OG K-pop group. They performed in Oakland last month!</p></div>
+    </div>
+
+    <div class="day">World Cup · TV</div>
+    <figure class="snap wide"><img src="results/rect/worldcup_corr.jpg" alt="World Cup original and rectified TV" loading="lazy"><figcaption>World Cup · original → rectified</figcaption></figure>
+    <div class="card"><h4>World Cup · H (clicked quad → 16 : 9 rectangle, TV screen)</h4>
+          <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>0.8911</span><span>0.0502</span><span>−181.7</span><span>−0.05436</span><span>0.8076</span><span>−391</span><span>−0.0001984</span><span>1.253×10<sup>−5</sup></span><span>1</span></span></span></div>
+        </div>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>The GOAT's last World Cup match.</p></div>
+    </div>
+
+    <div class="day">Tomato Soup · painting</div>
+    <figure class="snap wide"><img src="results/rect/tomato_soup_corr.jpg" alt="Tomato Soup original and rectified painting" loading="lazy"><figcaption>Tomato Soup · original → rectified</figcaption></figure>
+    <div class="card"><h4>Tomato Soup · H (clicked quad → 4 : 5 rectangle, painting)</h4>
+          <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>0.7925</span><span>−0.02286</span><span>−46.22</span><span>−0.1464</span><span>0.7472</span><span>−189.1</span><span>−0.0006195</span><span>−0.0002227</span><span>1</span></span></span></div>
+        </div>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>Would I have seen aliasing if there were infinitely more pieces?</p></div>
+    </div>
+  </section>
+
+  <!-- ==================== A.3 · NN VS BILINEAR ==================== -->
+  <section class="thread" id="interp" data-short="A.3 · Nearest Neighbor vs. Bilinear">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Nearest Neighbor vs. Bilinear</h2><div class="sub">zoomed comparison</div></div>
+      <span class="chip">A.3</span>
+    </div>
+
+    <div class="day">Rectified results</div>
+    <div class="snaps cols-2">
+      <figure class="snap wide"><img src="results/rect/concert_nn.jpg" alt="Concert rectified, nearest neighbor" loading="lazy"><figcaption>Concert · NN</figcaption></figure>
+      <figure class="snap wide"><img src="results/rect/concert_bilinear.jpg" alt="Concert rectified, bilinear" loading="lazy"><figcaption>Concert · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="results/rect/worldcup_nn.jpg" alt="World Cup rectified, nearest neighbor" loading="lazy"><figcaption>World Cup · NN</figcaption></figure>
+      <figure class="snap wide"><img src="results/rect/worldcup_bilinear.jpg" alt="World Cup rectified, bilinear" loading="lazy"><figcaption>World Cup · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="results/rect/tomato_soup_nn.jpg" alt="Tomato Soup rectified, nearest neighbor" loading="lazy"><figcaption>Tomato Soup · NN</figcaption></figure>
+      <figure class="snap wide"><img src="results/rect/tomato_soup_bilinear.jpg" alt="Tomato Soup rectified, bilinear" loading="lazy"><figcaption>Tomato Soup · bilinear</figcaption></figure>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>We zoom in on the warped images to compare the nearest-neighbor and bilinear warps.</p></div>
+    </div>
+
+    <div class="day">Zoomed in · center 30%</div>
+    <div class="snaps cols-2">
+      <figure class="snap wide pixel"><img src="results/rect/tomato_soup_nn_zoom.png" alt="Tomato Soup zoom, nearest neighbor" loading="lazy"><figcaption>Tomato Soup · NN zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="results/rect/tomato_soup_bilinear_zoom.png" alt="Tomato Soup zoom, bilinear" loading="lazy"><figcaption>Tomato Soup · bilinear zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="results/rect/worldcup_nn_zoom.png" alt="World Cup zoom, nearest neighbor" loading="lazy"><figcaption>World Cup · NN zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="results/rect/worldcup_bilinear_zoom.png" alt="World Cup zoom, bilinear" loading="lazy"><figcaption>World Cup · bilinear zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="results/rect/concert_nn_zoom.png" alt="Concert zoom, nearest neighbor" loading="lazy"><figcaption>Concert · NN zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="results/rect/concert_bilinear_zoom.png" alt="Concert zoom, bilinear" loading="lazy"><figcaption>Concert · bilinear zoom</figcaption></figure>
+    </div>
+
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p><b>Tomato Soup:</b> We see a smoother circle from the bilinear warp. However, the letters also look a bit blurred.</p><p><b>World Cup:</b> The bilinear warp shows a smoother image of the people, while the nearest-neighbor result has a bit more contrast.</p></div>
+    </div>
+  </section>
+
+  <!-- ==================== A.4 · MOSAICS ==================== -->
+  <section class="thread" id="a4" data-short="A.4 · Mosaics">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Blend the Images into a Mosaic</h2><div class="sub">feathered weighted averaging</div></div>
+      <span class="chip">A.4</span>
+    </div>
+
+    <div class="msg msg--them">
+      <div class="msg__who">CS 180</div>
+      <div class="msg__body"><p>Show 3 mosaics with source images. Use weighted averaging or blending to reduce edge artifacts. Explain your procedure.</p></div>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body">
+        <p>We keep the second image fixed and warp the first image into the second image's frame using the homography and the bilinear warp. Then, we size the canvas and take a weighted average of the two images for smooth blending. In particular, we use the feathering method.</p>
+      </div>
+    </div>
+
+    <div class="day">Mosaic 1 · Apartment</div>
+    <div class="snaps cols-2">
+      <figure class="snap tall"><img src="results/a1/apt1.jpg" alt="Apartment source, left" loading="lazy"><figcaption>Source · left</figcaption></figure>
+      <figure class="snap tall"><img src="results/a1/apt2.jpg" alt="Apartment source, right" loading="lazy"><figcaption>Source · right</figcaption></figure>
+    </div>
+    <figure class="snap wide"><img src="results/a4/apt_mosaic.jpg" alt="Apartment mosaic" loading="lazy"><figcaption>Apartment · mosaic</figcaption></figure>
+
+    <div class="day">Mosaic 2 · Morocco</div>
+    <div class="snaps cols-2">
+      <figure class="snap tall"><img src="results/a1/morocco1.jpg" alt="Morocco source, left" loading="lazy"><figcaption>Source · left</figcaption></figure>
+      <figure class="snap tall"><img src="results/a1/morocco2.jpg" alt="Morocco source, right" loading="lazy"><figcaption>Source · right</figcaption></figure>
+    </div>
+    <figure class="snap wide"><img src="results/a4/morocco_mosaic.jpg" alt="Morocco mosaic" loading="lazy"><figcaption>Morocco · mosaic</figcaption></figure>
+
+    <div class="day">Mosaic 3 · Vietnam</div>
+    <div class="snaps cols-2">
+      <figure class="snap tall"><img src="results/a1/vietnam1.jpg" alt="Vietnam source 1" loading="lazy"><figcaption>Source 1</figcaption></figure>
+      <figure class="snap tall"><img src="results/a1/vietnam2.jpg" alt="Vietnam source 2" loading="lazy"><figcaption>Source 2</figcaption></figure>
+    </div>
+    <figure class="snap wide"><img src="results/a4/vietnam_mosaic.jpg" alt="Vietnam mosaic" loading="lazy"><figcaption>Vietnam · mosaic</figcaption></figure>
+  </section>
+
+
+</main>
+
+<footer class="foot">
+  Namwook Lee © 2026 · <a href="../">All projects</a> · <a href="https://cal-cs180.github.io/fa26/">CS 180 course site</a>
+</footer>
+
+<!-- Full-screen story viewer -->
+<div class="viewer" role="dialog" aria-modal="true" aria-label="Snap viewer">
+  <div class="viewer__bars"></div>
+  <div class="viewer__hd">
+    <span class="bitmoji">N</span>
+    <div><b>namwook_lee</b><small class="viewer__where"></small></div>
+    <button class="viewer__close" type="button" aria-label="Close">×</button>
+  </div>
+  <div class="viewer__stage">
+    <img alt="">
+    <div class="viewer__cap"></div>
+    <button class="viewer__nav viewer__nav--prev" type="button" aria-label="Previous snap"></button>
+    <button class="viewer__nav viewer__nav--next" type="button" aria-label="Next snap"></button>
+  </div>
+  <div class="viewer__hint">Tap left / right or use ← → · Esc to close</div>
+</div>
+
+<script src="../assets/js/snap.js?v=1"></script>
+</body>
+</html>
