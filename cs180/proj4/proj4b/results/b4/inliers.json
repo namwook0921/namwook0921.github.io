@@ -1,0 +1,14 @@
+{
+ "apt": {
+  "matches": 82,
+  "inliers": 68
+ },
+ "morocco": {
+  "matches": 117,
+  "inliers": 111
+ },
+ "vietnam": {
+  "matches": 42,
+  "inliers": 15
+ }
+}

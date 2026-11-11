@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Project 4A: Image Warping and Mosaicing — Namwook Lee, CS 180</title>
-<meta name="description" content="CS 180 Project 4A: recovering homographies, inverse warping with nearest-neighbor and bilinear interpolation, rectification, and feathered image mosaics.">
+<title>Project 4: Image Warping and Mosaicing — Namwook Lee, CS 180</title>
+<meta name="description" content="CS 180 Project 4: homographies, rectification, and feathered image mosaics (Part A), then automatic stitching with Harris corners, ANMS, feature matching, and RANSAC (Part B).">
 <meta name="author" content="Namwook Lee">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Project 4A: Image Warping and Mosaicing">
-<meta property="og:description" content="Homographies, rectification, and image mosaics — CS 180, UC Berkeley.">
-<meta property="og:image" content="https://namwook0921.github.io/cs180/proj4/results/a4/morocco_mosaic.jpg">
+<meta property="og:title" content="Project 4: Image Warping and Mosaicing">
+<meta property="og:description" content="Homographies, rectification, and manual and automatic image mosaics — CS 180, UC Berkeley.">
+<meta property="og:image" content="https://namwook0921.github.io/cs180/proj4/proj4a/results/a4/morocco_mosaic.jpg">
 <link rel="stylesheet" href="../assets/css/snap.css?v=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23fffc00'/><path d='M50 22c-12 0-20 9-20 21v9l-6 3c-2 1-1 3 1 4l5 1c-2 6-6 10-12 12 0 3 6 4 10 5l2 4h6c4 0 8 4 14 4s10-4 14-4h6l2-4c4-1 10-2 10-5-6-2-10-6-12-12l5-1c2-1 3-3 1-4l-6-3v-9c0-12-8-21-20-21z' fill='%23fff' stroke='%23000' stroke-width='4' stroke-linejoin='round'/></svg>">
 </head>
@@ -21,7 +21,7 @@
   <div class="topbar__inner">
     <a class="bitmoji" href="../" aria-label="All projects" title="All projects">N</a>
     <div class="topbar__title">
-      <div class="t1">Project 4A</div>
+      <div class="t1">Project 4</div>
       <div class="t2">Image Warping and Mosaicing</div>
     </div>
     <a class="iconbtn ghost" href="../" aria-label="All projects" title="All projects">
@@ -34,7 +34,7 @@
 
   <!-- Shown only when printing to PDF for Gradescope -->
   <div class="printhead">
-    <div><b>Namwook Lee</b> — CS 180, UC Berkeley, Fall 2026 — Project 4A: Image Warping and Mosaicing</div>
+    <div><b>Namwook Lee</b> — CS 180, UC Berkeley, Fall 2026 — Project 4: Image Warping and Mosaicing (Parts A and B)</div>
     <div>URL: <span class="u">https://namwook0921.github.io/cs180/proj4/</span></div>
   </div>
 
@@ -46,19 +46,23 @@
     <h1>Image Warping and Mosaicing</h1>
     <div class="user">Namwook Lee · namwook_lee</div>
     <div class="pills">
-      <span class="pill pill--snap">Project 4 · Part A</span>
+      <span class="pill pill--snap">Project 4 · Parts A + B</span>
       <span class="pill">🔥 180 Snapscore</span>
       <span class="pill">📍 UC Berkeley · Fall 2026</span>
       <a class="pill" href="https://cal-cs180.github.io/fa26/hw/proj3/partA.html" target="_blank" rel="noopener">↗ Assignment</a>
     </div>
 
     <nav class="stories" aria-label="Sections">
-      <a class="story" href="#a1"><div class="story__ring"><img src="results/a1/morocco1.jpg" alt=""></div>A.1 Shoot</a>
-      <a class="story" href="#a2"><div class="story__ring"><img src="results/a2/apt_corr.jpg" alt=""></div>A.2 Homography</a>
-      <a class="story" href="#a3"><div class="story__ring"><img src="results/a3/vietnam_warp_bilinear.jpg" alt=""></div>A.3 Warp</a>
-      <a class="story" href="#rect"><div class="story__ring"><img src="results/rect/tomato_soup_bilinear.jpg" alt=""></div>Rectify</a>
-      <a class="story" href="#interp"><div class="story__ring"><img src="results/rect/tomato_soup_nn_zoom.png" alt=""></div>NN vs Bilinear</a>
-      <a class="story" href="#a4"><div class="story__ring"><img src="results/a4/apt_mosaic.jpg" alt=""></div>A.4 Mosaics</a>
+      <a class="story" href="#a1"><div class="story__ring"><img src="proj4a/results/a1/morocco1.jpg" alt=""></div>A.1 Shoot</a>
+      <a class="story" href="#a2"><div class="story__ring"><img src="proj4a/results/a2/apt_corr.jpg" alt=""></div>A.2 Homography</a>
+      <a class="story" href="#a3"><div class="story__ring"><img src="proj4a/results/a3/vietnam_warp_bilinear.jpg" alt=""></div>A.3 Warp</a>
+      <a class="story" href="#rect"><div class="story__ring"><img src="proj4a/results/rect/tomato_soup_bilinear.jpg" alt=""></div>Rectify</a>
+      <a class="story" href="#interp"><div class="story__ring"><img src="proj4a/results/rect/tomato_soup_nn_zoom.png" alt=""></div>NN vs Bilinear</a>
+      <a class="story" href="#a4"><div class="story__ring"><img src="proj4a/results/a4/apt_mosaic.jpg" alt=""></div>A.4 Mosaics</a>
+      <a class="story" href="#b1"><div class="story__ring"><img src="proj4b/results/anms_corners.png" alt=""></div>B.1 Corners</a>
+      <a class="story" href="#b2"><div class="story__ring"><img src="proj4b/results/b2/descriptors.png" alt=""></div>B.2 Features</a>
+      <a class="story" href="#b3"><div class="story__ring"><img src="proj4b/results/b3/matches_0.7.png" alt=""></div>B.3 Matching</a>
+      <a class="story" href="#b4"><div class="story__ring"><img src="proj4b/results/b4/morocco_auto_mosaic.jpg" alt=""></div>B.4 Auto Mosaics</a>
     </nav>
 
   </section>
@@ -79,8 +83,8 @@
 
     <div class="day">Apartment courtyard</div>
     <div class="snaps cols-2">
-      <figure class="snap tall"><img src="results/a1/apt1.jpg" alt="Apartment, left view" loading="lazy"><figcaption>apt1 · left</figcaption></figure>
-      <figure class="snap tall"><img src="results/a1/apt2.jpg" alt="Apartment, right view" loading="lazy"><figcaption>apt2 · right</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/apt1.jpg" alt="Apartment, left view" loading="lazy"><figcaption>apt1 · left</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/apt2.jpg" alt="Apartment, right view" loading="lazy"><figcaption>apt2 · right</figcaption></figure>
     </div>
     <div class="msg msg--me">
       <div class="msg__who">Me</div>
@@ -89,8 +93,8 @@
 
     <div class="day">Morocco resort</div>
     <div class="snaps cols-2">
-      <figure class="snap tall"><img src="results/a1/morocco1.jpg" alt="Morocco resort, left view" loading="lazy"><figcaption>morocco1 · left</figcaption></figure>
-      <figure class="snap tall"><img src="results/a1/morocco2.jpg" alt="Morocco resort, right view" loading="lazy"><figcaption>morocco2 · right</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/morocco1.jpg" alt="Morocco resort, left view" loading="lazy"><figcaption>morocco1 · left</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/morocco2.jpg" alt="Morocco resort, right view" loading="lazy"><figcaption>morocco2 · right</figcaption></figure>
     </div>
     <div class="msg msg--me">
       <div class="msg__who">Me</div>
@@ -99,8 +103,8 @@
 
     <div class="day">Vietnam temple</div>
     <div class="snaps cols-2">
-      <figure class="snap tall"><img src="results/a1/vietnam1.jpg" alt="Vietnam temple, looking down" loading="lazy"><figcaption>vietnam1</figcaption></figure>
-      <figure class="snap tall"><img src="results/a1/vietnam2.jpg" alt="Vietnam temple, looking out" loading="lazy"><figcaption>vietnam2</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/vietnam1.jpg" alt="Vietnam temple, looking down" loading="lazy"><figcaption>vietnam1</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/vietnam2.jpg" alt="Vietnam temple, looking out" loading="lazy"><figcaption>vietnam2</figcaption></figure>
     </div>
     <div class="msg msg--me">
       <div class="msg__who">Me</div>
@@ -139,7 +143,7 @@
     </div>
 
     <div class="day">Apartment · 7 points</div>
-    <figure class="snap wide"><img src="results/a2/apt_corr.jpg" alt="Apartment correspondences" loading="lazy"><figcaption>Apartment · correspondences</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/a2/apt_corr.jpg" alt="Apartment correspondences" loading="lazy"><figcaption>Apartment · correspondences</figcaption></figure>
     <div class="mats">
         <div class="card"><h4>Apartment · first 2 of 7 correspondences (4 of 14 rows)</h4>
           <div class="math"><span class="eq"><span class="mat c8"><span>1569</span><span>973.5</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−2.652×10<sup>5</sup></span><span>−1.645×10<sup>5</sup></span><span>0</span><span>0</span><span>0</span><span>1569</span><span>973.5</span><span>1</span><span>−1.644×10<sup>6</sup></span><span>−1.02×10<sup>6</sup></span><span>1850</span><span>643.5</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−8.119×10<sup>5</sup></span><span>−2.825×10<sup>5</sup></span><span>0</span><span>0</span><span>0</span><span>1850</span><span>643.5</span><span>1</span><span>−1.427×10<sup>6</sup></span><span>−4.965×10<sup>5</sup></span></span><span>h =</span><span class="mat c1"><span>169</span><span>1048</span><span>439</span><span>771.5</span></span></span></div>
@@ -151,7 +155,7 @@
       </div>
 
     <div class="day">Morocco · 8 points</div>
-    <figure class="snap wide"><img src="results/a2/morocco_corr.jpg" alt="Morocco correspondences" loading="lazy"><figcaption>Morocco · correspondences</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/a2/morocco_corr.jpg" alt="Morocco correspondences" loading="lazy"><figcaption>Morocco · correspondences</figcaption></figure>
     <div class="mats">
         <div class="card"><h4>Morocco · first 2 of 8 correspondences (4 of 16 rows)</h4>
           <div class="math"><span class="eq"><span class="mat c8"><span>1308</span><span>1350</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−6.985×10<sup>5</sup></span><span>−7.212×10<sup>5</sup></span><span>0</span><span>0</span><span>0</span><span>1308</span><span>1350</span><span>1</span><span>−1.538×10<sup>6</sup></span><span>−1.588×10<sup>6</sup></span><span>1318</span><span>1454</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−7.242×10<sup>5</sup></span><span>−7.992×10<sup>5</sup></span><span>0</span><span>0</span><span>0</span><span>1318</span><span>1454</span><span>1</span><span>−1.694×10<sup>6</sup></span><span>−1.87×10<sup>6</sup></span></span><span>h =</span><span class="mat c1"><span>534</span><span>1176</span><span>549.5</span><span>1286</span></span></span></div>
@@ -163,7 +167,7 @@
       </div>
 
     <div class="day">Vietnam · 8 points</div>
-    <figure class="snap wide"><img src="results/a2/vietnam_corr.jpg" alt="Vietnam correspondences" loading="lazy"><figcaption>Vietnam · correspondences</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/a2/vietnam_corr.jpg" alt="Vietnam correspondences" loading="lazy"><figcaption>Vietnam · correspondences</figcaption></figure>
     <div class="mats">
         <div class="card"><h4>Vietnam · first 2 of 8 correspondences (4 of 16 rows)</h4>
           <div class="math"><span class="eq"><span class="mat c8"><span>1418</span><span>27.5</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−8.231×10<sup>5</sup></span><span>−1.596×10<sup>4</sup></span><span>0</span><span>0</span><span>0</span><span>1418</span><span>27.5</span><span>1</span><span>−1.273×10<sup>6</sup></span><span>−2.468×10<sup>4</sup></span><span>1786</span><span>92</span><span>1</span><span>0</span><span>0</span><span>0</span><span>−1.561×10<sup>6</sup></span><span>−8.041×10<sup>4</sup></span><span>0</span><span>0</span><span>0</span><span>1786</span><span>92</span><span>1</span><span>−1.717×10<sup>6</sup></span><span>−8.846×10<sup>4</sup></span></span><span>h =</span><span class="mat c1"><span>580.5</span><span>897.5</span><span>874</span><span>961.5</span></span></span></div>
@@ -197,12 +201,12 @@
 
     <div class="day">Left image warped into the right image's frame</div>
     <div class="snaps cols-2">
-      <figure class="snap wide"><img src="results/a3/apt_warp_nn.jpg" alt="Apartment warped, nearest neighbor" loading="lazy"><figcaption>Apartment · nearest neighbor</figcaption></figure>
-      <figure class="snap wide"><img src="results/a3/apt_warp_bilinear.jpg" alt="Apartment warped, bilinear" loading="lazy"><figcaption>Apartment · bilinear</figcaption></figure>
-      <figure class="snap wide"><img src="results/a3/morocco_warp_nn.jpg" alt="Morocco warped, nearest neighbor" loading="lazy"><figcaption>Morocco · nearest neighbor</figcaption></figure>
-      <figure class="snap wide"><img src="results/a3/morocco_warp_bilinear.jpg" alt="Morocco warped, bilinear" loading="lazy"><figcaption>Morocco · bilinear</figcaption></figure>
-      <figure class="snap wide"><img src="results/a3/vietnam_warp_nn.jpg" alt="Vietnam warped, nearest neighbor" loading="lazy"><figcaption>Vietnam · nearest neighbor</figcaption></figure>
-      <figure class="snap wide"><img src="results/a3/vietnam_warp_bilinear.jpg" alt="Vietnam warped, bilinear" loading="lazy"><figcaption>Vietnam · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/a3/apt_warp_nn.jpg" alt="Apartment warped, nearest neighbor" loading="lazy"><figcaption>Apartment · nearest neighbor</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/a3/apt_warp_bilinear.jpg" alt="Apartment warped, bilinear" loading="lazy"><figcaption>Apartment · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/a3/morocco_warp_nn.jpg" alt="Morocco warped, nearest neighbor" loading="lazy"><figcaption>Morocco · nearest neighbor</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/a3/morocco_warp_bilinear.jpg" alt="Morocco warped, bilinear" loading="lazy"><figcaption>Morocco · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/a3/vietnam_warp_nn.jpg" alt="Vietnam warped, nearest neighbor" loading="lazy"><figcaption>Vietnam · nearest neighbor</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/a3/vietnam_warp_bilinear.jpg" alt="Vietnam warped, bilinear" loading="lazy"><figcaption>Vietnam · bilinear</figcaption></figure>
     </div>
   </section>
 
@@ -222,7 +226,7 @@
     </div>
 
     <div class="day">Concert · stage screen</div>
-    <figure class="snap wide"><img src="results/rect/concert_corr.jpg" alt="Concert original and rectified stage screen" loading="lazy"><figcaption>Concert · original → rectified</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/rect/concert_corr.jpg" alt="Concert original and rectified stage screen" loading="lazy"><figcaption>Concert · original → rectified</figcaption></figure>
     <div class="card"><h4>Concert · H (clicked quad → 1.3 : 1 rectangle, blue stage screen)</h4>
           <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>0.4912</span><span>0</span><span>−179.8</span><span>−0.1451</span><span>0.346</span><span>−70.07</span><span>−0.000907</span><span>0</span><span>1</span></span></span></div>
         </div>
@@ -232,7 +236,7 @@
     </div>
 
     <div class="day">World Cup · TV</div>
-    <figure class="snap wide"><img src="results/rect/worldcup_corr.jpg" alt="World Cup original and rectified TV" loading="lazy"><figcaption>World Cup · original → rectified</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/rect/worldcup_corr.jpg" alt="World Cup original and rectified TV" loading="lazy"><figcaption>World Cup · original → rectified</figcaption></figure>
     <div class="card"><h4>World Cup · H (clicked quad → 16 : 9 rectangle, TV screen)</h4>
           <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>0.8911</span><span>0.0502</span><span>−181.7</span><span>−0.05436</span><span>0.8076</span><span>−391</span><span>−0.0001984</span><span>1.253×10<sup>−5</sup></span><span>1</span></span></span></div>
         </div>
@@ -242,7 +246,7 @@
     </div>
 
     <div class="day">Tomato Soup · painting</div>
-    <figure class="snap wide"><img src="results/rect/tomato_soup_corr.jpg" alt="Tomato Soup original and rectified painting" loading="lazy"><figcaption>Tomato Soup · original → rectified</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/rect/tomato_soup_corr.jpg" alt="Tomato Soup original and rectified painting" loading="lazy"><figcaption>Tomato Soup · original → rectified</figcaption></figure>
     <div class="card"><h4>Tomato Soup · H (clicked quad → 4 : 5 rectangle, painting)</h4>
           <div class="math"><span class="eq"><span>H =</span><span class="mat c3"><span>0.7925</span><span>−0.02286</span><span>−46.22</span><span>−0.1464</span><span>0.7472</span><span>−189.1</span><span>−0.0006195</span><span>−0.0002227</span><span>1</span></span></span></div>
         </div>
@@ -262,12 +266,12 @@
 
     <div class="day">Rectified results</div>
     <div class="snaps cols-2">
-      <figure class="snap wide"><img src="results/rect/concert_nn.jpg" alt="Concert rectified, nearest neighbor" loading="lazy"><figcaption>Concert · NN</figcaption></figure>
-      <figure class="snap wide"><img src="results/rect/concert_bilinear.jpg" alt="Concert rectified, bilinear" loading="lazy"><figcaption>Concert · bilinear</figcaption></figure>
-      <figure class="snap wide"><img src="results/rect/worldcup_nn.jpg" alt="World Cup rectified, nearest neighbor" loading="lazy"><figcaption>World Cup · NN</figcaption></figure>
-      <figure class="snap wide"><img src="results/rect/worldcup_bilinear.jpg" alt="World Cup rectified, bilinear" loading="lazy"><figcaption>World Cup · bilinear</figcaption></figure>
-      <figure class="snap wide"><img src="results/rect/tomato_soup_nn.jpg" alt="Tomato Soup rectified, nearest neighbor" loading="lazy"><figcaption>Tomato Soup · NN</figcaption></figure>
-      <figure class="snap wide"><img src="results/rect/tomato_soup_bilinear.jpg" alt="Tomato Soup rectified, bilinear" loading="lazy"><figcaption>Tomato Soup · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/rect/concert_nn.jpg" alt="Concert rectified, nearest neighbor" loading="lazy"><figcaption>Concert · NN</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/rect/concert_bilinear.jpg" alt="Concert rectified, bilinear" loading="lazy"><figcaption>Concert · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/rect/worldcup_nn.jpg" alt="World Cup rectified, nearest neighbor" loading="lazy"><figcaption>World Cup · NN</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/rect/worldcup_bilinear.jpg" alt="World Cup rectified, bilinear" loading="lazy"><figcaption>World Cup · bilinear</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/rect/tomato_soup_nn.jpg" alt="Tomato Soup rectified, nearest neighbor" loading="lazy"><figcaption>Tomato Soup · NN</figcaption></figure>
+      <figure class="snap wide"><img src="proj4a/results/rect/tomato_soup_bilinear.jpg" alt="Tomato Soup rectified, bilinear" loading="lazy"><figcaption>Tomato Soup · bilinear</figcaption></figure>
     </div>
 
     <div class="msg msg--me">
@@ -277,12 +281,12 @@
 
     <div class="day">Zoomed in · center 30%</div>
     <div class="snaps cols-2">
-      <figure class="snap wide pixel"><img src="results/rect/tomato_soup_nn_zoom.png" alt="Tomato Soup zoom, nearest neighbor" loading="lazy"><figcaption>Tomato Soup · NN zoom</figcaption></figure>
-      <figure class="snap wide pixel"><img src="results/rect/tomato_soup_bilinear_zoom.png" alt="Tomato Soup zoom, bilinear" loading="lazy"><figcaption>Tomato Soup · bilinear zoom</figcaption></figure>
-      <figure class="snap wide pixel"><img src="results/rect/worldcup_nn_zoom.png" alt="World Cup zoom, nearest neighbor" loading="lazy"><figcaption>World Cup · NN zoom</figcaption></figure>
-      <figure class="snap wide pixel"><img src="results/rect/worldcup_bilinear_zoom.png" alt="World Cup zoom, bilinear" loading="lazy"><figcaption>World Cup · bilinear zoom</figcaption></figure>
-      <figure class="snap wide pixel"><img src="results/rect/concert_nn_zoom.png" alt="Concert zoom, nearest neighbor" loading="lazy"><figcaption>Concert · NN zoom</figcaption></figure>
-      <figure class="snap wide pixel"><img src="results/rect/concert_bilinear_zoom.png" alt="Concert zoom, bilinear" loading="lazy"><figcaption>Concert · bilinear zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="proj4a/results/rect/tomato_soup_nn_zoom.png" alt="Tomato Soup zoom, nearest neighbor" loading="lazy"><figcaption>Tomato Soup · NN zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="proj4a/results/rect/tomato_soup_bilinear_zoom.png" alt="Tomato Soup zoom, bilinear" loading="lazy"><figcaption>Tomato Soup · bilinear zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="proj4a/results/rect/worldcup_nn_zoom.png" alt="World Cup zoom, nearest neighbor" loading="lazy"><figcaption>World Cup · NN zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="proj4a/results/rect/worldcup_bilinear_zoom.png" alt="World Cup zoom, bilinear" loading="lazy"><figcaption>World Cup · bilinear zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="proj4a/results/rect/concert_nn_zoom.png" alt="Concert zoom, nearest neighbor" loading="lazy"><figcaption>Concert · NN zoom</figcaption></figure>
+      <figure class="snap wide pixel"><img src="proj4a/results/rect/concert_bilinear_zoom.png" alt="Concert zoom, bilinear" loading="lazy"><figcaption>Concert · bilinear zoom</figcaption></figure>
     </div>
 
 
@@ -314,25 +318,177 @@
 
     <div class="day">Mosaic 1 · Apartment</div>
     <div class="snaps cols-2">
-      <figure class="snap tall"><img src="results/a1/apt1.jpg" alt="Apartment source, left" loading="lazy"><figcaption>Source · left</figcaption></figure>
-      <figure class="snap tall"><img src="results/a1/apt2.jpg" alt="Apartment source, right" loading="lazy"><figcaption>Source · right</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/apt1.jpg" alt="Apartment source, left" loading="lazy"><figcaption>Source · left</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/apt2.jpg" alt="Apartment source, right" loading="lazy"><figcaption>Source · right</figcaption></figure>
     </div>
-    <figure class="snap wide"><img src="results/a4/apt_mosaic.jpg" alt="Apartment mosaic" loading="lazy"><figcaption>Apartment · mosaic</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/a4/apt_mosaic.jpg" alt="Apartment mosaic" loading="lazy"><figcaption>Apartment · mosaic</figcaption></figure>
 
     <div class="day">Mosaic 2 · Morocco</div>
     <div class="snaps cols-2">
-      <figure class="snap tall"><img src="results/a1/morocco1.jpg" alt="Morocco source, left" loading="lazy"><figcaption>Source · left</figcaption></figure>
-      <figure class="snap tall"><img src="results/a1/morocco2.jpg" alt="Morocco source, right" loading="lazy"><figcaption>Source · right</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/morocco1.jpg" alt="Morocco source, left" loading="lazy"><figcaption>Source · left</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/morocco2.jpg" alt="Morocco source, right" loading="lazy"><figcaption>Source · right</figcaption></figure>
     </div>
-    <figure class="snap wide"><img src="results/a4/morocco_mosaic.jpg" alt="Morocco mosaic" loading="lazy"><figcaption>Morocco · mosaic</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/a4/morocco_mosaic.jpg" alt="Morocco mosaic" loading="lazy"><figcaption>Morocco · mosaic</figcaption></figure>
 
     <div class="day">Mosaic 3 · Vietnam</div>
     <div class="snaps cols-2">
-      <figure class="snap tall"><img src="results/a1/vietnam1.jpg" alt="Vietnam source 1" loading="lazy"><figcaption>Source 1</figcaption></figure>
-      <figure class="snap tall"><img src="results/a1/vietnam2.jpg" alt="Vietnam source 2" loading="lazy"><figcaption>Source 2</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/vietnam1.jpg" alt="Vietnam source 1" loading="lazy"><figcaption>Source 1</figcaption></figure>
+      <figure class="snap tall"><img src="proj4a/results/a1/vietnam2.jpg" alt="Vietnam source 2" loading="lazy"><figcaption>Source 2</figcaption></figure>
     </div>
-    <figure class="snap wide"><img src="results/a4/vietnam_mosaic.jpg" alt="Vietnam mosaic" loading="lazy"><figcaption>Vietnam · mosaic</figcaption></figure>
+    <figure class="snap wide"><img src="proj4a/results/a4/vietnam_mosaic.jpg" alt="Vietnam mosaic" loading="lazy"><figcaption>Vietnam · mosaic</figcaption></figure>
   </section>
+
+  <!-- ================================================================ -->
+  <!-- ==================== PART B · AUTOSTITCHING ===================== -->
+  <!-- ================================================================ -->
+  <div class="day" id="part-b">Part B · Feature Matching for Autostitching</div>
+
+  <!-- ==================== B.1 · HARRIS + ANMS ==================== -->
+  <section class="thread" id="b1" data-short="B.1 · Harris Corners and ANMS">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Detecting Corner Features</h2><div class="sub">Harris corners · adaptive non-maximal suppression</div></div>
+      <span class="chip">B.1</span>
+    </div>
+
+    <div class="msg msg--them">
+      <div class="msg__who">CS 180</div>
+      <div class="msg__body"><p>Detect Harris corners, then use Adaptive Non-Maximal Suppression (ANMS) to keep a strong, evenly spread subset. Show the detected corners overlaid on an image, with and without ANMS.</p></div>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body">
+        <p>Harris corners are found by detecting image pixels where the gradient is large in multiple directions. This differentiates Harris corners from edges. ANMS suppresses the neighboring Harris corners, keeping the strongest one within the radius.</p>
+      </div>
+    </div>
+
+    <div class="day">Morocco · left image</div>
+    <div class="snaps cols-2">
+      <figure class="snap wide"><img src="proj4b/results/harris_corners.png" alt="All Harris corners on the Morocco image" loading="lazy"><figcaption>All Harris corners</figcaption></figure>
+      <figure class="snap wide"><img src="proj4b/results/anms_corners.png" alt="500 corners kept by ANMS on the Morocco image" loading="lazy"><figcaption>After ANMS · 500 points</figcaption></figure>
+    </div>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>The Harris corners are clustered on textured areas such as trees, and don't appear in plain areas such as the clouds. After ANMS, the clustered corners are now sparse.</p></div>
+    </div>
+  </section>
+
+  <!-- ==================== B.2 · FEATURE DESCRIPTORS ==================== -->
+  <section class="thread" id="b2" data-short="B.2 · Feature Descriptors">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Extracting Feature Descriptors</h2><div class="sub">40×40 window → 8×8 patch · bias/gain normalized</div></div>
+      <span class="chip">B.2</span>
+    </div>
+
+    <div class="msg msg--them">
+      <div class="msg__who">CS 180</div>
+      <div class="msg__body"><p>Extract an axis-aligned 8×8 descriptor for each corner by sampling a blurred 40×40 window, then bias/gain-normalize it. Show a few extracted features.</p></div>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body">
+        <p>To extract the features, I apply a Gaussian blur to avoid aliasing, then take every 5th pixel of the 40 × 40 window around each corner. Lastly, I normalize the 8 × 8 patch.</p>
+      </div>
+    </div>
+
+    <div class="day">Morocco · example descriptors</div>
+    <figure class="snap wide"><img src="proj4b/results/b2/descriptors.png" alt="Four normalized 8×8 feature descriptors" loading="lazy"><figcaption>Normalized 8×8 descriptors</figcaption></figure>
+  </section>
+
+  <!-- ==================== B.3 · FEATURE MATCHING ==================== -->
+  <section class="thread" id="b3" data-short="B.3 · Feature Matching">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>Matching Feature Descriptors</h2><div class="sub">nearest neighbors · Lowe's ratio test</div></div>
+      <span class="chip">B.3</span>
+    </div>
+
+    <div class="msg msg--them">
+      <div class="msg__who">CS 180</div>
+      <div class="msg__body"><p>Find pairs of features that look similar and are likely to be good matches, using Lowe's ratio test (1-NN / 2-NN). Show the matched features between two images.</p></div>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body">
+        <p>The ratio test compares every ANMS corner of images 1 and 2, and finds the 2 nearest matches for each corner. It keeps the pair if ‖d<sub>1</sub>‖ / ‖d<sub>2</sub>‖ is below a ratio.</p>
+      </div>
+    </div>
+
+    <div class="day">Morocco · three thresholds</div>
+    <figure class="snap wide"><img src="proj4b/results/b3/matches_0.3.png" alt="Matches with ratio below 0.3" loading="lazy"><figcaption>Ratio &lt; 0.3</figcaption></figure>
+    <figure class="snap wide"><img src="proj4b/results/b3/matches_0.5.png" alt="Matches with ratio below 0.5" loading="lazy"><figcaption>Ratio &lt; 0.5</figcaption></figure>
+    <figure class="snap wide"><img src="proj4b/results/b3/matches_0.7.png" alt="Matches with ratio below 0.7" loading="lazy"><figcaption>Ratio &lt; 0.7</figcaption></figure>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>As the ratio is relaxed (increased), there are more matches. When ratio &lt; 0.3 or ratio &lt; 0.5, we see that all of the lines are nearly parallel. However, in the ratio &lt; 0.7 image, we see a few lines that do not follow the other matches, which implies it found the wrong pair.</p></div>
+    </div>
+  </section>
+
+  <!-- ==================== B.4 · RANSAC + MOSAICS ==================== -->
+  <section class="thread" id="b4" data-short="B.4 · RANSAC and Automatic Mosaics">
+    <div class="thread__hd">
+      <span class="bitmoji">N</span>
+      <div><h2>RANSAC for Robust Homography</h2><div class="sub">4-point RANSAC · manual vs. automatic mosaics</div></div>
+      <span class="chip">B.4</span>
+    </div>
+
+    <div class="msg msg--them">
+      <div class="msg__who">CS 180</div>
+      <div class="msg__body"><p>Use 4-point RANSAC to compute robust homography estimates, then produce mosaics by adapting your Part A code. Show manually and automatically stitched results side by side, for at least three mosaics.</p></div>
+    </div>
+
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body">
+        <p>RANSAC repeats picking 4 random matches, fitting a homography matrix H from them, and counting the matches that land within 3 pixels. The reason it picks 4 matches is that 4 pairs give 8 equations, which is the minimum to uniquely determine a homography matrix. We repeat this 3000 times to find the best matrix.</p>
+        <p>Lastly, we choose the group of inliers from the best homography matrix, and refit H by running least squares on those points.</p>
+      </div>
+    </div>
+
+    <div class="card"><h4>Inliers per pair (ratio &lt; 0.7, ε = 3 px)</h4>
+      <table class="score">
+        <thead><tr><th>Pair</th><th>Matches</th><th>Inliers</th></tr></thead>
+        <tbody>
+          <tr><td>Apartment</td><td>82</td><td>67</td></tr>
+          <tr><td>Morocco</td><td>117</td><td>111</td></tr>
+          <tr><td>Vietnam</td><td>42</td><td>16</td></tr>
+        </tbody>
+      </table>
+      <div class="note">From the notebook's inlier-count cell (saved to proj4b/results/b4/inliers.json).</div>
+    </div>
+
+    <div class="day">RANSAC inliers</div>
+    <figure class="snap wide"><img src="proj4b/results/b4/apt_inliers.png" alt="Matches kept by RANSAC on the apartment pair" loading="lazy"><figcaption>Apartment · inliers only</figcaption></figure>
+    <figure class="snap wide"><img src="proj4b/results/b4/morocco_inliers.png" alt="Matches kept by RANSAC on the Morocco pair" loading="lazy"><figcaption>Morocco · inliers only</figcaption></figure>
+    <figure class="snap wide"><img src="proj4b/results/b4/vietnam_inliers.png" alt="Matches kept by RANSAC on the Vietnam pair" loading="lazy"><figcaption>Vietnam · inliers only</figcaption></figure>
+
+    <div class="day">Mosaic 1 · Apartment</div>
+    <div class="snaps cols-2">
+      <figure class="snap wide"><img src="proj4a/results/a4/apt_mosaic.jpg" alt="Apartment mosaic from manual correspondences" loading="lazy"><figcaption>Manual (Part A)</figcaption></figure>
+      <figure class="snap wide"><img src="proj4b/results/b4/apt_auto_mosaic.jpg" alt="Apartment mosaic from automatic matching" loading="lazy"><figcaption>Automatic (Part B)</figcaption></figure>
+    </div>
+
+    <div class="day">Mosaic 2 · Morocco</div>
+    <div class="snaps cols-2">
+      <figure class="snap wide"><img src="proj4a/results/a4/morocco_mosaic.jpg" alt="Morocco mosaic from manual correspondences" loading="lazy"><figcaption>Manual (Part A)</figcaption></figure>
+      <figure class="snap wide"><img src="proj4b/results/b4/morocco_auto_mosaic.jpg" alt="Morocco mosaic from automatic matching" loading="lazy"><figcaption>Automatic (Part B)</figcaption></figure>
+    </div>
+
+    <div class="day">Mosaic 3 · Vietnam</div>
+    <div class="snaps cols-2">
+      <figure class="snap wide"><img src="proj4a/results/a4/vietnam_mosaic.jpg" alt="Vietnam mosaic from manual correspondences" loading="lazy"><figcaption>Manual (Part A)</figcaption></figure>
+      <figure class="snap wide"><img src="proj4b/results/b4/vietnam_auto_mosaic.jpg" alt="Vietnam mosaic from automatic matching" loading="lazy"><figcaption>Automatic (Part B)</figcaption></figure>
+    </div>
+    <div class="msg msg--me">
+      <div class="msg__who">Me</div>
+      <div class="msg__body"><p>While it is difficult to differentiate the first 2 pairs visually, we see in the third pair that the automatic mosaic shows a less distorted patch of the two images.</p></div>
+    </div>
+  </section>
+
 
 
 </main>

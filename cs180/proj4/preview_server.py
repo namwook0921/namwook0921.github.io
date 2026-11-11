@@ -10,7 +10,7 @@ class Handler(SimpleHTTPRequestHandler):
         super().__init__(*args, directory=str(ROOT), **kwargs)
     def do_GET(self):
         if self.path.split('?')[0] == '/__preview_revision':
-            files = [p for p in [*WATCH.glob('*'), *WATCH.glob('results/**/*'), *(ROOT / 'assets').rglob('*')] if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.png','.jpg','.jpeg','.webp','.svg','.json'}]
+            files = [p for p in [*WATCH.glob('*'), *WATCH.glob('*/results/**/*'), *(ROOT / 'assets').rglob('*')] if p.is_file() and p.suffix.lower() in {'.html','.css','.js','.png','.jpg','.jpeg','.webp','.svg','.json'}]
             value = 'revision:' + hashlib.sha256(str(sorted((str(p.relative_to(ROOT)), p.stat().st_mtime_ns, p.stat().st_size) for p in files)).encode()).hexdigest()
             self.send_response(200)
             self.send_header('Content-Type','text/plain')
